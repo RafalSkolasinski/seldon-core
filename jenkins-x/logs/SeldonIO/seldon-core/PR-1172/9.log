@@ -1,0 +1,47 @@
+
+Showing logs for build [32mseldonio-seldon-core-pr-1172-li-mnf2x-9[0m stage [32mpython-lint-task[0m and container [32mstep-credential-initializer-6lkl6[0m
+{"level":"warn","ts":1575288242.9251864,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575288242.9256628,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1172-li-mnf2x-9[0m stage [32mpython-lint-task[0m and container [32mstep-working-dir-initializer-b6n6b[0m
+{"level":"warn","ts":1575288243.3552585,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575288243.3569121,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1172-li-mnf2x-9[0m stage [32mpython-lint-task[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mseldonio-seldon-core-pr-1172-li-mnf2x-9[0m stage [32mpython-lint-task[0m and container [32mstep-git-source-seldonio-seldon-core-pr-1172-li-qd4jn[0m
+{"level":"warn","ts":1575288249.5911772,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575288251.9022937,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/SeldonIO/seldon-core.git @ master in path /workspace/source"}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1172-li-mnf2x-9[0m stage [32mpython-lint-task[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:f9972d3b03a0ce22db2ca14f6e6a3fd92b950e26,1172:114508a472e4aee53ff3bd86a26d74eef1f09d1e
+DEBUG: ran git fetch --unshallow origin 114508a472e4aee53ff3bd86a26d74eef1f09d1e: f9972d3b03a0ce22db2ca14f6e6a3fd92b950e26: in 
+DEBUG: ran git checkout master in 
+DEBUG: ran git reset --hard f9972d3b03a0ce22db2ca14f6e6a3fd92b950e26 in 
+DEBUG: ran clean --force -d . in 
+DEBUG: ran git merge 114508a472e4aee53ff3bd86a26d74eef1f09d1e in 
+Merged SHA 114508a472e4aee53ff3bd86a26d74eef1f09d1e with commit message 'try moving the image build call' into base branch master
+Merged SHA 029f5d761e25f92a24f3c6ef82fcc62f35431a99 with commit message 'this is the key bit - missed in previous commit' into base branch master
+Merged SHA 2a0f1fe7aaa93ef1ddcd0f88b90d7d34eed9bb26 with commit message 'build operator image when running e2e locally' into base branch master
+
+Showing logs for build [32mseldonio-seldon-core-pr-1172-li-mnf2x-9[0m stage [32mpython-lint-task[0m and container [32mstep-python-lint[0m
+make: Entering directory '/workspace/source/python'
+pip install black==19.3b0
+Collecting black==19.3b0
+  Downloading https://files.pythonhosted.org/packages/30/62/cf549544a5fe990bbaeca21e9c419501b2de7a701ab0afb377bc81676600/black-19.3b0-py36-none-any.whl (89kB)
+Collecting attrs>=18.1.0
+  Downloading https://files.pythonhosted.org/packages/a2/db/4313ab3be961f7a763066401fb77f7748373b6094076ae2bda2806988af6/attrs-19.3.0-py2.py3-none-any.whl
+Collecting appdirs
+  Downloading https://files.pythonhosted.org/packages/56/eb/810e700ed1349edde4cbdc1b2a21e28cdf115f9faf263f6bbf8447c1abf3/appdirs-1.4.3-py2.py3-none-any.whl
+Collecting toml>=0.9.4
+  Downloading https://files.pythonhosted.org/packages/a2/12/ced7105d2de62fa7c8fb5fce92cc4ce66b57c95fb875e9318dba7f8c5db0/toml-0.10.0-py2.py3-none-any.whl
+Collecting click>=6.5
+  Downloading https://files.pythonhosted.org/packages/fa/37/45185cb5abbc30d7257104c434fe0b07e5a195a6847506c074527aa599ec/Click-7.0-py2.py3-none-any.whl (81kB)
+Installing collected packages: attrs, appdirs, toml, click, black
+Successfully installed appdirs-1.4.3 attrs-19.3.0 black-19.3b0 click-7.0 toml-0.10.0
+black \
+	--check ./ ../testing \
+	--exclude "(testing/scripts/proto|seldon_core/proto/|.eggs|.tox)"
+All done! ✨ 🍰 ✨
+49 files would be left unchanged.
+make: Leaving directory '/workspace/source/python'
