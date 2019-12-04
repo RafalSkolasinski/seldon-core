@@ -1,0 +1,27 @@
+
+Showing logs for build [32mseldonio-environment-jx-product-gvqns-1[0m stage [32mrelease[0m and container [32mstep-credential-initializer-b8d4x[0m
+{"level":"warn","ts":1575470637.1625235,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575470637.1629848,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mseldonio-environment-jx-product-gvqns-1[0m stage [32mrelease[0m and container [32mstep-working-dir-initializer-q5jzk[0m
+{"level":"warn","ts":1575470638.145371,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575470638.1469183,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mseldonio-environment-jx-product-gvqns-1[0m stage [32mrelease[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mseldonio-environment-jx-product-gvqns-1[0m stage [32mrelease[0m and container [32mstep-git-source-seldonio-environment-jx-product-2vldb[0m
+{"level":"warn","ts":1575470649.2978566,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575470651.1446786,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/SeldonIO/environment-**-production-cluster-dev.git @ v0.0.8 in path /workspace/source"}
+
+Showing logs for build [32mseldonio-environment-jx-product-gvqns-1[0m stage [32mrelease[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:739211a9262db65cd6653aa0352edee7575998d1
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mseldonio-environment-jx-product-gvqns-1[0m stage [32mrelease[0m and container [32mstep-validate-git[0m
+Git configured for user: jenkins-x-bot and email jenkins-x@googlegroups.com
+
+Showing logs for build [32mseldonio-environment-jx-product-gvqns-1[0m stage [32mrelease[0m and container [32mstep-verify-preinstall[0m
+error: Validation failures in YAML file **-requirements.yml:
+(root): Additional property repository is not allowed
+[31m
+Pipeline failed on stage 'release' : container 'step-verify-preinstall'. The execution of the pipeline has stopped.[0m
