@@ -1,0 +1,1897 @@
+
+Showing logs for build [32mseldonio-seldon-core-pr-1201-in-3[0m stage [32mpr-build-comment[0m and container [32mstep-credential-initializer-fvr44[0m
+{"level":"warn","ts":1575558119.2918837,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575558119.2923403,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1201-in-3[0m stage [32mpr-build-comment[0m and container [32mstep-working-dir-initializer-bxvkz[0m
+{"level":"warn","ts":1575558120.5454419,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575558120.5467772,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1201-in-3[0m stage [32mpr-build-comment[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mseldonio-seldon-core-pr-1201-in-3[0m stage [32mpr-build-comment[0m and container [32mstep-git-source-seldonio-seldon-core-pr-1201-in-5xnxb[0m
+{"level":"warn","ts":1575558125.637984,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575558128.9731212,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/SeldonIO/seldon-core.git @ master in path /workspace/source"}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1201-in-3[0m stage [32mpr-build-comment[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:6efb4130d0994da423c7fd94f7e03b945f57c9f4,1201:a13abc942b4f102cce0b5b4d7e335a8d0ecd67b8
+DEBUG: ran git fetch --unshallow origin a13abc942b4f102cce0b5b4d7e335a8d0ecd67b8: 6efb4130d0994da423c7fd94f7e03b945f57c9f4: in 
+DEBUG: ran git checkout master in 
+DEBUG: ran git reset --hard 6efb4130d0994da423c7fd94f7e03b945f57c9f4 in 
+DEBUG: ran clean --force -d . in 
+DEBUG: ran git merge a13abc942b4f102cce0b5b4d7e335a8d0ecd67b8 in 
+Merged SHA a13abc942b4f102cce0b5b4d7e335a8d0ecd67b8 with commit message 'Merge branch 'master' of github.com:SeldonIO/seldon-core into ci-update' into base branch master
+Merged SHA b04995c59e669bdd02416eff131bd39126e097b4 with commit message 'add PR build comment to integration tests' into base branch master
+Merged SHA df24917a37cefc70617497c7cc82d06d75ed5746 with commit message 'updater lint check for build comment' into base branch master
+Merged SHA e584dc72ca538ee0fb84ec2b1e9ca26558d7f651 with commit message 'add pr build comment' into base branch master
+
+Showing logs for build [32mseldonio-seldon-core-pr-1201-in-3[0m stage [32mpr-build-comment[0m and container [32mstep-step2[0m
++++ dirname ./add-pr-build-comment
+++ cd .
+++ pwd
++ STARTUP_DIR=/workspace/source/ci
++ REPO_OWNER=SeldonIO
++ REPO_NAME=seldon-core
++ PULL_NUMBER=1201
++ BUILD_NUMBER=3
++ PIPELINE_CONTEXT=integration
+++ cat
++++ date
++ COMMENT_MSG='Thu Dec  5 15:02:15 UTC 2019
+The logs for [integration] [3] will show after the pipeline context has finished.  
+https://github.com/SeldonIO/seldon-core/blob/gh-pages/jenkins-x/logs/SeldonIO/seldon-core/PR-1201/3.log
+
+impatient try  
+** get build logs SeldonIO/seldon-core/PR-1201 --build=3'
++ ** step pr comment --owner=SeldonIO --repository=seldon-core --pull-request=1201 '--comment=Thu Dec  5 15:02:15 UTC 2019
+The logs for [integration] [3] will show after the pipeline context has finished.  
+https://github.com/SeldonIO/seldon-core/blob/gh-pages/jenkins-x/logs/SeldonIO/seldon-core/PR-1201/3.log
+
+impatient try  
+** get build logs SeldonIO/seldon-core/PR-1201 --build=3'
+
+Showing logs for build [32mseldonio-seldon-core-pr-1201-in-3[0m stage [32mpr-build-comment[0m and container [32mstep-source-mkdir-seldonio-seldon-core-pr-1201-in-b8xmx[0m
+{"level":"warn","ts":1575558137.340142,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575558137.343085,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /pvc/pr-build-comment/workspace\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1201-in-3[0m stage [32mpr-build-comment[0m and container [32mstep-source-copy-seldonio-seldon-core-pr-1201-in-wn9l6[0m
+{"level":"warn","ts":1575558137.5674367,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575558137.72855,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"cp -r /workspace/source/. /pvc/pr-build-comment/workspace\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1201-in-3[0m stage [32mend-to-end[0m and container [32mstep-credential-initializer-vs92q[0m
+{"level":"warn","ts":1575558172.470732,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575558172.4712045,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1201-in-3[0m stage [32mend-to-end[0m and container [32mstep-working-dir-initializer-hvr9l[0m
+{"level":"warn","ts":1575558173.504727,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575558173.5061524,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1201-in-3[0m stage [32mend-to-end[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mseldonio-seldon-core-pr-1201-in-3[0m stage [32mend-to-end[0m and container [32mstep-create-dir-workspace-czzh5[0m
+{"level":"warn","ts":1575558178.6117618,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575558178.6132467,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1201-in-3[0m stage [32mend-to-end[0m and container [32mstep-source-copy-workspace-hczjp[0m
+{"level":"warn","ts":1575558178.8695002,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575558180.3885648,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"cp -r /pvc/pr-build-comment/workspace/. /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1201-in-3[0m stage [32mend-to-end[0m and container [32mstep-test-end-to-end[0m
+Starting Docker: docker.
+[SETUP] Waiting for Docker to be ready, sleeping for 1 seconds ...
+kind create cluster --config kind_config.yaml
+Creating cluster "kind" ...
+ • Ensuring node image (kindest/node:v1.15.3) 🖼  ...
+ ✓ Ensuring node image (kindest/node:v1.15.3) 🖼
+ • Preparing nodes 📦📦  ...
+ ✓ Preparing nodes 📦📦
+ • Creating kubeadm config 📜  ...
+ ✓ Creating kubeadm config 📜
+ • Starting control-plane 🕹️  ...
+ ✓ Starting control-plane 🕹️
+ • Installing CNI 🔌  ...
+ ✓ Installing CNI 🔌
+ • Installing StorageClass 💾  ...
+ ✓ Installing StorageClass 💾
+ • Joining worker nodes 🚜  ...
+ ✓ Joining worker nodes 🚜
+Cluster creation complete. You can now use the cluster with:
+
+export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
+kubectl cluster-info
+Files changed in python folder:
+SKIPPING PYTHON IMAGE BUILD...
+Files changed in operator folder:
+SKIPPING OPERATOR IMAGE BUILD...
+Files changed in engine folder:
+SKIPPING ENGINE IMAGE BUILD...
+kubectl -n kube-system create sa tiller
+serviceaccount/tiller created
+kubectl create clusterrolebinding tiller --clusterrole cluster-***** --serviceaccount=kube-system:tiller
+clusterrolebinding.rbac.authorization.k8s.io/tiller created
+helm init --service-account tiller
+Creating /builder/home/.helm 
+Creating /builder/home/.helm/repository 
+Creating /builder/home/.helm/repository/cache 
+Creating /builder/home/.helm/repository/local 
+Creating /builder/home/.helm/plugins 
+Creating /builder/home/.helm/starters 
+Creating /builder/home/.helm/cache/archive 
+Creating /builder/home/.helm/repository/repositories.yaml 
+Adding stable repo with URL: https://kubernetes-charts.storage.googleapis.com 
+Adding local repo with URL: http://127.0.0.1:8879/charts 
+$HELM_HOME has been configured at /builder/home/.helm.
+
+Tiller (the Helm server-side component) has been installed into your Kubernetes Cluster.
+
+Please note: by default, Tiller is deployed with an insecure 'allow unauthenticated users' policy.
+To prevent this, run `helm init` with the --tiller-tls-verify flag.
+For more information on securing your installation see: https://docs.helm.sh/using_helm/#securing-your-helm-installation
+kubectl rollout status deploy/tiller-deploy -n kube-system
+Waiting for deployment "tiller-deploy" rollout to finish: 0 of 1 updated replicas are available...
+deployment "tiller-deploy" successfully rolled out
+helm install stable/ambassador -f ambassador_values.yaml --name ambassador --set crds.keep=false --namespace seldon --set replicaCount=1
+NAME:   ambassador
+LAST DEPLOYED: Thu Dec  5 15:05:12 2019
+NAMESPACE: seldon
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/Deployment
+NAME        READY  UP-TO-DATE  AVAILABLE  AGE
+ambassador  0/1    1           0          0s
+
+==> v1/Pod(related)
+NAME                         READY  STATUS             RESTARTS  AGE
+ambassador-558bb98fff-tt6gf  0/1    ContainerCreating  0         0s
+
+==> v1/Service
+NAME              TYPE       CLUSTER-IP     EXTERNAL-IP  PORT(S)       AGE
+ambassador        NodePort   10.102.49.1    <none>       80:30080/TCP  0s
+ambassador-*****  ClusterIP  10.96.249.141  <none>       8877/TCP      0s
+
+==> v1/ServiceAccount
+NAME        SECRETS  AGE
+ambassador  1        0s
+
+==> v1beta1/ClusterRole
+NAME             AGE
+ambassador       0s
+ambassador-crds  0s
+
+==> v1beta1/ClusterRoleBinding
+NAME             AGE
+ambassador       0s
+ambassador-crds  0s
+
+
+NOTES:
+Congratulations! You've successfully installed Ambassador.
+
+For help, visit our Slack at https://d6e.co/slack or view the documentation online at https://www.getambassador.io.
+
+To get the IP address of Ambassador, run the following commands:
+  export NODE_PORT=$(kubectl get --namespace seldon -o jsonpath="{.spec.ports[0].nodePort}" services ambassador)
+  export NODE_IP=$(kubectl get nodes --namespace seldon -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+
+kubectl rollout status deployment.apps/ambassador --namespace seldon
+Waiting for deployment "ambassador" rollout to finish: 0 of 1 updated replicas are available...
+deployment "ambassador" successfully rolled out
+cd ../../operator && make install-cert-manager
+make[1]: Entering directory '/workspace/source/operator'
+kubectl create namespace cert-manager || echo "Namespace cert-manager-exists"
+namespace/cert-manager created
+kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true || echo "namespace cert-manager-already labelled"
+namespace/cert-manager labeled
+kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.9.1/cert-manager.yaml
+customresourcedefinition.apiextensions.k8s.io/certificates.certmanager.k8s.io created
+customresourcedefinition.apiextensions.k8s.io/certificaterequests.certmanager.k8s.io created
+customresourcedefinition.apiextensions.k8s.io/challenges.certmanager.k8s.io created
+customresourcedefinition.apiextensions.k8s.io/clusterissuers.certmanager.k8s.io created
+customresourcedefinition.apiextensions.k8s.io/issuers.certmanager.k8s.io created
+customresourcedefinition.apiextensions.k8s.io/orders.certmanager.k8s.io created
+Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply
+namespace/cert-manager configured
+serviceaccount/cert-manager-cainjector created
+serviceaccount/cert-manager-webhook created
+serviceaccount/cert-manager created
+clusterrole.rbac.authorization.k8s.io/cert-manager-cainjector created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-cainjector created
+clusterrole.rbac.authorization.k8s.io/cert-manager-leaderelection created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-issuers created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-certificates created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-orders created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-challenges created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-leaderelection created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-issuers created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-certificates created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-orders created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-challenges created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim created
+clusterrole.rbac.authorization.k8s.io/cert-manager-view created
+clusterrole.rbac.authorization.k8s.io/cert-manager-edit created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-webhook:auth-delegator created
+rolebinding.rbac.authorization.k8s.io/cert-manager-webhook:webhook-authentication-reader created
+clusterrole.rbac.authorization.k8s.io/cert-manager-webhook:webhook-requester created
+service/cert-manager-webhook created
+deployment.apps/cert-manager-cainjector created
+deployment.apps/cert-manager-webhook created
+deployment.apps/cert-manager created
+apiservice.apiregistration.k8s.io/v1beta1.admission.certmanager.k8s.io created
+issuer.certmanager.k8s.io/cert-manager-webhook-selfsign created
+certificate.certmanager.k8s.io/cert-manager-webhook-ca created
+issuer.certmanager.k8s.io/cert-manager-webhook-ca created
+certificate.certmanager.k8s.io/cert-manager-webhook-webhook-tls created
+validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created
+kubectl rollout status deployment.apps/cert-manager -n cert-manager
+Waiting for deployment "cert-manager" rollout to finish: 0 of 1 updated replicas are available...
+deployment "cert-manager" successfully rolled out
+kubectl rollout status deployment.apps/cert-manager-cainjector -n cert-manager
+deployment "cert-manager-cainjector" successfully rolled out
+kubectl rollout status deployment.apps/cert-manager-webhook -n cert-manager
+Waiting for deployment "cert-manager-webhook" rollout to finish: 0 of 1 updated replicas are available...
+deployment "cert-manager-webhook" successfully rolled out
+make[1]: Leaving directory '/workspace/source/operator'
+cd ../../operator && make install deploy
+make[1]: Entering directory '/workspace/source/operator'
+go get sigs.k8s.io/controller-tools/cmd/controller-gen@v0.2.0
+go: finding sigs.k8s.io v0.2.0
+go: finding sigs.k8s.io/controller-tools/cmd v0.2.0
+go: finding sigs.k8s.io/controller-tools v0.2.0
+go: finding sigs.k8s.io/controller-tools/cmd/controller-gen v0.2.0
+go: downloading sigs.k8s.io/controller-tools v0.2.0
+go: extracting sigs.k8s.io/controller-tools v0.2.0
+go: downloading github.com/spf13/cobra v0.0.5
+go: downloading k8s.io/apiextensions-apiserver v0.0.0-20190409022649-727a075fdec8
+go: downloading golang.org/x/tools v0.0.0-20191010075000-0337d82405ff
+go: downloading k8s.io/api v0.0.0-20190409021203-6e4e0e4f393b
+go: downloading k8s.io/apimachinery v0.0.0-20190404173353-6a84e37a896d
+go: downloading github.com/gobuffalo/flect v0.1.5
+go: downloading github.com/fatih/color v1.7.0
+go: extracting github.com/gobuffalo/flect v0.1.5
+go: extracting github.com/fatih/color v1.7.0
+go: downloading github.com/mattn/go-colorable v0.1.4
+go: downloading sigs.k8s.io/yaml v1.1.0
+go: extracting github.com/spf13/cobra v0.0.5
+go: extracting github.com/mattn/go-colorable v0.1.4
+go: downloading github.com/spf13/pflag v1.0.5
+go: extracting sigs.k8s.io/yaml v1.1.0
+go: downloading github.com/mattn/go-isatty v0.0.8
+go: downloading github.com/inconshreveable/mousetrap v1.0.0
+go: extracting k8s.io/apiextensions-apiserver v0.0.0-20190409022649-727a075fdec8
+go: extracting github.com/mattn/go-isatty v0.0.8
+go: extracting github.com/inconshreveable/mousetrap v1.0.0
+go: downloading gopkg.in/yaml.v2 v2.2.4
+go: downloading golang.org/x/sys v0.0.0-20190922100055-0a153f010e69
+go: extracting github.com/spf13/pflag v1.0.5
+go: extracting k8s.io/api v0.0.0-20190409021203-6e4e0e4f393b
+go: extracting gopkg.in/yaml.v2 v2.2.4
+go: downloading github.com/gogo/protobuf v1.2.2-0.20190723190241-65acae22fc9d
+go: extracting k8s.io/apimachinery v0.0.0-20190404173353-6a84e37a896d
+go: downloading github.com/google/gofuzz v1.0.0
+go: downloading gopkg.in/inf.v0 v0.9.1
+go: downloading k8s.io/klog v1.0.0
+go: downloading golang.org/x/net v0.0.0-20191004110552-13f9640d40b9
+go: extracting github.com/google/gofuzz v1.0.0
+go: extracting gopkg.in/inf.v0 v0.9.1
+go: extracting k8s.io/klog v1.0.0
+go: extracting golang.org/x/sys v0.0.0-20190922100055-0a153f010e69
+go: extracting golang.org/x/tools v0.0.0-20191010075000-0337d82405ff
+go: extracting golang.org/x/net v0.0.0-20191004110552-13f9640d40b9
+go: extracting github.com/gogo/protobuf v1.2.2-0.20190723190241-65acae22fc9d
+go: downloading golang.org/x/text v0.3.2
+go: extracting golang.org/x/text v0.3.2
+go: finding github.com/fatih/color v1.7.0
+go: finding k8s.io/api v0.0.0-20190409021203-6e4e0e4f393b
+go: finding github.com/spf13/cobra v0.0.5
+go: finding golang.org/x/tools v0.0.0-20191010075000-0337d82405ff
+go: finding github.com/gobuffalo/flect v0.1.5
+go: finding k8s.io/apimachinery v0.0.0-20190404173353-6a84e37a896d
+go: finding k8s.io/apiextensions-apiserver v0.0.0-20190409022649-727a075fdec8
+go: finding sigs.k8s.io/yaml v1.1.0
+go: finding github.com/mattn/go-colorable v0.1.4
+go: finding github.com/mattn/go-isatty v0.0.8
+go: finding github.com/gogo/protobuf v1.2.2-0.20190723190241-65acae22fc9d
+go: finding github.com/spf13/pflag v1.0.5
+go: finding github.com/google/gofuzz v1.0.0
+go: finding gopkg.in/inf.v0 v0.9.1
+go: finding k8s.io/klog v1.0.0
+go: finding gopkg.in/yaml.v2 v2.2.4
+go: finding golang.org/x/sys v0.0.0-20190922100055-0a153f010e69
+go: finding golang.org/x/net v0.0.0-20191004110552-13f9640d40b9
+go: finding golang.org/x/text v0.3.2
+/builder/home/go/bin/controller-gen "crd:trivialVersions=true" rbac:roleName=manager-role webhook paths="./..." output:crd:artifacts:config=config/crd/bases
+Error: -: go: downloading github.com/go-logr/logr v0.1.0
+go: downloading k8s.io/client-go v11.0.1-0.20190409021438-1a26190bd76a+incompatible
+go: downloading sigs.k8s.io/controller-runtime v0.2.0
+go: downloading github.com/golangci/golangci-lint v1.21.0
+go: downloading k8s.io/code-generator v0.0.0-20191121015212-c4c8f8345c7e
+go: downloading knative.dev/pkg v0.0.0-20190823221514-39a29cf1bf26
+go: extracting github.com/go-logr/logr v0.1.0
+go: extracting github.com/golangci/golangci-lint v1.21.0
+go: finding github.com/seldonio/seldon-core v0.5.13
+go: extracting sigs.k8s.io/controller-runtime v0.2.0
+go: extracting k8s.io/code-generator v0.0.0-20191121015212-c4c8f8345c7e
+go: downloading github.com/seldonio/seldon-core v0.5.13
+go: extracting knative.dev/pkg v0.0.0-20190823221514-39a29cf1bf26
+go: downloading github.com/prometheus/client_golang v0.9.3
+go: downloading go.uber.org/zap v1.10.0
+go: extracting k8s.io/client-go v11.0.1-0.20190409021438-1a26190bd76a+incompatible
+go: extracting github.com/prometheus/client_golang v0.9.3
+go: extracting go.uber.org/zap v1.10.0
+go: downloading k8s.io/gengo v0.0.0-20190822140433-26a664648505
+go: extracting k8s.io/gengo v0.0.0-20190822140433-26a664648505
+go: downloading github.com/go-logr/zapr v0.1.0
+go: downloading golang.org/x/time v0.0.0-20190308202827-9d24e82272b4
+go: downloading github.com/spf13/viper v1.4.0
+go: downloading github.com/golang/groupcache v0.0.0-20190129154638-5b532d6fd5ef
+go: downloading github.com/pkg/errors v0.8.1
+go: downloading k8s.io/utils v0.0.0-20190506122338-8fab8cb257d5
+go: downloading gopkg.in/fsnotify.v1 v1.4.7
+go: downloading github.com/modern-go/reflect2 v1.0.1
+go: downloading github.com/prometheus/client_model v0.0.0-20190129233127-fd36f4220a90
+go: extracting github.com/pkg/errors v0.8.1
+go: extracting github.com/go-logr/zapr v0.1.0
+go: extracting golang.org/x/time v0.0.0-20190308202827-9d24e82272b4
+go: downloading github.com/stretchr/testify v1.4.0
+go: extracting github.com/spf13/viper v1.4.0
+go: downloading golang.org/x/oauth2 v0.0.0-20180821212333-d2e6202438be
+go: extracting github.com/golang/groupcache v0.0.0-20190129154638-5b532d6fd5ef
+go: downloading github.com/mitchellh/go-homedir v1.1.0
+go: extracting gopkg.in/fsnotify.v1 v1.4.7
+go: downloading github.com/hashicorp/golang-lru v0.0.0-20180201235237-0fb14efe8c47
+go: extracting github.com/modern-go/reflect2 v1.0.1
+go: downloading github.com/json-iterator/go v1.1.8
+go: downloading mvdan.cc/interfacer v0.0.0-20180901003855-c20040233aed
+go: extracting github.com/prometheus/client_model v0.0.0-20190129233127-fd36f4220a90
+go: extracting github.com/mitchellh/go-homedir v1.1.0
+go: extracting github.com/stretchr/testify v1.4.0
+go: downloading honnef.co/go/tools v0.0.1-2019.2.3
+go: extracting k8s.io/utils v0.0.0-20190506122338-8fab8cb257d5
+go: extracting github.com/hashicorp/golang-lru v0.0.0-20180201235237-0fb14efe8c47
+go: downloading gomodules.xyz/jsonpatch/v2 v2.0.1
+go: downloading github.com/securego/gosec v0.0.0-20191002120514-e680875ea14d
+go: extracting golang.org/x/oauth2 v0.0.0-20180821212333-d2e6202438be
+go: downloading github.com/gofrs/flock v0.0.0-20190320160742-5135e617513b
+go: downloading github.com/go-critic/go-critic v0.3.5-0.20190904082202-d79a9f0c64db
+go: downloading github.com/golangci/ineffassign v0.0.0-20190609212857-42439a7714cc
+go: extracting mvdan.cc/interfacer v0.0.0-20180901003855-c20040233aed
+go: extracting github.com/json-iterator/go v1.1.8
+go: extracting gomodules.xyz/jsonpatch/v2 v2.0.1
+go: downloading github.com/mitchellh/mapstructure v1.1.2
+go: extracting github.com/gofrs/flock v0.0.0-20190320160742-5135e617513b
+go: downloading github.com/matoous/godox v0.0.0-20190911065817-5d6d842e92eb
+go: extracting github.com/golangci/ineffassign v0.0.0-20190609212857-42439a7714cc
+go: extracting github.com/securego/gosec v0.0.0-20191002120514-e680875ea14d
+go: downloading github.com/pmezard/go-difflib v1.0.0
+go: downloading github.com/ultraware/whitespace v0.0.4
+go: extracting github.com/mitchellh/mapstructure v1.1.2
+go: downloading github.com/stretchr/ob** v0.2.0
+go: extracting github.com/matoous/godox v0.0.0-20190911065817-5d6d842e92eb
+go: downloading github.com/golangci/revgrep v0.0.0-20180526074752-d9c87f5ffaf0
+go: downloading github.com/golangci/lint-1 v0.0.0-20191013205115-297bf364a8e0
+go: extracting github.com/go-critic/go-critic v0.3.5-0.20190904082202-d79a9f0c64db
+go: downloading github.com/uudashr/gocognit v0.0.0-20190926065955-1655d0de0517
+go: downloading github.com/golangci/dupl v0.0.0-20180902072040-3e9179ac440a
+go: extracting github.com/pmezard/go-difflib v1.0.0
+go: extracting github.com/ultraware/whitespace v0.0.4
+go: downloading github.com/kisielk/gotool v1.0.0
+go: downloading golang.org/x/crypto v0.0.0-20190923035154-9ee001bba392
+go: extracting github.com/golangci/revgrep v0.0.0-20180526074752-d9c87f5ffaf0
+go: extracting github.com/stretchr/ob** v0.2.0
+go: downloading github.com/googleapis/gnostic v0.3.0
+go: extracting github.com/uudashr/gocognit v0.0.0-20190926065955-1655d0de0517
+go: extracting github.com/golangci/lint-1 v0.0.0-20191013205115-297bf364a8e0
+go: downloading github.com/OpenPeeDeeP/depguard v1.0.1
+go: extracting github.com/golangci/dupl v0.0.0-20180902072040-3e9179ac440a
+go: extracting github.com/kisielk/gotool v1.0.0
+go: downloading github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+go: downloading github.com/golangci/check v0.0.0-20180506172741-cfe4005ccda2
+go: extracting honnef.co/go/tools v0.0.1-2019.2.3
+go: downloading github.com/bombsimon/wsl v1.2.5
+go: downloading github.com/fsnotify/fsnotify v1.4.7
+go: extracting github.com/OpenPeeDeeP/depguard v1.0.1
+go: extracting github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+go: downloading github.com/imdario/mergo v0.3.6
+go: downloading github.com/hashicorp/hcl v1.0.0
+go: extracting github.com/golangci/check v0.0.0-20180506172741-cfe4005ccda2
+go: downloading github.com/spf13/jwalterweatherman v1.0.0
+go: extracting github.com/bombsimon/wsl v1.2.5
+go: extracting github.com/fsnotify/fsnotify v1.4.7
+go: downloading github.com/magiconair/properties v1.8.0
+go: downloading github.com/ultraware/funlen v0.0.2
+go: extracting github.com/imdario/mergo v0.3.6
+go: extracting github.com/spf13/jwalterweatherman v1.0.0
+go: downloading go.uber.org/atomic v1.4.0
+go: extracting github.com/hashicorp/hcl v1.0.0
+go: extracting github.com/magiconair/properties v1.8.0
+go: extracting github.com/googleapis/gnostic v0.3.0
+go: downloading github.com/go-toolsmith/astfmt v1.0.0
+go: extracting github.com/ultraware/funlen v0.0.2
+go: downloading k8s.io/kube-openapi v0.0.0-20191107075043-30be4d16710a
+go: extracting go.uber.org/atomic v1.4.0
+go: downloading go.uber.org/multierr v1.1.0
+go: extracting github.com/go-toolsmith/astfmt v1.0.0
+go: downloading github.com/go-toolsmith/typep v1.0.0
+go: downloading github.com/go-toolsmith/astp v1.0.0
+go: extracting golang.org/x/crypto v0.0.0-20190923035154-9ee001bba392
+go: extracting go.uber.org/multierr v1.1.0
+go: downloading github.com/go-lintpack/lintpack v0.5.2
+go: extracting github.com/go-toolsmith/typep v1.0.0
+go: extracting github.com/go-toolsmith/astp v1.0.0
+go: downloading github.com/go-toolsmith/astcopy v1.0.0
+go: downloading github.com/nbutton23/zxcvbn-go v0.0.0-20180912185939-ae427f1e4c1d
+go: extracting github.com/go-lintpack/lintpack v0.5.2
+go: extracting github.com/go-toolsmith/astcopy v1.0.0
+go: downloading github.com/timakin/bodyclose v0.0.0-20190930140734-f7f2e9bca95e
+go: downloading mvdan.cc/lint v0.0.0-20170908181259-adc824a0674b
+go: downloading github.com/go-toolsmith/astcast v1.0.0
+go: downloading github.com/spf13/cast v1.3.0
+go: downloading github.com/sourcegraph/go-diff v0.5.1
+go: downloading github.com/evanphx/json-patch v4.5.0+incompatible
+go: extracting github.com/timakin/bodyclose v0.0.0-20190930140734-f7f2e9bca95e
+go: extracting mvdan.cc/lint v0.0.0-20170908181259-adc824a0674b
+go: downloading github.com/pelletier/go-toml v1.2.0
+go: downloading github.com/prometheus/common v0.4.0
+go: extracting github.com/go-toolsmith/astcast v1.0.0
+go: extracting github.com/spf13/cast v1.3.0
+go: downloading github.com/pborman/uuid v0.0.0-20170612153648-e790cca94e6c
+go: downloading github.com/golangci/gocyclo v0.0.0-20180528134321-2becd97e67ee
+go: extracting github.com/evanphx/json-patch v4.5.0+incompatible
+go: downloading github.com/golangci/misspell v0.0.0-20180809174111-950f5d19e770
+go: extracting github.com/pborman/uuid v0.0.0-20170612153648-e790cca94e6c
+go: extracting github.com/sourcegraph/go-diff v0.5.1
+go: downloading github.com/go-toolsmith/astequal v1.0.0
+go: extracting github.com/pelletier/go-toml v1.2.0
+go: extracting github.com/golangci/gocyclo v0.0.0-20180528134321-2becd97e67ee
+go: downloading github.com/golangci/gofmt v0.0.0-20190930125516-244bba706f1a
+go: extracting k8s.io/kube-openapi v0.0.0-20191107075043-30be4d16710a
+go: extracting github.com/prometheus/common v0.4.0
+go: downloading github.com/golang/protobuf v1.3.2
+go: downloading github.com/golangci/errcheck v0.0.0-20181223084120-ef45e06d44b6
+go: extracting github.com/go-toolsmith/astequal v1.0.0
+go: downloading github.com/gostaticanalysis/analysisutil v0.0.0-20190318220348-4088753ea4d3
+go: extracting github.com/golangci/gofmt v0.0.0-20190930125516-244bba706f1a
+go: extracting github.com/golangci/misspell v0.0.0-20180809174111-950f5d19e770
+go: downloading github.com/golangci/unconvert v0.0.0-20180507085042-28b1c447d1f4
+go: extracting github.com/golangci/errcheck v0.0.0-20181223084120-ef45e06d44b6
+go: extracting github.com/nbutton23/zxcvbn-go v0.0.0-20180912185939-ae427f1e4c1d
+go: extracting github.com/seldonio/seldon-core v0.5.13
+go: downloading github.com/sirupsen/logrus v1.4.2
+go: extracting github.com/gostaticanalysis/analysisutil v0.0.0-20190318220348-4088753ea4d3
+go: downloading github.com/go-toolsmith/strparse v1.0.0
+go: downloading github.com/gobwas/glob v0.2.3
+go: downloading github.com/golangci/goconst v0.0.0-20180610141641-041c5f2b40f3
+go: extracting github.com/golangci/unconvert v0.0.0-20180507085042-28b1c447d1f4
+go: downloading github.com/BurntSushi/toml v0.3.1
+go: downloading github.com/golangci/prealloc v0.0.0-20180630174525-215b22d4de21
+go: extracting github.com/sirupsen/logrus v1.4.2
+go: extracting github.com/go-toolsmith/strparse v1.0.0
+go: downloading mvdan.cc/unparam v0.0.0-20190720180237-d51796306d8f
+go: extracting github.com/golangci/goconst v0.0.0-20180610141641-041c5f2b40f3
+go: downloading github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/gobwas/glob v0.2.3
+go: downloading github.com/spf13/afero v1.2.2
+go: extracting github.com/golangci/prealloc v0.0.0-20180630174525-215b22d4de21
+go: extracting github.com/BurntSushi/toml v0.3.1
+go: downloading github.com/golangci/go-misc v0.0.0-20180628070357-927a3d87b613
+go: extracting mvdan.cc/unparam v0.0.0-20190720180237-d51796306d8f
+go: downloading sourcegraph.com/sqs/pbtypes v0.0.0-20180604144634-d3ebe8f20ae4
+go: downloading cloud.google.com/go v0.26.0
+go: extracting github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: downloading github.com/beorn7/perks v1.0.0
+go: extracting github.com/golang/protobuf v1.3.2
+go: downloading github.com/davecgh/go-spew v1.1.1
+go: extracting github.com/spf13/afero v1.2.2
+go: extracting sourcegraph.com/sqs/pbtypes v0.0.0-20180604144634-d3ebe8f20ae4
+go: downloading github.com/golangci/maligned v0.0.0-20180506175553-b1d89398deca
+go: extracting github.com/beorn7/perks v1.0.0
+go: downloading github.com/prometheus/procfs v0.0.0-20190507164030-5867b95ac084
+go: extracting github.com/golangci/go-misc v0.0.0-20180628070357-927a3d87b613
+go: extracting github.com/davecgh/go-spew v1.1.1
+go: extracting github.com/golangci/maligned v0.0.0-20180506175553-b1d89398deca
+go: extracting github.com/prometheus/procfs v0.0.0-20190507164030-5867b95ac084
+go: extracting cloud.google.com/go v0.26.0
+go: finding k8s.io/code-generator v0.0.0-20191121015212-c4c8f8345c7e
+go: finding k8s.io/client-go v11.0.1-0.20190409021438-1a26190bd76a+incompatible
+go: finding knative.dev/pkg v0.0.0-20190823221514-39a29cf1bf26
+go: finding sigs.k8s.io/controller-runtime v0.2.0
+go: finding k8s.io/gengo v0.0.0-20190822140433-26a664648505
+go: finding golang.org/x/time v0.0.0-20190308202827-9d24e82272b4
+go: finding k8s.io/utils v0.0.0-20190506122338-8fab8cb257d5
+go: finding github.com/modern-go/reflect2 v1.0.1
+go: finding golang.org/x/oauth2 v0.0.0-20180821212333-d2e6202438be
+go: finding github.com/json-iterator/go v1.1.8
+go: finding go.uber.org/zap v1.10.0
+go: finding github.com/pkg/errors v0.8.1
+go: finding github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+go: finding github.com/mitchellh/go-homedir v1.1.0
+go: finding github.com/prometheus/client_golang v0.9.3
+go: finding github.com/spf13/viper v1.4.0
+go: finding github.com/imdario/mergo v0.3.6
+go: finding github.com/sirupsen/logrus v1.4.2
+go: finding github.com/stretchr/testify v1.4.0
+go: finding gomodules.xyz/jsonpatch/v2 v2.0.1
+go: finding golang.org/x/crypto v0.0.0-20190923035154-9ee001bba392
+go: finding go.uber.org/atomic v1.4.0
+go: finding go.uber.org/multierr v1.1.0
+go: finding github.com/pmezard/go-difflib v1.0.0
+go: finding github.com/prometheus/client_model v0.0.0-20190129233127-fd36f4220a90
+go: finding k8s.io/kube-openapi v0.0.0-20191107075043-30be4d16710a
+go: finding github.com/stretchr/ob** v0.2.0
+go: finding github.com/prometheus/common v0.4.0
+go: finding gopkg.in/fsnotify.v1 v1.4.7
+go: finding github.com/magiconair/properties v1.8.0
+go: finding github.com/pborman/uuid v0.0.0-20170612153648-e790cca94e6c
+go: finding github.com/mitchellh/mapstructure v1.1.2
+go: finding github.com/pelletier/go-toml v1.2.0
+go: finding github.com/spf13/cast v1.3.0
+go: finding github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: finding github.com/spf13/jwalterweatherman v1.0.0
+go: finding github.com/spf13/afero v1.2.2
+go: finding github.com/prometheus/procfs v0.0.0-20190507164030-5867b95ac084
+go: finding github.com/matoous/godox v0.0.0-20190911065817-5d6d842e92eb
+go: finding github.com/timakin/bodyclose v0.0.0-20190930140734-f7f2e9bca95e
+go: finding github.com/ultraware/funlen v0.0.2
+go: finding github.com/sourcegraph/go-diff v0.5.1
+go: finding github.com/kisielk/gotool v1.0.0
+go: finding github.com/ultraware/whitespace v0.0.4
+go: finding github.com/uudashr/gocognit v0.0.0-20190926065955-1655d0de0517
+go: finding github.com/securego/gosec v0.0.0-20191002120514-e680875ea14d
+go: finding honnef.co/go/tools v0.0.1-2019.2.3
+go: finding mvdan.cc/unparam v0.0.0-20190720180237-d51796306d8f
+go: finding mvdan.cc/interfacer v0.0.0-20180901003855-c20040233aed
+go: finding sourcegraph.com/sqs/pbtypes v0.0.0-20180604144634-d3ebe8f20ae4
+go: finding github.com/nbutton23/zxcvbn-go v0.0.0-20180912185939-ae427f1e4c1d
+go: finding mvdan.cc/lint v0.0.0-20170908181259-adc824a0674b
+go build github.com/seldonio/seldon-core/operator/api/v1alpha2/install: no Go files in 
+Usage:
+  controller-gen [flags]
+
+Examples:
+	# Generate RBAC manifests and crds for all types under apis/,
+	# outputting crds to /tmp/crds and everything else to stdout
+	controller-gen rbac:roleName=<role name> crd paths=./apis/... output:crd:dir=/tmp/crds output:stdout
+
+	# Generate deepcopy/runtime.Object implementations for a particular file
+	controller-gen object paths=./apis/v1beta1/some_types.go
+
+	# Run all the generators for a given project
+	controller-gen paths=./apis/...
+
+	# Explain the markers for generating CRDs, and their arguments
+	controller-gen crd -ww
+
+
+Flags:
+  -h, --detailed-help count   print out more detailed help
+                              (up to -hhh for the most detailed output, or -hhhh for json output)
+      --help                  print out usage and a summary of options
+  -w, --which-markers count   print out all markers available with the requested generators
+                              (up to -www for the most detailed output, or -wwww for json output)
+
+
+Options
+
+
+generators
+
++webhook                                          package  generates (partial) {Mutating,Validating}WebhookConfiguration objects.                        
++rbac:roleName=<string>                           package  generates ClusterRole objects.                                                                
++object[:headerFile=<string>][,year=<string>]     package  generates code containing DeepCopy, DeepCopyInto, and DeepCopyObject method implementations.  
++crd[:maxDescLen=<int>][,trivialVersions=<bool>]  package  generates CustomResourceDefinition objects.                                                   
+
+
+generic
+
++paths=<[]string>  package  represents paths and go-style path patterns to use as package roots.  
+
+
+output rules (optionally as output:<generator>:...)
+
++output:artifacts[:code=<string>],config=<string>  package  outputs artifacts to different locations, depending on whether they're package-associated or not.   
++output:dir=<string>                               package  outputs each artifact to the given directory, regardless of if it's package-associated or not.      
++output:none                                       package  skips outputting anything.                                                                          
++output:stdout                                     package  outputs everything to standard-out, with no separation.                                             
+
+run `controller-gen crd:trivialVersions=true rbac:roleName=manager-role webhook paths=./... output:crd:artifacts:config=config/crd/bases -w` to see all available markers, or `controller-gen crd:trivialVersions=true rbac:roleName=manager-role webhook paths=./... output:crd:artifacts:config=config/crd/bases -h` for usage
+Makefile:69: recipe for target 'manifests' failed
+make[1]: Leaving directory '/workspace/source/operator'
+make[1]: *** [manifests] Error 1
+Makefile:35: recipe for target 'install_seldon' failed
+make: *** [install_seldon] Error 2
+make: Entering directory '/workspace/source/python'
+pip install -e . -r requirements-dev.txt
+Obtaining file:///workspace/source/python
+Collecting Flask<2.0.0
+  Downloading https://files.pythonhosted.org/packages/9b/93/628509b8d5dc749656a9641f4caf13540e2cdec85276964ff8f43bbb1d3b/Flask-1.1.1-py2.py3-none-any.whl (94kB)
+Collecting Flask-cors<4.0.0
+  Downloading https://files.pythonhosted.org/packages/78/38/e68b11daa5d613e3a91e4bf3da76c94ac9ee0d9cd515af9c1ab80d36f709/Flask_Cors-3.0.8-py2.py3-none-any.whl
+Collecting redis<4.0.0
+  Downloading https://files.pythonhosted.org/packages/32/ae/28613a62eea0d53d3db3147f8715f90da07667e99baeedf1010eb400f8c0/redis-3.3.11-py2.py3-none-any.whl (66kB)
+Collecting requests<3.0.0
+  Downloading https://files.pythonhosted.org/packages/51/bd/23c926cd341ea6b7dd0b2a00aba99ae0f828be89d72b2190f27c11d4b7fb/requests-2.22.0-py2.py3-none-any.whl (57kB)
+Collecting numpy<2.0.0
+  Downloading https://files.pythonhosted.org/packages/d2/ab/43e678759326f728de861edbef34b8e2ad1b1490505f20e0d1f0716c3bf4/numpy-1.17.4-cp36-cp36m-manylinux1_x86_64.whl (20.0MB)
+Collecting flatbuffers<2.0.0
+  Downloading https://files.pythonhosted.org/packages/c9/84/adf5837f96c39990bc55afdfddf460b38b4562f50341359afa32e4a98de7/flatbuffers-1.11-py2.py3-none-any.whl
+Requirement already satisfied: protobuf<4.0.0 in /usr/local/lib/python3.6/site-packages (from -r requirements.txt (line 7)) (3.10.0)
+Requirement already satisfied: grpcio<2.0.0 in /usr/local/lib/python3.6/site-packages (from -r requirements.txt (line 8)) (1.24.3)
+Collecting Flask-OpenTracing<1.2.0,>=1.1.0
+  Downloading https://files.pythonhosted.org/packages/58/6c/6417701ba5ecc8854670c6db3207bcc3e5fbc96289a7cb18d5516d99a1c6/Flask-OpenTracing-1.1.0.tar.gz
+Collecting opentracing<2.3.0,>=2.2.0
+  Downloading https://files.pythonhosted.org/packages/94/9f/289424136addf621fb4c75624ef9a3a80e8575da3993a87950c57e93217e/opentracing-2.2.0.tar.gz (47kB)
+Collecting jaeger-client<4.2.0,>=4.1.0
+  Downloading https://files.pythonhosted.org/packages/f1/da/569a4f1bc3d0c412c7f903053f09ef62fa10949374ca90bc852b22dd3860/jaeger-client-4.1.0.tar.gz (80kB)
+Collecting grpcio-opentracing<1.2.0,>=1.1.4
+  Downloading https://files.pythonhosted.org/packages/db/82/2fcad380697c3dab25de76ee590bcab3eb9bbfb4add916044d7e83ec2b10/grpcio_opentracing-1.1.4-py3-none-any.whl
+Collecting pyaml<20.0.0
+  Downloading https://files.pythonhosted.org/packages/33/1a/936074f3492156693fc9e471269fc5747fa3b7d9d7f8a33af054f6b24066/pyaml-19.4.1-py2.py3-none-any.whl
+Collecting gunicorn<20.1.0,>=19.9.0
+  Downloading https://files.pythonhosted.org/packages/69/ca/926f7cd3a2014b16870086b2d0fdc84a9e49473c68a8dff8b57f7c156f43/gunicorn-20.0.4-py2.py3-none-any.whl (77kB)
+Collecting minio<6.0.0,>=4.0.9
+  Downloading https://files.pythonhosted.org/packages/14/46/60bff78df1b112cc50f95c5ffb2e14aaf9aa279a5219845b55c56f214383/minio-5.0.5-py2.py3-none-any.whl (62kB)
+Collecting azure-storage-blob<3.0.0,>=2.0.1
+  Downloading https://files.pythonhosted.org/packages/3e/84/610f379b46d7d3c2d48eadeed6a12b6d46a43100fea70534f5992d0ac996/azure_storage_blob-2.1.0-py2.py3-none-any.whl (88kB)
+Requirement already satisfied: setuptools>=41.0.0 in /usr/local/lib/python3.6/site-packages (from -r requirements.txt (line 17)) (41.4.0)
+Collecting pandas==0.25.3
+  Downloading https://files.pythonhosted.org/packages/52/3f/f6a428599e0d4497e1595030965b5ba455fd8ade6e977e3c819973c4b41d/pandas-0.25.3-cp36-cp36m-manylinux1_x86_64.whl (10.4MB)
+Collecting google-cloud-storage>=1.16.0
+  Downloading https://files.pythonhosted.org/packages/87/78/7cf94b3d0961b1a3036ba351c7fdc04170baa73d20fcb41240da214c83fd/google_cloud_storage-1.23.0-py2.py3-none-any.whl (72kB)
+Collecting mypy<0.751
+  Downloading https://files.pythonhosted.org/packages/af/18/4732e5693f56cc0f6dde54428c4d012354e3d7bc7c962b2b5b8b15e2bf06/mypy-0.750-cp36-cp36m-manylinux1_x86_64.whl (23.9MB)
+Collecting pytest<6.0.0
+  Downloading https://files.pythonhosted.org/packages/da/ed/d22d7f06eb1107271694ed2171b9d52e8eea38d9757124e75ba13324ac77/pytest-5.3.1-py3-none-any.whl (233kB)
+Collecting pytest-cov<3.0.0
+  Downloading https://files.pythonhosted.org/packages/b9/54/3673ee8be482f81527678ac894276223b9814bb7262e4f730469bb7bf70e/pytest_cov-2.8.1-py2.py3-none-any.whl
+Collecting Pillow==6.2.0
+  Downloading https://files.pythonhosted.org/packages/19/66/6113477dc3206ccb1e192cffd626f2840ead02375a6cebe2436ad4c19f61/Pillow-6.2.0-cp36-cp36m-manylinux1_x86_64.whl (2.1MB)
+Collecting tox<4.0.0
+  Downloading https://files.pythonhosted.org/packages/a7/64/73ee95a48a69fb40f9ce415cdeda09c0c2721da483aae0687884f3cb0586/tox-3.14.2-py2.py3-none-any.whl (80kB)
+Collecting Jinja2>=2.10.1
+  Downloading https://files.pythonhosted.org/packages/65/e0/eb35e762802015cab1ccee04e8a277b03f1d8e53da3ec3106882ec42558b/Jinja2-2.10.3-py2.py3-none-any.whl (125kB)
+Collecting itsdangerous>=0.24
+  Downloading https://files.pythonhosted.org/packages/76/ae/44b03b253d6fade317f32c24d100b3b35c2239807046a4c953c7b89fa49e/itsdangerous-1.1.0-py2.py3-none-any.whl
+Collecting click>=5.1
+  Downloading https://files.pythonhosted.org/packages/fa/37/45185cb5abbc30d7257104c434fe0b07e5a195a6847506c074527aa599ec/Click-7.0-py2.py3-none-any.whl (81kB)
+Collecting Werkzeug>=0.15
+  Downloading https://files.pythonhosted.org/packages/ce/42/3aeda98f96e85fd26180534d36570e4d18108d62ae36f87694b476b83d6f/Werkzeug-0.16.0-py2.py3-none-any.whl (327kB)
+Requirement already satisfied: Six in /usr/local/lib/python3.6/site-packages (from Flask-cors<4.0.0->-r requirements.txt (line 2)) (1.12.0)
+Collecting certifi>=2017.4.17
+  Downloading https://files.pythonhosted.org/packages/b9/63/df50cac98ea0d5b006c55a399c3bf1db9da7b5a24de7890bc9cfd5dd9e99/certifi-2019.11.28-py2.py3-none-any.whl (156kB)
+Collecting chardet<3.1.0,>=3.0.2
+  Downloading https://files.pythonhosted.org/packages/bc/a9/01ffebfb562e4274b6487b4bb1ddec7ca55ec7510b22e4c51f14098443b8/chardet-3.0.4-py2.py3-none-any.whl (133kB)
+Collecting idna<2.9,>=2.5
+  Downloading https://files.pythonhosted.org/packages/14/2c/cd551d81dbe15200be1cf41cd03869a46fe7226e7450af7a6545bfc474c9/idna-2.8-py2.py3-none-any.whl (58kB)
+Collecting urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1
+  Downloading https://files.pythonhosted.org/packages/b4/40/a9837291310ee1ccc242ceb6ebfd9eb21539649f193a7c8c86ba15b98539/urllib3-1.25.7-py2.py3-none-any.whl (125kB)
+Collecting threadloop<2,>=1
+  Downloading https://files.pythonhosted.org/packages/d3/1d/8398c1645b97dc008d3c658e04beda01ede3d90943d40c8d56863cf891bd/threadloop-1.0.2.tar.gz
+Collecting thrift
+  Downloading https://files.pythonhosted.org/packages/97/1e/3284d19d7be99305eda145b8aa46b0c33244e4a496ec66440dac19f8274d/thrift-0.13.0.tar.gz (59kB)
+Collecting tornado<6,>=4.3
+  Downloading https://files.pythonhosted.org/packages/e6/78/6e7b5af12c12bdf38ca9bfe863fcaf53dc10430a312d0324e76c1e5ca426/tornado-5.1.1.tar.gz (516kB)
+Requirement already satisfied: PyYAML in /usr/local/lib/python3.6/site-packages (from pyaml<20.0.0->-r requirements.txt (line 13)) (5.1.2)
+Collecting python-dateutil
+  Downloading https://files.pythonhosted.org/packages/d4/70/d60450c3dd48ef87586924207ae8907090de0b306af2bce5d134d78615cb/python_dateutil-2.8.1-py2.py3-none-any.whl (227kB)
+Collecting pytz
+  Downloading https://files.pythonhosted.org/packages/e7/f9/f0b53f88060247251bf481fa6ea62cd0d25bf1b11a87888e53ce5b7c8ad2/pytz-2019.3-py2.py3-none-any.whl (509kB)
+Collecting azure-storage-common~=2.1
+  Downloading https://files.pythonhosted.org/packages/6b/a0/6794b318ce0118d1a4053bdf0149a60807407db9b710354f2b203c2f5975/azure_storage_common-2.1.0-py2.py3-none-any.whl (47kB)
+Collecting azure-common>=1.1.5
+  Downloading https://files.pythonhosted.org/packages/00/55/a703923c12cd3172d5c007beda0c1a34342a17a6a72779f8a7c269af0cd6/azure_common-1.1.23-py2.py3-none-any.whl
+Collecting google-auth>=1.2.0
+  Downloading https://files.pythonhosted.org/packages/7b/cb/786dc53d93494784935a62947643b48250b84a882474e714f9af5e1a1928/google_auth-1.7.1-py2.py3-none-any.whl (74kB)
+Collecting google-resumable-media<0.6dev,>=0.5.0
+  Downloading https://files.pythonhosted.org/packages/35/9e/f73325d0466ce5bdc36333f1aeb2892ead7b76e79bdb5c8b0493961fa098/google_resumable_media-0.5.0-py2.py3-none-any.whl
+Collecting google-cloud-core<2.0dev,>=1.0.3
+  Downloading https://files.pythonhosted.org/packages/ee/f0/084f598629db8e6ec3627688723875cdb03637acb6d86999bb105a71df64/google_cloud_core-1.0.3-py2.py3-none-any.whl
+Collecting typed-ast<1.5.0,>=1.4.0
+  Downloading https://files.pythonhosted.org/packages/31/d3/9d1802c161626d0278bafb1ffb32f76b9d01e123881bbf9d91e8ccf28e18/typed_ast-1.4.0-cp36-cp36m-manylinux1_x86_64.whl (736kB)
+Collecting mypy-extensions<0.5.0,>=0.4.0
+  Downloading https://files.pythonhosted.org/packages/5c/eb/975c7c080f3223a5cdaff09612f3a5221e4ba534f7039db34c35d95fa6a5/mypy_extensions-0.4.3-py2.py3-none-any.whl
+Collecting typing-extensions>=3.7.4
+  Downloading https://files.pythonhosted.org/packages/03/92/705fe8aca27678e01bbdd7738173b8e7df0088a2202c80352f664630d638/typing_extensions-3.7.4.1-py3-none-any.whl
+Collecting pluggy<1.0,>=0.12
+  Downloading https://files.pythonhosted.org/packages/a0/28/85c7aa31b80d150b772fbe4a229487bc6644da9ccb7e427dd8cc60cb8a62/pluggy-0.13.1-py2.py3-none-any.whl
+Collecting more-itertools>=4.0.0
+  Downloading https://files.pythonhosted.org/packages/5c/1d/3df99de956abb96305956e09e6a1fa955883295e1f28808f9c97b3d5364d/more_itertools-8.0.0-py3-none-any.whl (40kB)
+Collecting importlib-metadata>=0.12; python_version < "3.8"
+  Downloading https://files.pythonhosted.org/packages/e7/59/cc2a91f71957dfb32f25e6b19d8c6dfdbe524e0998e7f7a58a75126ce0cd/importlib_metadata-1.2.0-py2.py3-none-any.whl
+Collecting py>=1.5.0
+  Downloading https://files.pythonhosted.org/packages/76/bc/394ad449851729244a97857ee14d7cba61ddb268dce3db538ba2f2ba1f0f/py-1.8.0-py2.py3-none-any.whl (83kB)
+Collecting packaging
+  Downloading https://files.pythonhosted.org/packages/cf/94/9672c2d4b126e74c4496c6b3c58a8b51d6419267be9e70660ba23374c875/packaging-19.2-py2.py3-none-any.whl
+Collecting wcwidth
+  Downloading https://files.pythonhosted.org/packages/7e/9f/526a6947247599b084ee5232e4f9190a38f398d7300d866af3ab571a5bfe/wcwidth-0.1.7-py2.py3-none-any.whl
+Collecting attrs>=17.4.0
+  Downloading https://files.pythonhosted.org/packages/a2/db/4313ab3be961f7a763066401fb77f7748373b6094076ae2bda2806988af6/attrs-19.3.0-py2.py3-none-any.whl
+Collecting coverage>=4.4
+  Downloading https://files.pythonhosted.org/packages/51/b1/13609068fff1c8c056f0c4601ad6985cf5c1bbfc529196ab08bd2a57dc39/coverage-4.5.4-cp36-cp36m-manylinux1_x86_64.whl (205kB)
+Collecting virtualenv>=16.0.0
+  Downloading https://files.pythonhosted.org/packages/62/77/6a86ef945ad39aae34aed4cc1ae4a2f941b9870917a974ed7c5b6f137188/virtualenv-16.7.8-py2.py3-none-any.whl (3.4MB)
+Collecting toml>=0.9.4
+  Downloading https://files.pythonhosted.org/packages/a2/12/ced7105d2de62fa7c8fb5fce92cc4ce66b57c95fb875e9318dba7f8c5db0/toml-0.10.0-py2.py3-none-any.whl
+Collecting filelock<4,>=3.0.0
+  Downloading https://files.pythonhosted.org/packages/93/83/71a2ee6158bb9f39a90c0dea1637f81d5eef866e188e1971a1b1ab01a35a/filelock-3.0.12-py3-none-any.whl
+Collecting MarkupSafe>=0.23
+  Downloading https://files.pythonhosted.org/packages/b2/5f/23e0023be6bb885d00ffbefad2942bc51a620328ee910f64abe5a8d18dd1/MarkupSafe-1.1.1-cp36-cp36m-manylinux1_x86_64.whl
+Collecting cryptography
+  Downloading https://files.pythonhosted.org/packages/ca/9a/7cece52c46546e214e10811b36b2da52ce1ea7fa203203a629b8dfadad53/cryptography-2.8-cp34-abi3-manylinux2010_x86_64.whl (2.3MB)
+Collecting pyasn1-modules>=0.2.1
+  Downloading https://files.pythonhosted.org/packages/52/50/bb4cefca37da63a0c52218ba2cb1b1c36110d84dcbae8aa48cd67c5e95c2/pyasn1_modules-0.2.7-py2.py3-none-any.whl (131kB)
+Collecting rsa<4.1,>=3.1.4
+  Downloading https://files.pythonhosted.org/packages/02/e5/38518af393f7c214357079ce67a317307936896e961e35450b70fad2a9cf/rsa-4.0-py2.py3-none-any.whl
+Collecting cachetools<3.2,>=2.0.0
+  Downloading https://files.pythonhosted.org/packages/2f/a6/30b0a0bef12283e83e58c1d6e7b5aabc7acfc4110df81a4471655d33e704/cachetools-3.1.1-py2.py3-none-any.whl
+Collecting google-api-core<2.0.0dev,>=1.14.0
+  Downloading https://files.pythonhosted.org/packages/29/3a/c528ef37f48d6ffba16f0f3c0426456ba21e0dd32be9c61a2ade93e07faa/google_api_core-1.14.3-py2.py3-none-any.whl (68kB)
+Collecting zipp>=0.5
+  Downloading https://files.pythonhosted.org/packages/74/3d/1ee25a26411ba0401b43c6376d2316a71addcc72ef8690b101b4ea56d76a/zipp-0.6.0-py2.py3-none-any.whl
+Collecting pyparsing>=2.0.2
+  Downloading https://files.pythonhosted.org/packages/c0/0c/fc2e007d9a992d997f04a80125b0f183da7fb554f1de701bbb70a8e7d479/pyparsing-2.4.5-py2.py3-none-any.whl (67kB)
+Collecting cffi!=1.11.3,>=1.8
+  Downloading https://files.pythonhosted.org/packages/49/72/0d42f94fe94afa8030350c26e9d787219f3f008ec9bf6b86c66532b29236/cffi-1.13.2-cp36-cp36m-manylinux1_x86_64.whl (397kB)
+Collecting pyasn1<0.5.0,>=0.4.6
+  Downloading https://files.pythonhosted.org/packages/62/1e/a94a8d635fa3ce4cfc7f506003548d0a2447ae76fd5ca53932970fe3053f/pyasn1-0.4.8-py2.py3-none-any.whl (77kB)
+Collecting googleapis-common-protos<2.0dev,>=1.6.0
+  Downloading https://files.pythonhosted.org/packages/eb/ee/e59e74ecac678a14d6abefb9054f0bbcb318a6452a30df3776f133886d7d/googleapis-common-protos-1.6.0.tar.gz
+Collecting pycparser
+  Downloading https://files.pythonhosted.org/packages/68/9e/49196946aee219aead1290e00d1e7fdeab8567783e83e1b9ab5585e6206a/pycparser-2.19.tar.gz (158kB)
+Installing collected packages: MarkupSafe, Jinja2, itsdangerous, click, Werkzeug, Flask, Flask-cors, redis, certifi, chardet, idna, urllib3, requests, numpy, flatbuffers, opentracing, Flask-OpenTracing, tornado, threadloop, thrift, jaeger-client, grpcio-opentracing, pyaml, gunicorn, python-dateutil, pytz, minio, pycparser, cffi, cryptography, azure-common, azure-storage-common, azure-storage-blob, pandas, pyasn1, pyasn1-modules, rsa, cachetools, google-auth, google-resumable-media, googleapis-common-protos, google-api-core, google-cloud-core, google-cloud-storage, typed-ast, mypy-extensions, typing-extensions, mypy, more-itertools, zipp, importlib-metadata, pluggy, py, pyparsing, packaging, wcwidth, attrs, pytest, coverage, pytest-cov, Pillow, virtualenv, toml, filelock, tox, seldon-core
+    Running setup.py install for opentracing: started
+    Running setup.py install for opentracing: finished with status 'done'
+    Running setup.py install for Flask-OpenTracing: started
+    Running setup.py install for Flask-OpenTracing: finished with status 'done'
+    Running setup.py install for tornado: started
+    Running setup.py install for tornado: finished with status 'done'
+    Running setup.py install for threadloop: started
+    Running setup.py install for threadloop: finished with status 'done'
+    Running setup.py install for thrift: started
+    Running setup.py install for thrift: finished with status 'done'
+    Running setup.py install for jaeger-client: started
+    Running setup.py install for jaeger-client: finished with status 'done'
+    Running setup.py install for pycparser: started
+    Running setup.py install for pycparser: finished with status 'done'
+    Running setup.py install for googleapis-common-protos: started
+    Running setup.py install for googleapis-common-protos: finished with status 'done'
+  Running setup.py develop for seldon-core
+Successfully installed Flask-1.1.1 Flask-OpenTracing-1.1.0 Flask-cors-3.0.8 Jinja2-2.10.3 MarkupSafe-1.1.1 Pillow-6.2.0 Werkzeug-0.16.0 attrs-19.3.0 azure-common-1.1.23 azure-storage-blob-2.1.0 azure-storage-common-2.1.0 cachetools-3.1.1 certifi-2019.11.28 cffi-1.13.2 chardet-3.0.4 click-7.0 coverage-4.5.4 cryptography-2.8 filelock-3.0.12 flatbuffers-1.11 google-api-core-1.14.3 google-auth-1.7.1 google-cloud-core-1.0.3 google-cloud-storage-1.23.0 google-resumable-media-0.5.0 googleapis-common-protos-1.6.0 grpcio-opentracing-1.1.4 gunicorn-20.0.4 idna-2.8 importlib-metadata-1.2.0 itsdangerous-1.1.0 jaeger-client-4.1.0 minio-5.0.5 more-itertools-8.0.0 mypy-0.750 mypy-extensions-0.4.3 numpy-1.17.4 opentracing-2.2.0 packaging-19.2 pandas-0.25.3 pluggy-0.13.1 py-1.8.0 pyaml-19.4.1 pyasn1-0.4.8 pyasn1-modules-0.2.7 pycparser-2.19 pyparsing-2.4.5 pytest-5.3.1 pytest-cov-2.8.1 python-dateutil-2.8.1 pytz-2019.3 redis-3.3.11 requests-2.22.0 rsa-4.0 seldon-core threadloop-1.0.2 thrift-0.13.0 toml-0.10.0 tornado-5.1.1 tox-3.14.2 typed-ast-1.4.0 typing-extensions-3.7.4.1 urllib3-1.25.7 virtualenv-16.7.8 wcwidth-0.1.7 zipp-0.6.0
+make: Leaving directory '/workspace/source/python'
+cp ../../proto/prediction.proto ./proto
+cd ../../proto/tensorflow && make create_protos
+make[1]: Entering directory '/workspace/source/proto/tensorflow'
+./create-protos.sh
+Downloading proto files for master
+make[1]: Leaving directory '/workspace/source/proto/tensorflow'
+cp -vr ../../proto/tensorflow/tensorflow .
+'../../proto/tensorflow/tensorflow' -> './tensorflow'
+'../../proto/tensorflow/tensorflow/core' -> './tensorflow/core'
+'../../proto/tensorflow/tensorflow/core/framework' -> './tensorflow/core/framework'
+'../../proto/tensorflow/tensorflow/core/framework/types.proto' -> './tensorflow/core/framework/types.proto'
+'../../proto/tensorflow/tensorflow/core/framework/resource_handle.proto' -> './tensorflow/core/framework/resource_handle.proto'
+'../../proto/tensorflow/tensorflow/core/framework/tensor_shape.proto' -> './tensorflow/core/framework/tensor_shape.proto'
+'../../proto/tensorflow/tensorflow/core/framework/tensor.proto' -> './tensorflow/core/framework/tensor.proto'
+python -m grpc.tools.protoc -I. --python_out=. --grpc_python_out=. ./proto/prediction.proto
+cd ../../notebooks && make build_protos
+make[1]: Entering directory '/workspace/source/notebooks'
+cd ../proto/tensorflow && make create_protos
+make[2]: Entering directory '/workspace/source/proto/tensorflow'
+make[2]: Nothing to be done for 'create_protos'.
+make[2]: Leaving directory '/workspace/source/proto/tensorflow'
+cp -vr ../proto/tensorflow/tensorflow .
+'../proto/tensorflow/tensorflow' -> './tensorflow'
+'../proto/tensorflow/tensorflow/core' -> './tensorflow/core'
+'../proto/tensorflow/tensorflow/core/framework' -> './tensorflow/core/framework'
+'../proto/tensorflow/tensorflow/core/framework/types.proto' -> './tensorflow/core/framework/types.proto'
+'../proto/tensorflow/tensorflow/core/framework/resource_handle.proto' -> './tensorflow/core/framework/resource_handle.proto'
+'../proto/tensorflow/tensorflow/core/framework/tensor_shape.proto' -> './tensorflow/core/framework/tensor_shape.proto'
+'../proto/tensorflow/tensorflow/core/framework/tensor.proto' -> './tensorflow/core/framework/tensor.proto'
+cp ../proto/prediction.proto ./proto
+python -m grpc.tools.protoc -I. --python_out=. --grpc_python_out=. ./proto/prediction.proto
+make[1]: Leaving directory '/workspace/source/notebooks'
+cd ../../proto/k8s && make create_protos
+make[1]: Entering directory '/workspace/source/proto/k8s'
+./create-k8s-protos.sh
+Downloading proto files for master
+Munging proto file packages
+sed -i.bak 's|import "k8s.io/apiextensions-apiserver/|//import "k8s.io/apiextensions-apiserver/|' k8s.io/api/core/v1/generated.proto
+rm k8s.io/api/core/v1/generated.proto.bak
+make[1]: Leaving directory '/workspace/source/proto/k8s'
+pip install -r dev_requirements.txt
+Obtaining file:///workspace/source/python (from -r dev_requirements.txt (line 4))
+Requirement already satisfied: pytest in /usr/local/lib/python3.6/site-packages (from -r dev_requirements.txt (line 1)) (5.3.1)
+Collecting retrying
+  Downloading https://files.pythonhosted.org/packages/44/ef/beae4b4ef80902f22e3af073397f079c96969c69b2c7d52a57ea9ae61c9d/retrying-1.3.3.tar.gz
+Requirement already satisfied: Flask<2.0.0 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (1.1.1)
+Requirement already satisfied: Flask-cors<4.0.0 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (3.0.8)
+Requirement already satisfied: redis<4.0.0 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (3.3.11)
+Requirement already satisfied: requests<3.0.0 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (2.22.0)
+Requirement already satisfied: numpy<2.0.0 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (1.17.4)
+Requirement already satisfied: flatbuffers<2.0.0 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (1.11)
+Requirement already satisfied: protobuf<4.0.0 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (3.10.0)
+Requirement already satisfied: grpcio<2.0.0 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (1.24.3)
+Requirement already satisfied: Flask-OpenTracing<1.2.0,>=1.1.0 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (1.1.0)
+Requirement already satisfied: opentracing<2.3.0,>=2.2.0 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (2.2.0)
+Requirement already satisfied: jaeger-client<4.2.0,>=4.1.0 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (4.1.0)
+Requirement already satisfied: grpcio-opentracing<1.2.0,>=1.1.4 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (1.1.4)
+Requirement already satisfied: pyaml<20.0.0 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (19.4.1)
+Requirement already satisfied: gunicorn<20.1.0,>=19.9.0 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (20.0.4)
+Requirement already satisfied: minio<6.0.0,>=4.0.9 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (5.0.5)
+Requirement already satisfied: azure-storage-blob<3.0.0,>=2.0.1 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (2.1.0)
+Requirement already satisfied: setuptools>=41.0.0 in /usr/local/lib/python3.6/site-packages (from seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (41.4.0)
+Requirement already satisfied: more-itertools>=4.0.0 in /usr/local/lib/python3.6/site-packages (from pytest->-r dev_requirements.txt (line 1)) (8.0.0)
+Requirement already satisfied: attrs>=17.4.0 in /usr/local/lib/python3.6/site-packages (from pytest->-r dev_requirements.txt (line 1)) (19.3.0)
+Requirement already satisfied: pluggy<1.0,>=0.12 in /usr/local/lib/python3.6/site-packages (from pytest->-r dev_requirements.txt (line 1)) (0.13.1)
+Requirement already satisfied: py>=1.5.0 in /usr/local/lib/python3.6/site-packages (from pytest->-r dev_requirements.txt (line 1)) (1.8.0)
+Requirement already satisfied: packaging in /usr/local/lib/python3.6/site-packages (from pytest->-r dev_requirements.txt (line 1)) (19.2)
+Requirement already satisfied: importlib-metadata>=0.12; python_version < "3.8" in /usr/local/lib/python3.6/site-packages (from pytest->-r dev_requirements.txt (line 1)) (1.2.0)
+Requirement already satisfied: wcwidth in /usr/local/lib/python3.6/site-packages (from pytest->-r dev_requirements.txt (line 1)) (0.1.7)
+Requirement already satisfied: six>=1.7.0 in /usr/local/lib/python3.6/site-packages (from retrying->-r dev_requirements.txt (line 2)) (1.12.0)
+Requirement already satisfied: Jinja2>=2.10.1 in /usr/local/lib/python3.6/site-packages (from Flask<2.0.0->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (2.10.3)
+Requirement already satisfied: Werkzeug>=0.15 in /usr/local/lib/python3.6/site-packages (from Flask<2.0.0->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (0.16.0)
+Requirement already satisfied: click>=5.1 in /usr/local/lib/python3.6/site-packages (from Flask<2.0.0->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (7.0)
+Requirement already satisfied: itsdangerous>=0.24 in /usr/local/lib/python3.6/site-packages (from Flask<2.0.0->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (1.1.0)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /usr/local/lib/python3.6/site-packages (from requests<3.0.0->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (1.25.7)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /usr/local/lib/python3.6/site-packages (from requests<3.0.0->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (3.0.4)
+Requirement already satisfied: idna<2.9,>=2.5 in /usr/local/lib/python3.6/site-packages (from requests<3.0.0->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (2.8)
+Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.6/site-packages (from requests<3.0.0->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (2019.11.28)
+Requirement already satisfied: threadloop<2,>=1 in /usr/local/lib/python3.6/site-packages (from jaeger-client<4.2.0,>=4.1.0->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (1.0.2)
+Requirement already satisfied: thrift in /usr/local/lib/python3.6/site-packages (from jaeger-client<4.2.0,>=4.1.0->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (0.13.0)
+Requirement already satisfied: tornado<6,>=4.3 in /usr/local/lib/python3.6/site-packages (from jaeger-client<4.2.0,>=4.1.0->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (5.1.1)
+Requirement already satisfied: PyYAML in /usr/local/lib/python3.6/site-packages (from pyaml<20.0.0->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (5.1.2)
+Requirement already satisfied: python-dateutil in /usr/local/lib/python3.6/site-packages (from minio<6.0.0,>=4.0.9->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (2.8.1)
+Requirement already satisfied: pytz in /usr/local/lib/python3.6/site-packages (from minio<6.0.0,>=4.0.9->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (2019.3)
+Requirement already satisfied: azure-storage-common~=2.1 in /usr/local/lib/python3.6/site-packages (from azure-storage-blob<3.0.0,>=2.0.1->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (2.1.0)
+Requirement already satisfied: azure-common>=1.1.5 in /usr/local/lib/python3.6/site-packages (from azure-storage-blob<3.0.0,>=2.0.1->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (1.1.23)
+Requirement already satisfied: pyparsing>=2.0.2 in /usr/local/lib/python3.6/site-packages (from packaging->pytest->-r dev_requirements.txt (line 1)) (2.4.5)
+Requirement already satisfied: zipp>=0.5 in /usr/local/lib/python3.6/site-packages (from importlib-metadata>=0.12; python_version < "3.8"->pytest->-r dev_requirements.txt (line 1)) (0.6.0)
+Requirement already satisfied: MarkupSafe>=0.23 in /usr/local/lib/python3.6/site-packages (from Jinja2>=2.10.1->Flask<2.0.0->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (1.1.1)
+Requirement already satisfied: cryptography in /usr/local/lib/python3.6/site-packages (from azure-storage-common~=2.1->azure-storage-blob<3.0.0,>=2.0.1->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (2.8)
+Requirement already satisfied: cffi!=1.11.3,>=1.8 in /usr/local/lib/python3.6/site-packages (from cryptography->azure-storage-common~=2.1->azure-storage-blob<3.0.0,>=2.0.1->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (1.13.2)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.6/site-packages (from cffi!=1.11.3,>=1.8->cryptography->azure-storage-common~=2.1->azure-storage-blob<3.0.0,>=2.0.1->seldon-core==0.5.1->-r dev_requirements.txt (line 4)) (2.19)
+Installing collected packages: retrying, seldon-core
+    Running setup.py install for retrying: started
+    Running setup.py install for retrying: finished with status 'done'
+  Found existing installation: seldon-core 0.5.1
+    Uninstalling seldon-core-0.5.1:
+      Successfully uninstalled seldon-core-0.5.1
+  Running setup.py develop for seldon-core
+Successfully installed retrying-1.3.3 seldon-core
+pip install pytest-xdist
+Collecting pytest-xdist
+  Downloading https://files.pythonhosted.org/packages/f7/80/2af1fc039f779f61c7207dc9f79a1479874e7795f869fddaf135efde1cd4/pytest_xdist-1.30.0-py2.py3-none-any.whl
+Requirement already satisfied: six in /usr/local/lib/python3.6/site-packages (from pytest-xdist) (1.12.0)
+Collecting execnet>=1.1
+  Downloading https://files.pythonhosted.org/packages/d3/2e/c63af07fa471e0a02d05793c7a56a9f7d274a8489442a5dc4fb3b2b3c705/execnet-1.7.1-py2.py3-none-any.whl
+Requirement already satisfied: pytest>=4.4.0 in /usr/local/lib/python3.6/site-packages (from pytest-xdist) (5.3.1)
+Collecting pytest-forked
+  Downloading https://files.pythonhosted.org/packages/03/1e/81235e1fcfed57a4e679d34794d60c01a1e9a29ef5b9844d797716111d80/pytest_forked-1.1.3-py2.py3-none-any.whl
+Collecting apipkg>=1.4
+  Downloading https://files.pythonhosted.org/packages/67/08/4815a09603fc800209431bec5b8bd2acf2f95abdfb558a44a42507fb94da/apipkg-1.5-py2.py3-none-any.whl
+Requirement already satisfied: attrs>=17.4.0 in /usr/local/lib/python3.6/site-packages (from pytest>=4.4.0->pytest-xdist) (19.3.0)
+Requirement already satisfied: packaging in /usr/local/lib/python3.6/site-packages (from pytest>=4.4.0->pytest-xdist) (19.2)
+Requirement already satisfied: py>=1.5.0 in /usr/local/lib/python3.6/site-packages (from pytest>=4.4.0->pytest-xdist) (1.8.0)
+Requirement already satisfied: pluggy<1.0,>=0.12 in /usr/local/lib/python3.6/site-packages (from pytest>=4.4.0->pytest-xdist) (0.13.1)
+Requirement already satisfied: wcwidth in /usr/local/lib/python3.6/site-packages (from pytest>=4.4.0->pytest-xdist) (0.1.7)
+Requirement already satisfied: importlib-metadata>=0.12; python_version < "3.8" in /usr/local/lib/python3.6/site-packages (from pytest>=4.4.0->pytest-xdist) (1.2.0)
+Requirement already satisfied: more-itertools>=4.0.0 in /usr/local/lib/python3.6/site-packages (from pytest>=4.4.0->pytest-xdist) (8.0.0)
+Requirement already satisfied: pyparsing>=2.0.2 in /usr/local/lib/python3.6/site-packages (from packaging->pytest>=4.4.0->pytest-xdist) (2.4.5)
+Requirement already satisfied: zipp>=0.5 in /usr/local/lib/python3.6/site-packages (from importlib-metadata>=0.12; python_version < "3.8"->pytest>=4.4.0->pytest-xdist) (0.6.0)
+Installing collected packages: apipkg, execnet, pytest-forked, pytest-xdist
+Successfully installed apipkg-1.5 execnet-1.7.1 pytest-forked-1.1.3 pytest-xdist-1.30.0
+# Run the core tests in parallel
+pytest \
+	--verbose \
+	-s \
+	-W ignore \
+	--ignore test_s2i_python.py \
+	-n "4"  2>&1
+============================= test session starts ==============================
+platform linux -- Python 3.6.0, pytest-5.3.1, py-1.8.0, pluggy-0.13.1 -- /usr/local/bin/python3.6
+cachedir: .pytest_cache
+rootdir: /
+plugins: xdist-1.30.0, forked-1.1.3, cov-2.8.1
+gw0 I / gw1 I / gw2 I / gw3 I
+[gw0] linux Python 3.6.0 cwd: /workspace/source/testing/scripts
+[gw1] linux Python 3.6.0 cwd: /workspace/source/testing/scripts
+[gw2] linux Python 3.6.0 cwd: /workspace/source/testing/scripts
+[gw3] linux Python 3.6.0 cwd: /workspace/source/testing/scripts
+[gw0] Python 3.6.0 (default, Oct 23 2019, 00:09:49)  -- [GCC 6.3.0 20170516]
+[gw1] Python 3.6.0 (default, Oct 23 2019, 00:09:49)  -- [GCC 6.3.0 20170516]
+[gw2] Python 3.6.0 (default, Oct 23 2019, 00:09:49)  -- [GCC 6.3.0 20170516]
+[gw3] Python 3.6.0 (default, Oct 23 2019, 00:09:49)  -- [GCC 6.3.0 20170516]
+gw0 [19] / gw1 [19] / gw2 [19] / gw3 [19]
+
+scheduling tests via LoadScheduling
+
+test_bad_graphs.py::TestBadGraphs::test_duplicate_predictor_name 
+test_helm_charts_clusterwide.py::TestClusterWide::test_abtest_model 
+test_bad_graphs.py::TestBadGraphs::test_model_name_mismatch 
+test_helm_charts_clusterwide.py::TestClusterWide::test_single_model error: unable to recognize "../resources/bad_name_mismatch.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+
+[gw1] PASSED test_bad_graphs.py::TestBadGraphs::test_model_name_mismatch 
+test_prepackaged_servers.py::TestPrepack::test_sklearn Error: validation failed: unable to recognize "": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/bad_duplicate_predictor_name.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+Error: validation failed: unable to recognize "": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+
+[gw0] PASSED test_bad_graphs.py::TestBadGraphs::test_duplicate_predictor_name 
+test_helm_charts_clusterwide.py::TestClusterWide::test_mab_model 
+[gw3] FAILED test_helm_charts_clusterwide.py::TestClusterWide::test_abtest_model 
+test_prepackaged_servers.py::TestPrepack::test_xgboost 
+[gw2] FAILED test_helm_charts_clusterwide.py::TestClusterWide::test_single_model 
+test_prepackaged_servers.py::TestPrepack::test_tfserving Error: validation failed: unable to recognize "": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/sklearnserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+
+[gw0] FAILED test_helm_charts_clusterwide.py::TestClusterWide::test_mab_model 
+test_rolling_updates.py::TestRollingHttp::test_rolling_update1 error: unable to recognize "../../servers/xgboostserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/tfserving/samples/mnist_rest.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/sklearnserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/xgboostserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/tfserving/samples/mnist_rest.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/sklearnserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/xgboostserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/tfserving/samples/mnist_rest.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/sklearnserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/xgboostserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/tfserving/samples/mnist_rest.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/sklearnserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/xgboostserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/tfserving/samples/mnist_rest.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/sklearnserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/xgboostserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/tfserving/samples/mnist_rest.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/sklearnserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/xgboostserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/tfserving/samples/mnist_rest.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/sklearnserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/xgboostserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/tfserving/samples/mnist_rest.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/sklearnserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/xgboostserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/tfserving/samples/mnist_rest.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/sklearnserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/xgboostserver/samples/iris.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/tfserving/samples/mnist_rest.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+
+[gw1] FAILED test_prepackaged_servers.py::TestPrepack::test_sklearn 
+test_prepackaged_servers.py::TestPrepack::test_mlflow 
+[gw3] FAILED test_prepackaged_servers.py::TestPrepack::test_xgboost 
+test_rolling_updates.py::TestRollingHttp::test_rolling_update2 
+[gw2] FAILED test_prepackaged_servers.py::TestPrepack::test_tfserving 
+test_rolling_updates.py::TestRollingHttp::test_rolling_update3 
+[gw0] FAILED test_rolling_updates.py::TestRollingHttp::test_rolling_update1 
+test_rolling_updates.py::TestRollingHttp::test_rolling_update4 error: unable to recognize "../../servers/mlflowserver/samples/elasticnet_wine.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/mlflowserver/samples/elasticnet_wine.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/mlflowserver/samples/elasticnet_wine.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/mlflowserver/samples/elasticnet_wine.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/mlflowserver/samples/elasticnet_wine.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/mlflowserver/samples/elasticnet_wine.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/mlflowserver/samples/elasticnet_wine.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/mlflowserver/samples/elasticnet_wine.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/mlflowserver/samples/elasticnet_wine.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../../servers/mlflowserver/samples/elasticnet_wine.yaml": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+
+[gw1] FAILED test_prepackaged_servers.py::TestPrepack::test_mlflow 
+test_rolling_updates.py::TestRollingHttp::test_rolling_update5 error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+
+[gw3] FAILED test_rolling_updates.py::TestRollingHttp::test_rolling_update2 
+test_rolling_updates.py::TestRollingHttp::test_rolling_update6 
+[gw0] FAILED test_rolling_updates.py::TestRollingHttp::test_rolling_update4 
+[gw2] FAILED test_rolling_updates.py::TestRollingHttp::test_rolling_update3 
+test_rolling_updates.py::TestRollingHttp::test_rolling_update7 
+test_rolling_updates.py::TestRollingHttp::test_rolling_update8 error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+
+[gw1] FAILED test_rolling_updates.py::TestRollingHttp::test_rolling_update5 
+test_rolling_updates.py::TestRollingHttp::test_rolling_update9 error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+
+[gw3] FAILED test_rolling_updates.py::TestRollingHttp::test_rolling_update6 
+test_rolling_updates.py::TestRollingHttp::test_rolling_update10 
+[gw2] FAILED test_rolling_updates.py::TestRollingHttp::test_rolling_update7 
+[gw0] FAILED test_rolling_updates.py::TestRollingHttp::test_rolling_update8 error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+error: unable to recognize "../resources/graph1svc.json": no matches for kind "SeldonDeployment" in version "machinelearning.seldon.io/v1alpha2"
+
+[gw1] FAILED test_rolling_updates.py::TestRollingHttp::test_rolling_update9 
+[gw3] FAILED test_rolling_updates.py::TestRollingHttp::test_rolling_update10 
+
+=================================== FAILURES ===================================
+______________________ TestClusterWide.test_abtest_model _______________________
+[gw3] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_helm_charts_clusterwide.TestClusterWide object at 0x7faada3dcdd8>
+
+    def test_abtest_model(self):
+        namespace = "test-abtest-model"
+        retry_run(f"kubectl create namespace {namespace}")
+        run(
+            f"helm install ../../helm-charts/seldon-abtest --name myabtest --set oauth.key=oauth-key --set oauth.secret=oauth-secret --namespace {namespace}",
+            shell=True,
+>           check=True,
+        )
+
+test_helm_charts_clusterwide.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, timeout = None, check = True
+popenargs = ('helm install ../../helm-charts/seldon-abtest --name myabtest --set oauth.key=oauth-key --set oauth.secret=oauth-secret --namespace test-abtest-model',)
+kwargs = {'shell': True}, process = <subprocess.Popen object at 0x7faada3dcd30>
+stdout = None, stderr = None, retcode = 1
+
+    def run(*popenargs, input=None, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        The other arguments are the same as for the Popen constructor.
+    
+        If universal_newlines=True is passed, the "input" argument must be a
+        string and stdout/stderr in the returned object will be strings rather than
+        bytes.
+        """
+        if input is not None:
+            if 'stdin' in kwargs:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired:
+                process.kill()
+                stdout, stderr = process.communicate()
+                raise TimeoutExpired(process.args, timeout, output=stdout,
+                                     stderr=stderr)
+            except:
+                process.kill()
+                process.wait()
+                raise
+            retcode = process.poll()
+            if check and retcode:
+                raise CalledProcessError(retcode, process.args,
+>                                        output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command 'helm install ../../helm-charts/seldon-abtest --name myabtest --set oauth.key=oauth-key --set oauth.secret=oauth-secret --namespace test-abtest-model' returned non-zero exit status 1.
+
+/usr/local/lib/python3.6/subprocess.py:418: CalledProcessError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-abtest-model
+______________________ TestClusterWide.test_single_model _______________________
+[gw2] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_helm_charts_clusterwide.TestClusterWide object at 0x7fc960301128>
+
+    def test_single_model(self):
+        namespace = "test-single-model"
+        retry_run(f"kubectl create namespace {namespace}")
+        run(
+            f"helm install ../../helm-charts/seldon-single-model --name mymodel --set oauth.key=oauth-key --set oauth.secret=oauth-secret --namespace {namespace}",
+            shell=True,
+>           check=True,
+        )
+
+test_helm_charts_clusterwide.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, timeout = None, check = True
+popenargs = ('helm install ../../helm-charts/seldon-single-model --name mymodel --set oauth.key=oauth-key --set oauth.secret=oauth-secret --namespace test-single-model',)
+kwargs = {'shell': True}, process = <subprocess.Popen object at 0x7fc960546278>
+stdout = None, stderr = None, retcode = 1
+
+    def run(*popenargs, input=None, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        The other arguments are the same as for the Popen constructor.
+    
+        If universal_newlines=True is passed, the "input" argument must be a
+        string and stdout/stderr in the returned object will be strings rather than
+        bytes.
+        """
+        if input is not None:
+            if 'stdin' in kwargs:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired:
+                process.kill()
+                stdout, stderr = process.communicate()
+                raise TimeoutExpired(process.args, timeout, output=stdout,
+                                     stderr=stderr)
+            except:
+                process.kill()
+                process.wait()
+                raise
+            retcode = process.poll()
+            if check and retcode:
+                raise CalledProcessError(retcode, process.args,
+>                                        output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command 'helm install ../../helm-charts/seldon-single-model --name mymodel --set oauth.key=oauth-key --set oauth.secret=oauth-secret --namespace test-single-model' returned non-zero exit status 1.
+
+/usr/local/lib/python3.6/subprocess.py:418: CalledProcessError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-single-model
+________________________ TestClusterWide.test_mab_model ________________________
+[gw0] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_helm_charts_clusterwide.TestClusterWide object at 0x7fcab705e240>
+
+    def test_mab_model(self):
+        namespace = "test-mab-model"
+        retry_run(f"kubectl create namespace {namespace}")
+        run(
+            f"helm install ../../helm-charts/seldon-mab --name mymab --set oauth.key=oauth-key --set oauth.secret=oauth-secret --namespace {namespace}",
+            shell=True,
+>           check=True,
+        )
+
+test_helm_charts_clusterwide.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, timeout = None, check = True
+popenargs = ('helm install ../../helm-charts/seldon-mab --name mymab --set oauth.key=oauth-key --set oauth.secret=oauth-secret --namespace test-mab-model',)
+kwargs = {'shell': True}, process = <subprocess.Popen object at 0x7fcab705e208>
+stdout = None, stderr = None, retcode = 1
+
+    def run(*popenargs, input=None, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        The other arguments are the same as for the Popen constructor.
+    
+        If universal_newlines=True is passed, the "input" argument must be a
+        string and stdout/stderr in the returned object will be strings rather than
+        bytes.
+        """
+        if input is not None:
+            if 'stdin' in kwargs:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired:
+                process.kill()
+                stdout, stderr = process.communicate()
+                raise TimeoutExpired(process.args, timeout, output=stdout,
+                                     stderr=stderr)
+            except:
+                process.kill()
+                process.wait()
+                raise
+            retcode = process.poll()
+            if check and retcode:
+                raise CalledProcessError(retcode, process.args,
+>                                        output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command 'helm install ../../helm-charts/seldon-mab --name mymab --set oauth.key=oauth-key --set oauth.secret=oauth-secret --namespace test-mab-model' returned non-zero exit status 1.
+
+/usr/local/lib/python3.6/subprocess.py:418: CalledProcessError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-mab-model
+___________________________ TestPrepack.test_sklearn ___________________________
+[gw1] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_prepackaged_servers.TestPrepack object at 0x7f71fa62d128>
+
+    def test_sklearn(self):
+        namespace = "test-sklearn"
+        spec = "../../servers/sklearnserver/samples/iris.yaml"
+        retry_run(f"kubectl create namespace {namespace}")
+>       retry_run(f"kubectl apply -f {spec} -n {namespace}")
+
+test_prepackaged_servers.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd = 'kubectl apply -f ../../servers/sklearnserver/samples/iris.yaml -n test-sklearn'
+attempts = 10, sleep = 5
+
+    def retry_run(cmd, attempts=10, sleep=5):
+        for i in range(attempts):
+            ret = run(cmd, shell=True)
+            if ret.returncode == 0:
+                logging.warning(f"Successfully ran command: {cmd}")
+                break
+            logging.warning(f"Unsuccessful command but retrying: {cmd}")
+            time.sleep(sleep)
+>       assert ret.returncode == 0
+E       AssertionError
+
+seldon_e2e_utils.py:65: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-sklearn
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/sklearnserver/samples/iris.yaml -n test-sklearn
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/sklearnserver/samples/iris.yaml -n test-sklearn
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/sklearnserver/samples/iris.yaml -n test-sklearn
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/sklearnserver/samples/iris.yaml -n test-sklearn
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/sklearnserver/samples/iris.yaml -n test-sklearn
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/sklearnserver/samples/iris.yaml -n test-sklearn
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/sklearnserver/samples/iris.yaml -n test-sklearn
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/sklearnserver/samples/iris.yaml -n test-sklearn
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/sklearnserver/samples/iris.yaml -n test-sklearn
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/sklearnserver/samples/iris.yaml -n test-sklearn
+___________________________ TestPrepack.test_xgboost ___________________________
+[gw3] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_prepackaged_servers.TestPrepack object at 0x7fab01da8358>
+
+    def test_xgboost(self):
+        namespace = "test-xgboost"
+        spec = "../../servers/xgboostserver/samples/iris.yaml"
+        retry_run(f"kubectl create namespace {namespace}")
+>       retry_run(f"kubectl apply -f {spec}  -n {namespace}")
+
+test_prepackaged_servers.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd = 'kubectl apply -f ../../servers/xgboostserver/samples/iris.yaml  -n test-xgboost'
+attempts = 10, sleep = 5
+
+    def retry_run(cmd, attempts=10, sleep=5):
+        for i in range(attempts):
+            ret = run(cmd, shell=True)
+            if ret.returncode == 0:
+                logging.warning(f"Successfully ran command: {cmd}")
+                break
+            logging.warning(f"Unsuccessful command but retrying: {cmd}")
+            time.sleep(sleep)
+>       assert ret.returncode == 0
+E       AssertionError
+
+seldon_e2e_utils.py:65: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-xgboost
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/xgboostserver/samples/iris.yaml  -n test-xgboost
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/xgboostserver/samples/iris.yaml  -n test-xgboost
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/xgboostserver/samples/iris.yaml  -n test-xgboost
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/xgboostserver/samples/iris.yaml  -n test-xgboost
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/xgboostserver/samples/iris.yaml  -n test-xgboost
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/xgboostserver/samples/iris.yaml  -n test-xgboost
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/xgboostserver/samples/iris.yaml  -n test-xgboost
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/xgboostserver/samples/iris.yaml  -n test-xgboost
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/xgboostserver/samples/iris.yaml  -n test-xgboost
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/xgboostserver/samples/iris.yaml  -n test-xgboost
+__________________________ TestPrepack.test_tfserving __________________________
+[gw2] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_prepackaged_servers.TestPrepack object at 0x7fc960325128>
+
+    def test_tfserving(self):
+        namespace = "test-tfserving"
+        spec = "../../servers/tfserving/samples/mnist_rest.yaml"
+        retry_run(f"kubectl create namespace {namespace}")
+>       retry_run(f"kubectl apply -f {spec}  -n {namespace}")
+
+test_prepackaged_servers.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd = 'kubectl apply -f ../../servers/tfserving/samples/mnist_rest.yaml  -n test-tfserving'
+attempts = 10, sleep = 5
+
+    def retry_run(cmd, attempts=10, sleep=5):
+        for i in range(attempts):
+            ret = run(cmd, shell=True)
+            if ret.returncode == 0:
+                logging.warning(f"Successfully ran command: {cmd}")
+                break
+            logging.warning(f"Unsuccessful command but retrying: {cmd}")
+            time.sleep(sleep)
+>       assert ret.returncode == 0
+E       AssertionError
+
+seldon_e2e_utils.py:65: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-tfserving
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/tfserving/samples/mnist_rest.yaml  -n test-tfserving
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/tfserving/samples/mnist_rest.yaml  -n test-tfserving
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/tfserving/samples/mnist_rest.yaml  -n test-tfserving
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/tfserving/samples/mnist_rest.yaml  -n test-tfserving
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/tfserving/samples/mnist_rest.yaml  -n test-tfserving
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/tfserving/samples/mnist_rest.yaml  -n test-tfserving
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/tfserving/samples/mnist_rest.yaml  -n test-tfserving
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/tfserving/samples/mnist_rest.yaml  -n test-tfserving
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/tfserving/samples/mnist_rest.yaml  -n test-tfserving
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/tfserving/samples/mnist_rest.yaml  -n test-tfserving
+_____________________ TestRollingHttp.test_rolling_update1 _____________________
+[gw0] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_rolling_updates.TestRollingHttp object at 0x7fcab72f02b0>
+
+    def test_rolling_update1(self):
+        namespace = "test-rolling-update-1"
+        retry_run(f"kubectl create namespace {namespace}")
+>       retry_run(f"kubectl apply -f ../resources/graph1.json -n {namespace}")
+
+test_rolling_updates.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd = 'kubectl apply -f ../resources/graph1.json -n test-rolling-update-1'
+attempts = 10, sleep = 5
+
+    def retry_run(cmd, attempts=10, sleep=5):
+        for i in range(attempts):
+            ret = run(cmd, shell=True)
+            if ret.returncode == 0:
+                logging.warning(f"Successfully ran command: {cmd}")
+                break
+            logging.warning(f"Unsuccessful command but retrying: {cmd}")
+            time.sleep(sleep)
+>       assert ret.returncode == 0
+E       AssertionError
+
+seldon_e2e_utils.py:65: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-rolling-update-1
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-1
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-1
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-1
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-1
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-1
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-1
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-1
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-1
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-1
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-1
+___________________________ TestPrepack.test_mlflow ____________________________
+[gw1] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_prepackaged_servers.TestPrepack object at 0x7f71fa68b400>
+
+    def test_mlflow(self):
+        namespace = "test-mlflow"
+        spec = "../../servers/mlflowserver/samples/elasticnet_wine.yaml"
+        retry_run(f"kubectl create namespace {namespace}")
+>       retry_run(f"kubectl apply -f {spec} -n {namespace}")
+
+test_prepackaged_servers.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd = 'kubectl apply -f ../../servers/mlflowserver/samples/elasticnet_wine.yaml -n test-mlflow'
+attempts = 10, sleep = 5
+
+    def retry_run(cmd, attempts=10, sleep=5):
+        for i in range(attempts):
+            ret = run(cmd, shell=True)
+            if ret.returncode == 0:
+                logging.warning(f"Successfully ran command: {cmd}")
+                break
+            logging.warning(f"Unsuccessful command but retrying: {cmd}")
+            time.sleep(sleep)
+>       assert ret.returncode == 0
+E       AssertionError
+
+seldon_e2e_utils.py:65: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-mlflow
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/mlflowserver/samples/elasticnet_wine.yaml -n test-mlflow
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/mlflowserver/samples/elasticnet_wine.yaml -n test-mlflow
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/mlflowserver/samples/elasticnet_wine.yaml -n test-mlflow
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/mlflowserver/samples/elasticnet_wine.yaml -n test-mlflow
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/mlflowserver/samples/elasticnet_wine.yaml -n test-mlflow
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/mlflowserver/samples/elasticnet_wine.yaml -n test-mlflow
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/mlflowserver/samples/elasticnet_wine.yaml -n test-mlflow
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/mlflowserver/samples/elasticnet_wine.yaml -n test-mlflow
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/mlflowserver/samples/elasticnet_wine.yaml -n test-mlflow
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../../servers/mlflowserver/samples/elasticnet_wine.yaml -n test-mlflow
+_____________________ TestRollingHttp.test_rolling_update2 _____________________
+[gw3] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_rolling_updates.TestRollingHttp object at 0x7faada3f2780>
+
+    def test_rolling_update2(self):
+        namespace = "test-rolling-update-2"
+        retry_run(f"kubectl create namespace {namespace}")
+>       retry_run(f"kubectl apply -f ../resources/graph1.json -n {namespace}")
+
+test_rolling_updates.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd = 'kubectl apply -f ../resources/graph1.json -n test-rolling-update-2'
+attempts = 10, sleep = 5
+
+    def retry_run(cmd, attempts=10, sleep=5):
+        for i in range(attempts):
+            ret = run(cmd, shell=True)
+            if ret.returncode == 0:
+                logging.warning(f"Successfully ran command: {cmd}")
+                break
+            logging.warning(f"Unsuccessful command but retrying: {cmd}")
+            time.sleep(sleep)
+>       assert ret.returncode == 0
+E       AssertionError
+
+seldon_e2e_utils.py:65: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-rolling-update-2
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-2
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-2
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-2
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-2
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-2
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-2
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-2
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-2
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-2
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-2
+_____________________ TestRollingHttp.test_rolling_update4 _____________________
+[gw0] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_rolling_updates.TestRollingHttp object at 0x7fcab70ba748>
+
+    def test_rolling_update4(self):
+        namespace = "test-rolling-update-4"
+        retry_run(f"kubectl create namespace {namespace}")
+>       retry_run(f"kubectl apply -f ../resources/graph1.json -n {namespace}")
+
+test_rolling_updates.py:132: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd = 'kubectl apply -f ../resources/graph1.json -n test-rolling-update-4'
+attempts = 10, sleep = 5
+
+    def retry_run(cmd, attempts=10, sleep=5):
+        for i in range(attempts):
+            ret = run(cmd, shell=True)
+            if ret.returncode == 0:
+                logging.warning(f"Successfully ran command: {cmd}")
+                break
+            logging.warning(f"Unsuccessful command but retrying: {cmd}")
+            time.sleep(sleep)
+>       assert ret.returncode == 0
+E       AssertionError
+
+seldon_e2e_utils.py:65: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-rolling-update-4
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-4
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-4
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-4
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-4
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-4
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-4
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-4
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-4
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-4
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-4
+_____________________ TestRollingHttp.test_rolling_update3 _____________________
+[gw2] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_rolling_updates.TestRollingHttp object at 0x7fc9603a0828>
+
+    def test_rolling_update3(self):
+        namespace = "test-rolling-updates-3"
+        retry_run(f"kubectl create namespace {namespace}")
+>       retry_run(f"kubectl apply -f ../resources/graph1.json -n {namespace}")
+
+test_rolling_updates.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd = 'kubectl apply -f ../resources/graph1.json -n test-rolling-updates-3'
+attempts = 10, sleep = 5
+
+    def retry_run(cmd, attempts=10, sleep=5):
+        for i in range(attempts):
+            ret = run(cmd, shell=True)
+            if ret.returncode == 0:
+                logging.warning(f"Successfully ran command: {cmd}")
+                break
+            logging.warning(f"Unsuccessful command but retrying: {cmd}")
+            time.sleep(sleep)
+>       assert ret.returncode == 0
+E       AssertionError
+
+seldon_e2e_utils.py:65: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-rolling-updates-3
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-updates-3
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-updates-3
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-updates-3
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-updates-3
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-updates-3
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-updates-3
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-updates-3
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-updates-3
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-updates-3
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-updates-3
+_____________________ TestRollingHttp.test_rolling_update5 _____________________
+[gw1] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_rolling_updates.TestRollingHttp object at 0x7f71fa823198>
+
+    def test_rolling_update5(self):
+        namespace = "test-rolling-update-5"
+        retry_run(f"kubectl create namespace {namespace}")
+>       retry_run(f"kubectl apply -f ../resources/graph1.json -n {namespace}")
+
+test_rolling_updates.py:170: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd = 'kubectl apply -f ../resources/graph1.json -n test-rolling-update-5'
+attempts = 10, sleep = 5
+
+    def retry_run(cmd, attempts=10, sleep=5):
+        for i in range(attempts):
+            ret = run(cmd, shell=True)
+            if ret.returncode == 0:
+                logging.warning(f"Successfully ran command: {cmd}")
+                break
+            logging.warning(f"Unsuccessful command but retrying: {cmd}")
+            time.sleep(sleep)
+>       assert ret.returncode == 0
+E       AssertionError
+
+seldon_e2e_utils.py:65: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-rolling-update-5
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-5
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-5
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-5
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-5
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-5
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-5
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-5
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-5
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-5
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1.json -n test-rolling-update-5
+_____________________ TestRollingHttp.test_rolling_update6 _____________________
+[gw3] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_rolling_updates.TestRollingHttp object at 0x7fab01da8d68>
+
+    def test_rolling_update6(self):
+        namespace = "test-rolling-update-6"
+        retry_run(f"kubectl create namespace {namespace}")
+>       retry_run(f"kubectl apply -f ../resources/graph1svc.json -n {namespace}")
+
+test_rolling_updates.py:210: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd = 'kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-6'
+attempts = 10, sleep = 5
+
+    def retry_run(cmd, attempts=10, sleep=5):
+        for i in range(attempts):
+            ret = run(cmd, shell=True)
+            if ret.returncode == 0:
+                logging.warning(f"Successfully ran command: {cmd}")
+                break
+            logging.warning(f"Unsuccessful command but retrying: {cmd}")
+            time.sleep(sleep)
+>       assert ret.returncode == 0
+E       AssertionError
+
+seldon_e2e_utils.py:65: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-rolling-update-6
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-6
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-6
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-6
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-6
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-6
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-6
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-6
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-6
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-6
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-6
+_____________________ TestRollingHttp.test_rolling_update7 _____________________
+[gw2] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_rolling_updates.TestRollingHttp object at 0x7fc9604863c8>
+
+    def test_rolling_update7(self):
+        namespace = "test-rolling-update-7"
+        retry_run(f"kubectl create namespace {namespace}")
+>       retry_run(f"kubectl apply -f ../resources/graph1svc.json -n {namespace}")
+
+test_rolling_updates.py:250: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd = 'kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-7'
+attempts = 10, sleep = 5
+
+    def retry_run(cmd, attempts=10, sleep=5):
+        for i in range(attempts):
+            ret = run(cmd, shell=True)
+            if ret.returncode == 0:
+                logging.warning(f"Successfully ran command: {cmd}")
+                break
+            logging.warning(f"Unsuccessful command but retrying: {cmd}")
+            time.sleep(sleep)
+>       assert ret.returncode == 0
+E       AssertionError
+
+seldon_e2e_utils.py:65: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-rolling-update-7
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-7
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-7
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-7
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-7
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-7
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-7
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-7
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-7
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-7
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-7
+_____________________ TestRollingHttp.test_rolling_update8 _____________________
+[gw0] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_rolling_updates.TestRollingHttp object at 0x7fcab70852b0>
+
+    def test_rolling_update8(self):
+        namespace = "test-rolling-update-8"
+        retry_run(f"kubectl create namespace {namespace}")
+>       retry_run(f"kubectl apply -f ../resources/graph1svc.json -n {namespace}")
+
+test_rolling_updates.py:291: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd = 'kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-8'
+attempts = 10, sleep = 5
+
+    def retry_run(cmd, attempts=10, sleep=5):
+        for i in range(attempts):
+            ret = run(cmd, shell=True)
+            if ret.returncode == 0:
+                logging.warning(f"Successfully ran command: {cmd}")
+                break
+            logging.warning(f"Unsuccessful command but retrying: {cmd}")
+            time.sleep(sleep)
+>       assert ret.returncode == 0
+E       AssertionError
+
+seldon_e2e_utils.py:65: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-rolling-update-8
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-8
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-8
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-8
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-8
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-8
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-8
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-8
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-8
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-8
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-8
+_____________________ TestRollingHttp.test_rolling_update9 _____________________
+[gw1] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_rolling_updates.TestRollingHttp object at 0x7f71fa635b38>
+
+    def test_rolling_update9(self):
+        namespace = "test-rolling-update-9"
+        retry_run(f"kubectl create namespace {namespace}")
+>       retry_run(f"kubectl apply -f ../resources/graph1svc.json -n {namespace}")
+
+test_rolling_updates.py:325: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd = 'kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-9'
+attempts = 10, sleep = 5
+
+    def retry_run(cmd, attempts=10, sleep=5):
+        for i in range(attempts):
+            ret = run(cmd, shell=True)
+            if ret.returncode == 0:
+                logging.warning(f"Successfully ran command: {cmd}")
+                break
+            logging.warning(f"Unsuccessful command but retrying: {cmd}")
+            time.sleep(sleep)
+>       assert ret.returncode == 0
+E       AssertionError
+
+seldon_e2e_utils.py:65: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-rolling-update-9
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-9
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-9
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-9
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-9
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-9
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-9
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-9
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-9
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-9
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-9
+____________________ TestRollingHttp.test_rolling_update10 _____________________
+[gw3] linux -- Python 3.6.0 /usr/local/bin/python3.6
+
+self = <test_rolling_updates.TestRollingHttp object at 0x7fab01edc438>
+
+    def test_rolling_update10(self):
+        namespace = "test-rolling-update-10"
+        retry_run(f"kubectl create namespace {namespace}")
+>       retry_run(f"kubectl apply -f ../resources/graph1svc.json -n {namespace}")
+
+test_rolling_updates.py:363: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd = 'kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-10'
+attempts = 10, sleep = 5
+
+    def retry_run(cmd, attempts=10, sleep=5):
+        for i in range(attempts):
+            ret = run(cmd, shell=True)
+            if ret.returncode == 0:
+                logging.warning(f"Successfully ran command: {cmd}")
+                break
+            logging.warning(f"Unsuccessful command but retrying: {cmd}")
+            time.sleep(sleep)
+>       assert ret.returncode == 0
+E       AssertionError
+
+seldon_e2e_utils.py:65: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  root:seldon_e2e_utils.py:61 Successfully ran command: kubectl create namespace test-rolling-update-10
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-10
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-10
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-10
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-10
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-10
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-10
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-10
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-10
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-10
+WARNING  root:seldon_e2e_utils.py:63 Unsuccessful command but retrying: kubectl apply -f ../resources/graph1svc.json -n test-rolling-update-10
+=============================== warnings summary ===============================
+/usr/local/lib/python3.6/site-packages/_pytest/cacheprovider.py:124
+  /usr/local/lib/python3.6/site-packages/_pytest/cacheprovider.py:124: PytestCacheWarning: could not create cache path /.pytest_cache/v/cache/stepwise
+    self.warn("could not create cache path {path}", path=path)
+
+-- Docs: https://docs.pytest.org/en/latest/warnings.html
+============= 17 failed, 2 passed, 1 warning in 219.60s (0:03:39) ==============
+make: *** [test] Error 1
+Makefile:67: recipe for target 'test' failed
+kind delete cluster
+Deleting cluster "kind" ...
+$KUBECONFIG is still set to use /builder/home/.kube/kind-config-kind even though that file has been deleted, remember to unset it
+Stopping Docker: dockerProgram process in pidfile '/var/run/docker-ssd.pid', 1 process(es), refused to die.
+[31m
+Pipeline failed on stage 'end-to-end' : container 'step-test-end-to-end'. The execution of the pipeline has stopped.[0m
