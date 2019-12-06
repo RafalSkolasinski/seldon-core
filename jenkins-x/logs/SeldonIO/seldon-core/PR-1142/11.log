@@ -1,0 +1,38 @@
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-11-t558t-11[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-c7xbq[0m
+{"level":"warn","ts":1575632880.4339561,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575632880.4345171,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-11-t558t-11[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-nrvtl[0m
+{"level":"warn","ts":1575632881.507634,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575632881.5091827,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-11-t558t-11[0m stage [32mmeta-pipeline[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-11-t558t-11[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-seldonio-seldon-core-pr-11-qb8pn[0m
+{"level":"warn","ts":1575632886.6068482,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575632890.5703902,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/SeldonIO/seldon-core.git @ fdd3a596cc3a7e9853298c693a39aecdfbaa0712 in path /workspace/source"}
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-11-t558t-11[0m stage [32mmeta-pipeline[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:fdd3a596cc3a7e9853298c693a39aecdfbaa0712,1142:43c1de93328394e5483a6ee353e918be7090cc4d
+DEBUG: ran git fetch --unshallow origin 43c1de93328394e5483a6ee353e918be7090cc4d: fdd3a596cc3a7e9853298c693a39aecdfbaa0712: in 
+DEBUG: ran git checkout master in 
+DEBUG: ran git reset --hard fdd3a596cc3a7e9853298c693a39aecdfbaa0712 in 
+DEBUG: ran clean --force -d . in 
+error: error during merge: merging 43c1de93328394e5483a6ee353e918be7090cc4d into master: git output: Auto-merging operator/api/v1alpha2/seldondeployment_webhook.go
+CONFLICT (content): Merge conflict in operator/api/v1alpha2/seldondeployment_webhook.go
+Removing helm-charts/seldon-core-operator/templates/service_seldon-controller-manager-metrics-service.yaml
+Removing helm-charts/seldon-core-operator/templates/clusterrolebinding_seldon-proxy-rolebinding.yaml
+Removing helm-charts/seldon-core-operator/templates/clusterrolebinding_seldon-manager-css-rolebinding.yaml
+Removing helm-charts/seldon-core-operator/templates/clusterrole_seldon-proxy-role.yaml
+Auto-merging helm-charts/seldon-core-operator/templates/clusterrole_seldon-manager-sas-role.yaml
+Automatic merge failed; fix conflicts and then commit the result.: failed to run 'git merge 43c1de93328394e5483a6ee353e918be7090cc4d' command in directory '', output: 'Auto-merging operator/api/v1alpha2/seldondeployment_webhook.go
+CONFLICT (content): Merge conflict in operator/api/v1alpha2/seldondeployment_webhook.go
+Removing helm-charts/seldon-core-operator/templates/service_seldon-controller-manager-metrics-service.yaml
+Removing helm-charts/seldon-core-operator/templates/clusterrolebinding_seldon-proxy-rolebinding.yaml
+Removing helm-charts/seldon-core-operator/templates/clusterrolebinding_seldon-manager-css-rolebinding.yaml
+Removing helm-charts/seldon-core-operator/templates/clusterrole_seldon-proxy-role.yaml
+Auto-merging helm-charts/seldon-core-operator/templates/clusterrole_seldon-manager-sas-role.yaml
+Automatic merge failed; fix conflicts and then commit the result.'
+[31m
+Pipeline failed on stage 'meta-pipeline' : container 'step-git-merge'. The execution of the pipeline has stopped.[0m
