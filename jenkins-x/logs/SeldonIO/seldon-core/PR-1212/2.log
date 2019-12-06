@@ -1,0 +1,54 @@
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-12-c8b5r-2[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-4lf49[0m
+{"level":"warn","ts":1575646100.113068,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575646100.1135786,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-12-c8b5r-2[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-qsmw9[0m
+{"level":"warn","ts":1575646100.485793,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575646100.4872355,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-12-c8b5r-2[0m stage [32mmeta-pipeline[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-12-c8b5r-2[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-seldonio-seldon-core-pr-12-f56rf[0m
+{"level":"warn","ts":1575646107.5796552,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575646110.9435725,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/SeldonIO/seldon-core.git @ 4a5f4af8b3ad98faf552171adc21fd5513fbf855 in path /workspace/source"}
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-12-c8b5r-2[0m stage [32mmeta-pipeline[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:4a5f4af8b3ad98faf552171adc21fd5513fbf855,1212:a2633b19331bf61178631df96316095d5dcd3e9c
+DEBUG: ran git fetch --unshallow origin a2633b19331bf61178631df96316095d5dcd3e9c: 4a5f4af8b3ad98faf552171adc21fd5513fbf855: in 
+DEBUG: ran git checkout master in 
+DEBUG: ran git reset --hard 4a5f4af8b3ad98faf552171adc21fd5513fbf855 in 
+DEBUG: ran clean --force -d . in 
+error: error during merge: merging a2633b19331bf61178631df96316095d5dcd3e9c into master: git output: CONFLICT (modify/delete): operator/hack/update-codegen.sh deleted in HEAD and modified in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/hack/update-codegen.sh left in tree.
+Auto-merging operator/go.sum
+CONFLICT (content): Merge conflict in operator/go.sum
+Auto-merging operator/go.mod
+CONFLICT (content): Merge conflict in operator/go.mod
+CONFLICT (rename/delete): operator/client/clientset/versioned/typed/v1alpha2/internalversion/v1alpha2_client.go deleted in HEAD and renamed to operator/client/clientset/versioned/typed/machinelearning/v1alpha2/machinelearning_client.go in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/typed/machinelearning/v1alpha2/machinelearning_client.go left in tree.
+CONFLICT (rename/delete): operator/client/clientset/versioned/typed/v1alpha2/internalversion/generated_expansion.go deleted in HEAD and renamed to operator/client/clientset/versioned/typed/machinelearning/v1alpha2/generated_expansion.go in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/typed/machinelearning/v1alpha2/generated_expansion.go left in tree.
+CONFLICT (rename/delete): operator/client/clientset/versioned/typed/v1alpha2/internalversion/fake/fake_v1alpha2_client.go deleted in HEAD and renamed to operator/client/clientset/versioned/typed/machinelearning/v1alpha2/fake/fake_machinelearning_client.go in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/typed/machinelearning/v1alpha2/fake/fake_machinelearning_client.go left in tree.
+CONFLICT (rename/delete): operator/client/clientset/versioned/typed/v1alpha2/internalversion/fake/doc.go deleted in HEAD and renamed to operator/client/clientset/versioned/typed/machinelearning/v1alpha2/fake/doc.go in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/typed/machinelearning/v1alpha2/fake/doc.go left in tree.
+CONFLICT (rename/delete): operator/client/clientset/versioned/typed/v1alpha2/internalversion/doc.go deleted in HEAD and renamed to operator/client/clientset/versioned/typed/machinelearning/v1alpha2/doc.go in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/typed/machinelearning/v1alpha2/doc.go left in tree.
+CONFLICT (modify/delete): operator/client/clientset/versioned/scheme/register.go deleted in HEAD and modified in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/scheme/register.go left in tree.
+CONFLICT (modify/delete): operator/client/clientset/versioned/fake/register.go deleted in HEAD and modified in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/fake/register.go left in tree.
+CONFLICT (modify/delete): operator/client/clientset/versioned/fake/clientset_generated.go deleted in HEAD and modified in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/fake/clientset_generated.go left in tree.
+CONFLICT (modify/delete): operator/client/clientset/versioned/clientset.go deleted in HEAD and modified in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/clientset.go left in tree.
+Auto-merging operator/api/machinelearning/v1alpha2/zz_generated.deepcopy.go
+Automatic merge failed; fix conflicts and then commit the result.: failed to run 'git merge a2633b19331bf61178631df96316095d5dcd3e9c' command in directory '', output: 'CONFLICT (modify/delete): operator/hack/update-codegen.sh deleted in HEAD and modified in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/hack/update-codegen.sh left in tree.
+Auto-merging operator/go.sum
+CONFLICT (content): Merge conflict in operator/go.sum
+Auto-merging operator/go.mod
+CONFLICT (content): Merge conflict in operator/go.mod
+CONFLICT (rename/delete): operator/client/clientset/versioned/typed/v1alpha2/internalversion/v1alpha2_client.go deleted in HEAD and renamed to operator/client/clientset/versioned/typed/machinelearning/v1alpha2/machinelearning_client.go in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/typed/machinelearning/v1alpha2/machinelearning_client.go left in tree.
+CONFLICT (rename/delete): operator/client/clientset/versioned/typed/v1alpha2/internalversion/generated_expansion.go deleted in HEAD and renamed to operator/client/clientset/versioned/typed/machinelearning/v1alpha2/generated_expansion.go in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/typed/machinelearning/v1alpha2/generated_expansion.go left in tree.
+CONFLICT (rename/delete): operator/client/clientset/versioned/typed/v1alpha2/internalversion/fake/fake_v1alpha2_client.go deleted in HEAD and renamed to operator/client/clientset/versioned/typed/machinelearning/v1alpha2/fake/fake_machinelearning_client.go in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/typed/machinelearning/v1alpha2/fake/fake_machinelearning_client.go left in tree.
+CONFLICT (rename/delete): operator/client/clientset/versioned/typed/v1alpha2/internalversion/fake/doc.go deleted in HEAD and renamed to operator/client/clientset/versioned/typed/machinelearning/v1alpha2/fake/doc.go in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/typed/machinelearning/v1alpha2/fake/doc.go left in tree.
+CONFLICT (rename/delete): operator/client/clientset/versioned/typed/v1alpha2/internalversion/doc.go deleted in HEAD and renamed to operator/client/clientset/versioned/typed/machinelearning/v1alpha2/doc.go in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/typed/machinelearning/v1alpha2/doc.go left in tree.
+CONFLICT (modify/delete): operator/client/clientset/versioned/scheme/register.go deleted in HEAD and modified in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/scheme/register.go left in tree.
+CONFLICT (modify/delete): operator/client/clientset/versioned/fake/register.go deleted in HEAD and modified in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/fake/register.go left in tree.
+CONFLICT (modify/delete): operator/client/clientset/versioned/fake/clientset_generated.go deleted in HEAD and modified in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/fake/clientset_generated.go left in tree.
+CONFLICT (modify/delete): operator/client/clientset/versioned/clientset.go deleted in HEAD and modified in a2633b19331bf61178631df96316095d5dcd3e9c. Version a2633b19331bf61178631df96316095d5dcd3e9c of operator/client/clientset/versioned/clientset.go left in tree.
+Auto-merging operator/api/machinelearning/v1alpha2/zz_generated.deepcopy.go
+Automatic merge failed; fix conflicts and then commit the result.'
+[31m
+Pipeline failed on stage 'meta-pipeline' : container 'step-git-merge'. The execution of the pipeline has stopped.[0m
