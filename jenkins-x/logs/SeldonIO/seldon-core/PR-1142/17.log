@@ -1,0 +1,38 @@
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-11-26n2v-17[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-6bc2m[0m
+{"level":"warn","ts":1575712312.719538,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575712312.7199507,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-11-26n2v-17[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-sfdhh[0m
+{"level":"warn","ts":1575712313.6845622,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575712313.685878,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-11-26n2v-17[0m stage [32mmeta-pipeline[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-11-26n2v-17[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-seldonio-seldon-core-pr-11-mcbtn[0m
+{"level":"warn","ts":1575712319.779427,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575712322.5427856,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/SeldonIO/seldon-core.git @ c5990992cd05a8b718cc6a89fb8f56eb931b90f1 in path /workspace/source"}
+
+Showing logs for build [32mmeta-seldonio-seldon-core-pr-11-26n2v-17[0m stage [32mmeta-pipeline[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:c5990992cd05a8b718cc6a89fb8f56eb931b90f1,1142:d602c63e4de6dfb1027e5f8779152efd13624351
+DEBUG: ran git fetch --unshallow origin d602c63e4de6dfb1027e5f8779152efd13624351: c5990992cd05a8b718cc6a89fb8f56eb931b90f1: in 
+DEBUG: ran git checkout master in 
+DEBUG: ran git reset --hard c5990992cd05a8b718cc6a89fb8f56eb931b90f1 in 
+DEBUG: ran clean --force -d . in 
+error: error during merge: merging d602c63e4de6dfb1027e5f8779152efd13624351 into master: git output: Auto-merging operator/controllers/seldondeployment_controller.go
+Auto-merging operator/api/v1alpha2/seldondeployment_webhook.go
+CONFLICT (content): Merge conflict in operator/api/v1alpha2/seldondeployment_webhook.go
+Removing helm-charts/seldon-core-operator/templates/service_seldon-controller-manager-metrics-service.yaml
+Removing helm-charts/seldon-core-operator/templates/clusterrolebinding_seldon-proxy-rolebinding.yaml
+Removing helm-charts/seldon-core-operator/templates/clusterrolebinding_seldon-manager-css-rolebinding.yaml
+Removing helm-charts/seldon-core-operator/templates/clusterrole_seldon-proxy-role.yaml
+Automatic merge failed; fix conflicts and then commit the result.: failed to run 'git merge d602c63e4de6dfb1027e5f8779152efd13624351' command in directory '', output: 'Auto-merging operator/controllers/seldondeployment_controller.go
+Auto-merging operator/api/v1alpha2/seldondeployment_webhook.go
+CONFLICT (content): Merge conflict in operator/api/v1alpha2/seldondeployment_webhook.go
+Removing helm-charts/seldon-core-operator/templates/service_seldon-controller-manager-metrics-service.yaml
+Removing helm-charts/seldon-core-operator/templates/clusterrolebinding_seldon-proxy-rolebinding.yaml
+Removing helm-charts/seldon-core-operator/templates/clusterrolebinding_seldon-manager-css-rolebinding.yaml
+Removing helm-charts/seldon-core-operator/templates/clusterrole_seldon-proxy-role.yaml
+Automatic merge failed; fix conflicts and then commit the result.'
+[31m
+Pipeline failed on stage 'meta-pipeline' : container 'step-git-merge'. The execution of the pipeline has stopped.[0m
