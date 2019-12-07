@@ -1,0 +1,129 @@
+
+Showing logs for build [32mseldonio-seldon-core-pr-1016-li-2[0m stage [32mpr-build-comment[0m and container [32mstep-credential-initializer-t7sf2[0m
+{"level":"warn","ts":1575731662.5840492,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575731662.5847487,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1016-li-2[0m stage [32mpr-build-comment[0m and container [32mstep-working-dir-initializer-f8kxc[0m
+{"level":"warn","ts":1575731662.9921858,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575731662.9940953,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1016-li-2[0m stage [32mpr-build-comment[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mseldonio-seldon-core-pr-1016-li-2[0m stage [32mpr-build-comment[0m and container [32mstep-git-source-seldonio-seldon-core-pr-1016-li-8kcbh[0m
+{"level":"warn","ts":1575731670.0716422,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575731673.7698972,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/SeldonIO/seldon-core.git @ master in path /workspace/source"}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1016-li-2[0m stage [32mpr-build-comment[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:dc9162de32b317b9520703f524161ea05b5133e5,1016:a52af143f978bf0d6381c3361dc40f904e4b60f5
+DEBUG: ran git fetch --unshallow origin a52af143f978bf0d6381c3361dc40f904e4b60f5: dc9162de32b317b9520703f524161ea05b5133e5: in 
+DEBUG: ran git checkout master in 
+DEBUG: ran git reset --hard dc9162de32b317b9520703f524161ea05b5133e5 in 
+DEBUG: ran clean --force -d . in 
+DEBUG: ran git merge a52af143f978bf0d6381c3361dc40f904e4b60f5 in 
+Merged SHA 40bb452d5c6757b5e0dc4de77d1b291cc1ece6df with commit message 'Merge commit 'a52af143f978bf0d6381c3361dc40f904e4b60f5'' into base branch master
+Merged SHA a52af143f978bf0d6381c3361dc40f904e4b60f5 with commit message 'Merge branch 'master' into executor' into base branch master
+Merged SHA dc3b5c573b9f281ed2c0731593ed16ae1d2fe766 with commit message 'Update test for AB test' into base branch master
+Merged SHA f83875c7eeca0fcdeae480e9398a08ba86ef6f1e with commit message 'Basic testing for model and abtests' into base branch master
+Merged SHA 583b54d6638428fdf5d534477b9c41d10d0c3732 with commit message 'rebase' into base branch master
+Merged SHA db3ba063a922a0e47b8882da72cc4b6962edd5fa with commit message 'Add README' into base branch master
+Merged SHA ff04ed759c2f187e62d8ea88867cd92fe7188835 with commit message 'Add grpc tests' into base branch master
+Merged SHA e52cb74e20ae31851e5b5093f84b8c6d8b59ae55 with commit message 'Add rest server tests' into base branch master
+Merged SHA da9ab7519afb36aedb567ca68ea6f8570ac55110 with commit message 'rebase' into base branch master
+Merged SHA 4083d9ffaabb53c89a5b792116b49c7a7238a2bb with commit message 'finish grpc server' into base branch master
+Merged SHA 49a7b69c00977aeded912d048a942e71682f789f with commit message 'grpc client initial commit' into base branch master
+Merged SHA 61077fb017d0dfb6ef3ffb93c5f590cdc110b0ad with commit message 'initial grpc commit' into base branch master
+Merged SHA eb8219b1609b1d729543382eb4235f651da5c22d with commit message 'add proto folder' into base branch master
+Merged SHA 00e57f219e82fbf6333160aee10c5af9571dfeea with commit message 'updated mean classifier' into base branch master
+Merged SHA 88f17c9ef568cf94036a26ccfca2ee8367120f1e with commit message 'client updates' into base branch master
+Merged SHA 59b34b51712fbdc7e1ce6118268050c79bfb2fde with commit message 'incorporate into operator' into base branch master
+Merged SHA aaaf941e4fe1ba1309e1cd646a5ccd54c12286a3 with commit message 'go vet' into base branch master
+Merged SHA 8710ff86fe2d1877566fec73d80f3b31912edad8 with commit message 'go fmt' into base branch master
+Merged SHA b81f5dede50b548b2290e1fc49fa42ab9a05479e with commit message 'correct type annotation for aggregate' into base branch master
+Merged SHA 2ab8b5bd5a949fc16f2ba99afff1626bcdb58113 with commit message 'rest client tests' into base branch master
+Merged SHA c61136beed474a4fc636f31a9e4197214f0cc42f with commit message 'add full predictor process' into base branch master
+Merged SHA 7b3445fc598b7ed5d6ab71daf0dd023782568507 with commit message 'Merge branch 'master' into executor' into base branch master
+Merged SHA 598b13fd40fbb59c6839d911e911e9a349e1f262 with commit message 'update executor transform' into base branch master
+Merged SHA 188392a22b3a1387f762830350fa46493901d1a3 with commit message 'generalize executor payloads' into base branch master
+Merged SHA ac827cbf6e963555bca40ee694072b7fa5db5541 with commit message 'update to refector and test transform - WIP' into base branch master
+Merged SHA f24f6ee5d0d15b5b4133016792129d4b75a64031 with commit message 'Merge branch 'master' into executor' into base branch master
+Merged SHA f795b1bf98dc813817ff99c005b9f7190f3564ef with commit message 'Merge branch 'master' into executor' into base branch master
+Merged SHA c5c58d57b0f4fae7d0c872f66df87bd660610c03 with commit message 'initial e2e processing' into base branch master
+Merged SHA 11d88f60093dff4168ac4487b15a045ea9d86488 with commit message 'executor initial commit' into base branch master
+
+Showing logs for build [32mseldonio-seldon-core-pr-1016-li-2[0m stage [32mpr-build-comment[0m and container [32mstep-step2[0m
++++ dirname ./add-pr-build-comment
+++ cd .
+++ pwd
++ STARTUP_DIR=/workspace/source/ci
++ REPO_OWNER=SeldonIO
++ REPO_NAME=seldon-core
++ PULL_NUMBER=1016
++ BUILD_NUMBER=2
++ PIPELINE_CONTEXT=lint
+++ cat
++++ date
++ COMMENT_MSG='Sat Dec  7 15:14:39 UTC 2019
+The logs for [lint] [2] will show after the pipeline context has finished.  
+https://github.com/SeldonIO/seldon-core/blob/gh-pages/jenkins-x/logs/SeldonIO/seldon-core/PR-1016/2.log
+
+impatient try  
+** get build logs SeldonIO/seldon-core/PR-1016 --build=2'
++ ** step pr comment --owner=SeldonIO --repository=seldon-core --pull-request=1016 '--comment=Sat Dec  7 15:14:39 UTC 2019
+The logs for [lint] [2] will show after the pipeline context has finished.  
+https://github.com/SeldonIO/seldon-core/blob/gh-pages/jenkins-x/logs/SeldonIO/seldon-core/PR-1016/2.log
+
+impatient try  
+** get build logs SeldonIO/seldon-core/PR-1016 --build=2'
+
+Showing logs for build [32mseldonio-seldon-core-pr-1016-li-2[0m stage [32mpr-build-comment[0m and container [32mstep-source-mkdir-seldonio-seldon-core-pr-1016-li-mfqcl[0m
+{"level":"warn","ts":1575731681.8497975,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575731681.8530562,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /pvc/pr-build-comment/workspace\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1016-li-2[0m stage [32mpr-build-comment[0m and container [32mstep-source-copy-seldonio-seldon-core-pr-1016-li-dn6p7[0m
+{"level":"warn","ts":1575731682.1052036,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575731682.438884,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"cp -r /workspace/source/. /pvc/pr-build-comment/workspace\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1016-li-2[0m stage [32mpython-lint-task[0m and container [32mstep-credential-initializer-67vwv[0m
+{"level":"warn","ts":1575731697.570944,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575731697.571476,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1016-li-2[0m stage [32mpython-lint-task[0m and container [32mstep-working-dir-initializer-dl9mf[0m
+{"level":"warn","ts":1575731698.040977,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575731698.0427215,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1016-li-2[0m stage [32mpython-lint-task[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mseldonio-seldon-core-pr-1016-li-2[0m stage [32mpython-lint-task[0m and container [32mstep-create-dir-workspace-d5k52[0m
+{"level":"warn","ts":1575731701.1484053,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575731701.1496313,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1016-li-2[0m stage [32mpython-lint-task[0m and container [32mstep-source-copy-workspace-k2srr[0m
+{"level":"warn","ts":1575731701.4164977,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575731703.2759485,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"cp -r /pvc/pr-build-comment/workspace/. /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1016-li-2[0m stage [32mpython-lint-task[0m and container [32mstep-python-lint[0m
+make: Entering directory '/workspace/source/python'
+pip install black==19.3b0
+Collecting black==19.3b0
+  Downloading https://files.pythonhosted.org/packages/30/62/cf549544a5fe990bbaeca21e9c419501b2de7a701ab0afb377bc81676600/black-19.3b0-py36-none-any.whl (89kB)
+Collecting toml>=0.9.4
+  Downloading https://files.pythonhosted.org/packages/a2/12/ced7105d2de62fa7c8fb5fce92cc4ce66b57c95fb875e9318dba7f8c5db0/toml-0.10.0-py2.py3-none-any.whl
+Collecting attrs>=18.1.0
+  Downloading https://files.pythonhosted.org/packages/a2/db/4313ab3be961f7a763066401fb77f7748373b6094076ae2bda2806988af6/attrs-19.3.0-py2.py3-none-any.whl
+Collecting click>=6.5
+  Downloading https://files.pythonhosted.org/packages/fa/37/45185cb5abbc30d7257104c434fe0b07e5a195a6847506c074527aa599ec/Click-7.0-py2.py3-none-any.whl (81kB)
+Collecting appdirs
+  Downloading https://files.pythonhosted.org/packages/56/eb/810e700ed1349edde4cbdc1b2a21e28cdf115f9faf263f6bbf8447c1abf3/appdirs-1.4.3-py2.py3-none-any.whl
+Installing collected packages: toml, attrs, click, appdirs, black
+Successfully installed appdirs-1.4.3 attrs-19.3.0 black-19.3b0 click-7.0 toml-0.10.0
+black \
+	--check ./ ../testing \
+	--exclude "(testing/scripts/proto|seldon_core/proto/|.eggs|.tox)"
+would reformat /workspace/source/python/seldon_core/seldon_methods.py
+All done! 💥 💔 💥
+1 file would be reformatted, 48 files would be left unchanged.
+make: *** [run_linter_check] Error 1
+Makefile:100: recipe for target 'run_linter_check' failed
+make: Leaving directory '/workspace/source/python'
+[31m
+Pipeline failed on stage 'python-lint-task' : container 'step-python-lint'. The execution of the pipeline has stopped.[0m
