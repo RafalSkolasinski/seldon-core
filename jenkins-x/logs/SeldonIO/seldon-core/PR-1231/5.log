@@ -1,0 +1,97 @@
+
+Showing logs for build [32mseldonio-seldon-core-pr-1231-in-kg4rc-5[0m stage [32mpr-build-comment[0m and container [32mstep-credential-initializer-wxk72[0m
+{"level":"warn","ts":1575978095.5590336,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575978095.5594156,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1231-in-kg4rc-5[0m stage [32mpr-build-comment[0m and container [32mstep-working-dir-initializer-lcmqn[0m
+{"level":"warn","ts":1575978095.9480085,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575978095.9497938,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1231-in-kg4rc-5[0m stage [32mpr-build-comment[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mseldonio-seldon-core-pr-1231-in-kg4rc-5[0m stage [32mpr-build-comment[0m and container [32mstep-git-source-seldonio-seldon-core-pr-1231-in-zzrwg[0m
+{"level":"warn","ts":1575978102.0519524,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575978105.6298358,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/SeldonIO/seldon-core.git @ master in path /workspace/source"}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1231-in-kg4rc-5[0m stage [32mpr-build-comment[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:1d662a0c418bb12dfc1ec3bc6b7584429d2ff485,1231:957a31f6d1a133807a198c1a0a2f2379b819abf7
+DEBUG: ran git fetch --unshallow origin 957a31f6d1a133807a198c1a0a2f2379b819abf7: 1d662a0c418bb12dfc1ec3bc6b7584429d2ff485: in 
+DEBUG: ran git checkout master in 
+DEBUG: ran git reset --hard 1d662a0c418bb12dfc1ec3bc6b7584429d2ff485 in 
+DEBUG: ran clean --force -d . in 
+DEBUG: ran git merge 957a31f6d1a133807a198c1a0a2f2379b819abf7 in 
+Merged SHA 932b9afeabde9e29af53175fe8b017513dd3f2f6 with commit message 'Merge commit '957a31f6d1a133807a198c1a0a2f2379b819abf7'' into base branch master
+Merged SHA 957a31f6d1a133807a198c1a0a2f2379b819abf7 with commit message 'update references to core-builder to use 0.8' into base branch master
+Merged SHA 57ad4abd506e80403877ce1880caf7d602ad7d53 with commit message 'update core-builder to use openjdk:13.0.1-jdk-buster base image' into base branch master
+
+Showing logs for build [32mseldonio-seldon-core-pr-1231-in-kg4rc-5[0m stage [32mpr-build-comment[0m and container [32mstep-step2[0m
++++ dirname ./add-pr-build-comment
+++ cd .
+++ pwd
++ STARTUP_DIR=/workspace/source/ci
++ REPO_OWNER=SeldonIO
++ REPO_NAME=seldon-core
++ PULL_NUMBER=1231
++ BUILD_NUMBER=5
++ PIPELINE_CONTEXT=integration
+++ cat
++++ date
++ COMMENT_MSG='Tue Dec 10 11:41:51 UTC 2019
+The logs for [integration] [5] will show after the pipeline context has finished.  
+https://github.com/SeldonIO/seldon-core/blob/gh-pages/jenkins-x/logs/SeldonIO/seldon-core/PR-1231/5.log
+
+impatient try  
+** get build logs SeldonIO/seldon-core/PR-1231 --build=5'
++ ** step pr comment --owner=SeldonIO --repository=seldon-core --pull-request=1231 '--comment=Tue Dec 10 11:41:51 UTC 2019
+The logs for [integration] [5] will show after the pipeline context has finished.  
+https://github.com/SeldonIO/seldon-core/blob/gh-pages/jenkins-x/logs/SeldonIO/seldon-core/PR-1231/5.log
+
+impatient try  
+** get build logs SeldonIO/seldon-core/PR-1231 --build=5'
+
+Showing logs for build [32mseldonio-seldon-core-pr-1231-in-kg4rc-5[0m stage [32mpr-build-comment[0m and container [32mstep-source-mkdir-seldonio-seldon-core-pr-1231-in-4bjfk[0m
+{"level":"warn","ts":1575978113.813246,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575978113.8172944,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /pvc/pr-build-comment/workspace\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1231-in-kg4rc-5[0m stage [32mpr-build-comment[0m and container [32mstep-source-copy-seldonio-seldon-core-pr-1231-in-7f4sf[0m
+{"level":"warn","ts":1575978114.0884237,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575978114.3553972,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"cp -r /workspace/source/. /pvc/pr-build-comment/workspace\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1231-in-kg4rc-5[0m stage [32mend-to-end[0m and container [32mstep-credential-initializer-gzjg8[0m
+{"level":"warn","ts":1575978117.7782183,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575978117.7788863,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1231-in-kg4rc-5[0m stage [32mend-to-end[0m and container [32mstep-working-dir-initializer-zc24l[0m
+{"level":"warn","ts":1575978118.1693556,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575978118.1706378,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1231-in-kg4rc-5[0m stage [32mend-to-end[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mseldonio-seldon-core-pr-1231-in-kg4rc-5[0m stage [32mend-to-end[0m and container [32mstep-create-dir-workspace-9v5b6[0m
+{"level":"warn","ts":1575978125.257983,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575978125.2597034,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1231-in-kg4rc-5[0m stage [32mend-to-end[0m and container [32mstep-source-copy-workspace-xl4t4[0m
+{"level":"warn","ts":1575978125.5174363,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575978127.2270749,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"cp -r /pvc/pr-build-comment/workspace/. /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1231-in-kg4rc-5[0m stage [32mend-to-end[0m and container [32mstep-test-end-to-end[0m
+Starting Docker: docker.
+[SETUP] Waiting for Docker to be ready, sleeping for 1 seconds ...
+[SETUP] Waiting for Docker to be ready, sleeping for 2 seconds ...
+[SETUP] Waiting for Docker to be ready, sleeping for 3 seconds ...
+[SETUP] Waiting for Docker to be ready, sleeping for 4 seconds ...
+[SETUP] Waiting for Docker to be ready, sleeping for 5 seconds ...
+[SETUP] Reached maximum attempts, not waiting any longer ...
+kind create cluster --config kind_config.yaml
+Error: could not list clusters: failed to list nodes: exit status 1
+make: *** [Makefile:7: kind_create_cluster] Error 1
+Existing kind cluster or failure starting - 2
+kind delete cluster
+Error: could not list clusters: failed to list nodes: exit status 1
+make: *** [Makefile:10: kind_delete_cluster] Error 1
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+Stopping Docker: dockerProgram process in pidfile '/var/run/docker-ssd.pid', 1 process(es), refused to die.
+kind_test_all.sh: line 97: TEST_EXIT_VALUE: unbound variable
+[31m
+Pipeline failed on stage 'end-to-end' : container 'step-test-end-to-end'. The execution of the pipeline has stopped.[0m
