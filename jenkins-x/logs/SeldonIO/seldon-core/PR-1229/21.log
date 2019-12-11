@@ -1,0 +1,108 @@
+
+Showing logs for build [32mseldonio-seldon-core-pr-1229-li-z8kx7-21[0m stage [32mpr-build-comment[0m and container [32mstep-credential-initializer-xj86h[0m
+{"level":"warn","ts":1576088621.9451263,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1576088621.945792,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1229-li-z8kx7-21[0m stage [32mpr-build-comment[0m and container [32mstep-working-dir-initializer-75xfq[0m
+{"level":"warn","ts":1576088623.2655964,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1576088623.2673352,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1229-li-z8kx7-21[0m stage [32mpr-build-comment[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mseldonio-seldon-core-pr-1229-li-z8kx7-21[0m stage [32mpr-build-comment[0m and container [32mstep-git-source-seldonio-seldon-core-pr-1229-li-j7np5[0m
+{"level":"warn","ts":1576088629.362148,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1576088633.1147127,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/SeldonIO/seldon-core.git @ master in path /workspace/source"}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1229-li-z8kx7-21[0m stage [32mpr-build-comment[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:7becc696a34e73f0dce730531c398fd0f0d6fda7,1229:bc42d1fc1f39867c67285909dfa65c138f08247a
+DEBUG: ran git fetch --unshallow origin bc42d1fc1f39867c67285909dfa65c138f08247a: 7becc696a34e73f0dce730531c398fd0f0d6fda7: in 
+DEBUG: ran git checkout master in 
+DEBUG: ran git reset --hard 7becc696a34e73f0dce730531c398fd0f0d6fda7 in 
+DEBUG: ran clean --force -d . in 
+DEBUG: ran git merge bc42d1fc1f39867c67285909dfa65c138f08247a in 
+Merged SHA df8d0e118a8dccb13d833c0c265fa5e3db325ace with commit message 'Merge commit 'bc42d1fc1f39867c67285909dfa65c138f08247a'' into base branch master
+Merged SHA bc42d1fc1f39867c67285909dfa65c138f08247a with commit message 'Add test updating between apiVersion' into base branch master
+Merged SHA cb4884185c5c42e0111f180ba673e280b93daad0 with commit message 'Add test deploying different apiVersions' into base branch master
+Merged SHA db46c2102e6ff8d15865ed75ed855d76b901e95e with commit message 'Register all types and webhooks' into base branch master
+Merged SHA d0b40d7e4a983699cecf41ad206e9adc90886a6a with commit message 'Make apiVersion as variable' into base branch master
+Merged SHA 5688fba761ac294d206848bd68ed67a6dc60c198 with commit message 'Update helm charts' into base branch master
+Merged SHA 7cf3a40af11d858fbc21b05f0211aee84754f11f with commit message 'Apply changes to api/v1 and api/v1alpha3' into base branch master
+Merged SHA 2cb4cb749751e9bcd60361f8cef6118098dbae19 with commit message 'Add new versions to PROJECT' into base branch master
+Merged SHA 34e844d421a1c9a3eb78f4dc523ce84be3ce12fe with commit message 'Update CRD an webhook manifest' into base branch master
+Merged SHA 7b4670c4536ffeb0e2029165b1866f784b6cbc54 with commit message 'Add v1alpha3 package' into base branch master
+Merged SHA 126751a2a150dda53dcd728ecea507a9ff66c633 with commit message 'Set v1 as storagevesion' into base branch master
+Merged SHA d4de26841b2f2e3975cb9a985757fdf9ccdb0399 with commit message 'Point imports to v1' into base branch master
+Merged SHA fa84d607d706ad69b49e0bcf370620835f534841 with commit message 'Add v1 of the CRD' into base branch master
+
+Showing logs for build [32mseldonio-seldon-core-pr-1229-li-z8kx7-21[0m stage [32mpr-build-comment[0m and container [32mstep-step2[0m
++++ dirname ./add-pr-build-comment
+++ cd .
+++ pwd
++ STARTUP_DIR=/workspace/source/ci
++ REPO_OWNER=SeldonIO
++ REPO_NAME=seldon-core
++ PULL_NUMBER=1229
++ BUILD_NUMBER=21
++ PIPELINE_CONTEXT=lint
+++ cat
++++ date
++ COMMENT_MSG='Wed Dec 11 18:23:58 UTC 2019
+The logs for [lint] [21] will show after the pipeline context has finished.  
+https://github.com/SeldonIO/seldon-core/blob/gh-pages/jenkins-x/logs/SeldonIO/seldon-core/PR-1229/21.log
+
+impatient try  
+** get build logs SeldonIO/seldon-core/PR-1229 --build=21'
++ ** step pr comment --owner=SeldonIO --repository=seldon-core --pull-request=1229 '--comment=Wed Dec 11 18:23:58 UTC 2019
+The logs for [lint] [21] will show after the pipeline context has finished.  
+https://github.com/SeldonIO/seldon-core/blob/gh-pages/jenkins-x/logs/SeldonIO/seldon-core/PR-1229/21.log
+
+impatient try  
+** get build logs SeldonIO/seldon-core/PR-1229 --build=21'
+
+Showing logs for build [32mseldonio-seldon-core-pr-1229-li-z8kx7-21[0m stage [32mpr-build-comment[0m and container [32mstep-source-mkdir-seldonio-seldon-core-pr-1229-li-lxlw5[0m
+{"level":"warn","ts":1576088641.172807,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1576088641.177187,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /pvc/pr-build-comment/workspace\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1229-li-z8kx7-21[0m stage [32mpr-build-comment[0m and container [32mstep-source-copy-seldonio-seldon-core-pr-1229-li-w2p4j[0m
+{"level":"warn","ts":1576088641.459509,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1576088641.7263,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"cp -r /workspace/source/. /pvc/pr-build-comment/workspace\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1229-li-z8kx7-21[0m stage [32mpython-lint-task[0m and container [32mstep-credential-initializer-9czj9[0m
+{"level":"warn","ts":1576088676.7062669,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1576088676.7067258,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1229-li-z8kx7-21[0m stage [32mpython-lint-task[0m and container [32mstep-working-dir-initializer-2n5v5[0m
+{"level":"warn","ts":1576088677.7537193,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1576088677.7560678,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1229-li-z8kx7-21[0m stage [32mpython-lint-task[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mseldonio-seldon-core-pr-1229-li-z8kx7-21[0m stage [32mpython-lint-task[0m and container [32mstep-create-dir-workspace-km29h[0m
+{"level":"warn","ts":1576088680.8439896,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1576088680.84598,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1229-li-z8kx7-21[0m stage [32mpython-lint-task[0m and container [32mstep-source-copy-workspace-46bw2[0m
+{"level":"warn","ts":1576088681.1643472,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1576088683.0765767,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"cp -r /pvc/pr-build-comment/workspace/. /workspace/source\""}
+
+Showing logs for build [32mseldonio-seldon-core-pr-1229-li-z8kx7-21[0m stage [32mpython-lint-task[0m and container [32mstep-python-lint[0m
+make: Entering directory '/workspace/source/python'
+pip install black==19.3b0
+Collecting black==19.3b0
+  Downloading https://files.pythonhosted.org/packages/30/62/cf549544a5fe990bbaeca21e9c419501b2de7a701ab0afb377bc81676600/black-19.3b0-py36-none-any.whl (89kB)
+Collecting attrs>=18.1.0
+  Downloading https://files.pythonhosted.org/packages/a2/db/4313ab3be961f7a763066401fb77f7748373b6094076ae2bda2806988af6/attrs-19.3.0-py2.py3-none-any.whl
+Collecting toml>=0.9.4
+  Downloading https://files.pythonhosted.org/packages/a2/12/ced7105d2de62fa7c8fb5fce92cc4ce66b57c95fb875e9318dba7f8c5db0/toml-0.10.0-py2.py3-none-any.whl
+Collecting appdirs
+  Downloading https://files.pythonhosted.org/packages/56/eb/810e700ed1349edde4cbdc1b2a21e28cdf115f9faf263f6bbf8447c1abf3/appdirs-1.4.3-py2.py3-none-any.whl
+Collecting click>=6.5
+  Downloading https://files.pythonhosted.org/packages/fa/37/45185cb5abbc30d7257104c434fe0b07e5a195a6847506c074527aa599ec/Click-7.0-py2.py3-none-any.whl (81kB)
+Installing collected packages: attrs, toml, appdirs, click, black
+Successfully installed appdirs-1.4.3 attrs-19.3.0 black-19.3b0 click-7.0 toml-0.10.0
+black \
+	--check ./ ../testing \
+	--exclude "(testing/scripts/proto|seldon_core/proto/|.eggs|.tox)"
+All done! ✨ 🍰 ✨
+51 files would be left unchanged.
+make: Leaving directory '/workspace/source/python'
