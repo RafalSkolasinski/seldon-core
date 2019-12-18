@@ -26,18 +26,18 @@ def nlp_pipeline(
         tfidf_ngram_range=3,
         batch_size='100'):
     """
-    Pipeline 
+    Pipeline
     """
     vop = dsl.VolumeOp(
       name='my-pvc',
       resource_name="my-pvc",
-      modes=["ReadWriteMany"],
+      modes=["ReadWriteOnce"],
       size="1Gi"
     )
 
     download_step = dsl.ContainerOp(
         name='data_downloader',
-        image='data_downloader:0.1',
+        image='rafalskolasinski/seldon-experiments:data_downloader-0.1',
         command="python",
         arguments=[
             "/microservice/pipeline_step.py",
@@ -53,7 +53,7 @@ def nlp_pipeline(
 
     clean_step = dsl.ContainerOp(
         name='clean_text',
-        image='clean_text_transformer:0.1',
+        image='rafalskolasinski/seldon-experiments:clean_text_transformer-0.1',
         command="python",
         arguments=[
             "/microservice/pipeline_step.py",
@@ -65,7 +65,7 @@ def nlp_pipeline(
 
     tokenize_step = dsl.ContainerOp(
         name='tokenize',
-        image='spacy_tokenizer:0.1',
+        image='rafalskolasinski/seldon-experiments:spacy_tokenizer-0.1',
         command="python",
         arguments=[
             "/microservice/pipeline_step.py",
@@ -77,7 +77,7 @@ def nlp_pipeline(
 
     vectorize_step = dsl.ContainerOp(
         name='vectorize',
-        image='tfidf_vectorizer:0.1',
+        image='rafalskolasinski/seldon-experiments:tfidf_vectorizer-0.1',
         command="python",
         arguments=[
             "/microservice/pipeline_step.py",
@@ -93,7 +93,7 @@ def nlp_pipeline(
 
     predict_step = dsl.ContainerOp(
         name='predictor',
-        image='lr_text_classifier:0.1',
+        image='rafalskolasinski/seldon-experiments:lr_text_classifier-0.1',
         command="python",
         arguments=[
             "/microservice/pipeline_step.py",

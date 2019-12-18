@@ -17,22 +17,22 @@ spec:
   - componentSpecs:
     - spec:
         containers:
-        - image: clean_text_transformer:0.1
+        - image: rafalskolasinski/seldon-experiments:clean_text_transformer-0.1
           imagePullPolicy: IfNotPresent
           name: cleantext
           resources:
             requests:
               memory: 1Mi
-        - image: spacy_tokenizer:0.1
+        - image: rafalskolasinski/seldon-experiments:spacy_tokenizer-0.1
           imagePullPolicy: IfNotPresent
           name: spacytokenizer
-        - image: tfidf_vectorizer:0.1
+        - image: rafalskolasinski/seldon-experiments:tfidf_vectorizer-0.1
           imagePullPolicy: IfNotPresent
           name: tfidfvectorizer
           volumeMounts:
           - name: mypvc
             mountPath: /mnt
-        - image: lr_text_classifier:0.1
+        - image: rafalskolasinski/seldon-experiments:lr_text_classifier-0.1
           imagePullPolicy: IfNotPresent
           name: lrclassifier
           volumeMounts:
