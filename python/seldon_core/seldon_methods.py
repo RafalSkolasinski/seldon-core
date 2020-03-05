@@ -15,6 +15,7 @@ from seldon_core.user_model import (
     client_transform_input,
     client_send_feedback,
     client_health_status,
+    client_custom_metrics,
     SeldonNotImplementedError,
 )
 from seldon_core.flask_utils import SeldonMicroserviceException
@@ -404,6 +405,7 @@ def metadata(user_model: Any) -> Dict:
     ----------
     user_model
        User defined class instance
+
     Returns
     -------
       Model Metadata
@@ -412,3 +414,19 @@ def metadata(user_model: Any) -> Dict:
         return user_model.metadata()
     else:
         return {}
+
+
+def metrics(user_model: Any) -> List[Dict]:
+    """
+    Call the user model to get the custom metrics
+
+    Parameters
+    ----------
+    user_model
+       A Seldon user model
+
+    Returns
+    -------
+       A list of custom metrics
+    """
+    return client_custom_metrics(user_model)
