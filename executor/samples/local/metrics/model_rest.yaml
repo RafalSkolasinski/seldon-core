@@ -13,14 +13,23 @@ spec:
     - spec:
         containers:
         - image: seldonio/mock_classifier_rest:1.3
-          name: classifier
+          name: classifier-1
+        - image: seldonio/mock_classifier_rest:1.3
+          name: classifier-2
     graph:
-      children: []
+      children:
+      - children: []
+        endpoint:
+          type: REST
+          service_host: 0.0.0.0
+          service_port: 9001
+        name: classifier-2
+        type: MODEL
       endpoint:
         type: REST
         service_host: 0.0.0.0
         service_port: 9000
-      name: classifier
+      name: classifier-1
       type: MODEL
     labels:
       version: v1

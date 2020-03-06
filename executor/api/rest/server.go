@@ -94,6 +94,9 @@ func (r *SeldonRestApi) respondWithError(w http.ResponseWriter, err error) {
 
 func (r *SeldonRestApi) wrapMetrics(service string, baseHandler http.HandlerFunc) http.HandlerFunc {
 
+	fmt.Println("Wrapping Metrics")
+	fmt.Println("DeploymentName:", r.DeploymentName)
+
 	handler := promhttp.InstrumentHandlerDuration(
 		r.metrics.ServerHandledHistogram.MustCurryWith(prometheus.Labels{
 			metric.DeploymentNameMetric:   r.DeploymentName,
@@ -225,6 +228,10 @@ func (r *SeldonRestApi) status(w http.ResponseWriter, req *http.Request) {
 func (r *SeldonRestApi) predictions(w http.ResponseWriter, req *http.Request) {
 	r.Log.Info("Predictions called")
 
+
+	r.Log.Info("Test Custom Print from predictions")
+	fmt.Println("Some Very ordinary print...")
+
 	ctx := req.Context()
 	// Add Seldon Puid to Context
 	ctx = context.WithValue(ctx, payload.SeldonPUIDHeader, req.Header.Get(payload.SeldonPUIDHeader))
@@ -244,6 +251,8 @@ func (r *SeldonRestApi) predictions(w http.ResponseWriter, req *http.Request) {
 
 	seldonPredictorProcess := predictor.NewPredictorProcess(ctx, r.Client, logf.Log.WithName(LoggingRestClientName), r.ServerUrl, r.Namespace, req.Header)
 
+    fmt.Printf("Client Type: %T\n", seldonPredictorProcess.Client)
+
 	reqPayload, err := seldonPredictorProcess.Client.Unmarshall(bodyBytes)
 	if err != nil {
 		r.failWithError(w, err)
@@ -260,10 +269,21 @@ func (r *SeldonRestApi) predictions(w http.ResponseWriter, req *http.Request) {
 	} else {
 		graphNode = r.predictor.Graph
 	}
+
+	fmt.Println("Node Name:", graphNode.Name)
+	for _, child := range graphNode.Children {
+		fmt.Println("Children name:", child.Name)
+	}
+
 	resPayload, err := seldonPredictorProcess.Predict(graphNode, reqPayload)
 	if err != nil {
 		r.failWithError(w, err)
 		return
 	}
+
+	fmt.Println(resPayload.GetBytes())
+	bytes, _ := resPayload.GetBytes()
+	fmt.Println(string(bytes))
+
 	r.respondWithSuccess(w, http.StatusOK, resPayload)
 }

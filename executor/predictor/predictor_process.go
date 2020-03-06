@@ -266,6 +266,12 @@ func (p *PredictorProcess) logPayload(nodeName string, logger *v1.Logger, reqTyp
 }
 
 func (p *PredictorProcess) Predict(node *v1.PredictiveUnit, msg payload.SeldonPayload) (payload.SeldonPayload, error) {
+
+	fmt.Println("Predicting for node:", node.Name)
+
+	bytes, _ := msg.GetBytes()
+	fmt.Println("Received message:", string(bytes))
+
 	//Log Request
 	if node.Logger != nil && (node.Logger.Mode == v1.LogRequest || node.Logger.Mode == v1.LogAll) {
 		p.logPayload(node.Name, node.Logger, payloadLogger.InferenceRequest, msg)
@@ -274,6 +280,10 @@ func (p *PredictorProcess) Predict(node *v1.PredictiveUnit, msg payload.SeldonPa
 	if err != nil {
 		return tmsg, err
 	}
+
+	bytes, _ = tmsg.GetBytes()
+	fmt.Println("Transformed message:", string(bytes))
+
 	cmsg, err := p.predictChildren(node, tmsg)
 	if err != nil {
 		return tmsg, err

@@ -252,6 +252,7 @@ func (smc *JSONRestClient) Chain(ctx context.Context, modelName string, msg payl
 }
 
 func (smc *JSONRestClient) Predict(ctx context.Context, modelName string, host string, port int32, req payload.SeldonPayload, meta map[string][]string) (payload.SeldonPayload, error) {
+	fmt.Println("!!!!!!!!!!!!!!!!!!I AM HERE!!!!!!!!!!!!!!!!!!!!")
 	return smc.call(ctx, modelName, smc.modifyMethod(client.SeldonPredictPath, modelName), host, port, req, meta)
 }
 
