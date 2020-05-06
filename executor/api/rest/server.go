@@ -2,6 +2,7 @@ package rest
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/go-logr/logr"
 	guuid "github.com/google/uuid"
@@ -148,6 +149,7 @@ func (r *SeldonRestApi) Initialise() {
 			api10.Handle("/predictions", r.wrapMetrics(metric.PredictionHttpServiceName, r.predictions))
 			api10.Handle("/feedback", r.wrapMetrics(metric.FeedbackHttpServiceName, r.feedback))
 			r.Router.NewRoute().Path("/api/v1.0/status/{" + ModelHttpPathVariable + "}").Methods("GET").HandlerFunc(r.wrapMetrics(metric.StatusHttpServiceName, r.status))
+			r.Router.NewRoute().Path("/api/v1.0/metadata").Methods("GET").HandlerFunc(r.wrapMetrics(metric.MetadataHttpServiceName, r.graph_metadata))
 			r.Router.NewRoute().Path("/api/v1.0/metadata/{" + ModelHttpPathVariable + "}").Methods("GET").HandlerFunc(r.wrapMetrics(metric.MetadataHttpServiceName, r.metadata))
 			r.Router.NewRoute().PathPrefix("/api/v1.0/doc/").Handler(http.StripPrefix("/api/v1.0/doc/", http.FileServer(http.Dir("./openapi/"))))
 
@@ -342,4 +344,64 @@ func (r *SeldonRestApi) predictions(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	r.respondWithSuccess(w, http.StatusOK, resPayload)
+}
+
+func (r *SeldonRestApi) graph_metadata(w http.ResponseWriter, req *http.Request) {
+	r.Log.Info("Graph Metadata called.")
+
+	ctx := req.Context()
+
+	// Apply tracing if active
+	if opentracing.IsGlobalTracerRegistered() {
+		var serverSpan opentracing.Span
+		ctx, serverSpan = setupTracing(ctx, req, TracingMetadataName)
+		defer serverSpan.Finish()
+	}
+
+	// seldonPredictorProcess := predictor.NewPredictorProcess(ctx, r.Client, logf.Log.WithName(LoggingRestClientName), r.ServerUrl, r.Namespace, req.Header)
+
+	node := r.predictor.Graph
+
+	// fmt.Printf("node: %+v\n", node)
+	// fmt.Println("seldonPredictorProcess.Meta.Meta:", seldonPredictorProcess.Meta.Meta)
+
+	// fmt.Println("ctx:", ctx)
+	// fmt.Println("model name:", node.Name)
+	// fmt.Println("host:", node.Endpoint.ServiceHost)
+	// fmt.Println("port:", node.Endpoint.ServicePort)
+
+	// resPayload, err := seldonPredictorProcess.Metadata(node, node.Name, nil)
+
+	// resPayload, err := seldonPredictorProcess.Client.Metadata(seldonPredictorProcess.Ctx, node.Name, node.Endpoint.ServiceHost, node.Endpoint.ServicePort, nil, seldonPredictorProcess.Meta.Meta)
+
+	// resPayload, err := r.Client.Metadata(ctx, node.Name, node.Endpoint.ServiceHost, node.Endpoint.ServicePort, nil, req.Header)
+
+	// fmt.Println("seldonPredictorProcess.Meta.Meta:", seldonPredictorProcess.Meta.Meta)
+	// fmt.Println("req.Header:", req.Header)
+	// if err != nil {
+	// 	r.respondWithError(w, resPayload, err)
+	// 	return
+	// }
+
+	allMetadata, err := allModelMetadata(node, r.Client, ctx, req.Header)
+	if err != nil {
+		r.respondWithError(w, nil, err)
+		return
+	}
+	inp, out := GetShapeFromGraph(node, allMetadata)
+	// fmt.Println(allMetadata)
+	// fmt.Println(inp, out)
+
+	output := GraphMetadata{
+		Name:         r.predictor.Name,
+		Models:       allMetadata,
+		GraphInputs:  inp,
+		GraphOutputs: out,
+	}
+
+	msg, _ := json.Marshal(output)
+	resPayload := payload.BytesPayload{Msg: msg, ContentType: ContentTypeJSON}
+
+	// fmt.Printf("%T", resPayload)
+	r.respondWithSuccess(w, http.StatusOK, &resPayload)
 }
