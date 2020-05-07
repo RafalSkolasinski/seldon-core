@@ -14,12 +14,12 @@ spec:
       type: MODEL
       endpoint:
         service_host: 0.0.0.0
-        service_port: 9001
+        service_port: 9002
       children:
       - name: model-2
         type: MODEL
         endpoint:
           service_host: 0.0.0.0
-          service_port: 9002
+          service_port: 9001
     name: example
     replicas: 1

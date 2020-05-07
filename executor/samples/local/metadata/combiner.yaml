@@ -3,23 +3,28 @@ kind: SeldonDeployment
 metadata:
   labels:
     app: seldon
-  name: seldon-model
+  name: seldon-mock-model
 spec:
   annotations:
     seldon.io/executor: "true"
-  name: deployment
+  name: mock-deployment
   predictors:
   - graph:
-      name: model-1
-      type: MODEL
+      name: model-combiner
+      type: COMBINER
       endpoint:
         service_host: 0.0.0.0
-        service_port: 9001
+        service_port: 9010
       children:
-      - name: model-2
+      - name: model-a1
         type: MODEL
         endpoint:
           service_host: 0.0.0.0
-          service_port: 9002
+          service_port: 9011
+      - name: model-a2
+        type: MODEL
+        endpoint:
+          service_host: 0.0.0.0
+          service_port: 9012
     name: example
     replicas: 1
