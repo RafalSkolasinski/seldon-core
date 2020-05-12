@@ -2,6 +2,7 @@ package predictor
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/go-logr/logr"
 	guuid "github.com/google/uuid"
@@ -308,4 +309,36 @@ func (p *PredictorProcess) Feedback(node *v1.PredictiveUnit, msg payload.SeldonP
 		return tmsg, err
 	}
 	return p.feedback(node, msg)
+}
+
+func (p *PredictorProcess) MetadataMap(node *v1.PredictiveUnit) (map[string]ModelMetadata, error) {
+	resPayload, err := p.Client.Metadata(p.Ctx, node.Name, node.Endpoint.ServiceHost, node.Endpoint.ServicePort, nil, p.Meta.Meta)
+	if err != nil {
+		return nil, err
+	}
+
+	resString, err := resPayload.GetBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	var nodeMeta ModelMetadata
+	err = json.Unmarshal(resString, &nodeMeta)
+	if err != nil {
+		return nil, err
+	}
+
+	var output = map[string]ModelMetadata{
+		node.Name: nodeMeta,
+	}
+	for _, child := range node.Children {
+		childMeta, err := p.MetadataMap(&child)
+		if err != nil {
+			return nil, err
+		}
+		for k, v := range childMeta {
+			output[k] = v
+		}
+	}
+	return output, nil
 }

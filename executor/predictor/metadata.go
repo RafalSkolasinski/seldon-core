@@ -1,7 +1,6 @@
 package predictor
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/seldonio/seldon-core/operator/apis/machinelearning.seldon.io/v1"
 )
@@ -26,43 +25,39 @@ type GraphMetadata struct {
 	GraphOutputs []MetadataTensor
 }
 
-func (p *PredictorProcess) MetadataMap(node *v1.PredictiveUnit) (map[string]ModelMetadata, error) {
-	resPayload, err := p.Client.Metadata(p.Ctx, node.Name, node.Endpoint.ServiceHost, node.Endpoint.ServicePort, nil, p.Meta.Meta)
-	if err != nil {
-		return nil, err
-	}
-
-	resString, err := resPayload.GetBytes()
-	if err != nil {
-		return nil, err
-	}
-
-	var nodeMeta ModelMetadata
-	err = json.Unmarshal(resString, &nodeMeta)
-	if err != nil {
-		return nil, err
-	}
-
-	var output = map[string]ModelMetadata{
-		node.Name: nodeMeta,
-	}
-	for _, child := range node.Children {
-		childMeta, err := p.MetadataMap(&child)
-		if err != nil {
-			return nil, err
-		}
-		for k, v := range childMeta {
-			output[k] = v
-		}
-	}
-	return output, nil
+type GraphMetadataPredictor struct {
+	PredictorProcess *PredictorProcess
+	PredictorSpec    *v1.PredictorSpec
+	metadataMap      map[string]ModelMetadata
 }
 
-func GetShapeFromGraph(
-	node *v1.PredictiveUnit, allMetadata map[string]ModelMetadata) (
+func NewGraphMetadataPredictor(p *PredictorProcess, spec *v1.PredictorSpec) GraphMetadataPredictor {
+	return GraphMetadataPredictor{
+		PredictorProcess: p,
+		PredictorSpec:    spec,
+	}
+}
+
+func (p *GraphMetadataPredictor) GraphMetadata() (output *GraphMetadata, err error) {
+	p.metadataMap, err = p.PredictorProcess.MetadataMap(p.PredictorSpec.Graph)
+	if err != nil {
+		return nil, err
+	}
+
+	inp, out := p.GetShapeFromGraph(p.PredictorSpec.Graph)
+
+	return &GraphMetadata{
+		Name:         p.PredictorSpec.Name,
+		Models:       p.metadataMap,
+		GraphInputs:  inp,
+		GraphOutputs: out,
+	}, nil
+}
+
+func (p *GraphMetadataPredictor) GetShapeFromGraph(node *v1.PredictiveUnit) (
 	input []MetadataTensor, output []MetadataTensor,
 ) {
-	nodeMeta := allMetadata[node.Name]
+	nodeMeta := p.metadataMap[node.Name]
 	nodeInputs := nodeMeta.Inputs
 	nodeOutputs := nodeMeta.Outputs
 
@@ -77,7 +72,7 @@ func GetShapeFromGraph(
 		}
 	} else if *node.Type == v1.MODEL {
 		// We ignore all childs except first one
-		childInputs, childOutputs := GetShapeFromGraph(&node.Children[0], allMetadata)
+		childInputs, childOutputs := p.GetShapeFromGraph(&node.Children[0])
 
 		// Sanity check if child's input matches the parent output
 		if !AssertShapeCompatibility(nodeOutputs, childInputs) {
@@ -93,7 +88,7 @@ func GetShapeFromGraph(
 		var prevChildInputs []MetadataTensor
 		var combinedChildOutputs = make([]MetadataTensor, len(node.Children))
 		for index, child := range node.Children {
-			childInputs, childOutputs := GetShapeFromGraph(&child, allMetadata)
+			childInputs, childOutputs := p.GetShapeFromGraph(&child)
 			// First we check if all child has same kind of input
 			if prevChildInputs != nil {
 				if !AssertShapeCompatibility(prevChildInputs, childInputs) {

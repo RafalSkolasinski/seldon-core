@@ -360,28 +360,16 @@ func (r *SeldonRestApi) graph_metadata(w http.ResponseWriter, req *http.Request)
 
 	seldonPredictorProcess := predictor.NewPredictorProcess(ctx, r.Client, logf.Log.WithName(LoggingRestClientName), r.ServerUrl, r.Namespace, req.Header)
 
-	node := r.predictor.Graph
-
-	allMetadata, err := seldonPredictorProcess.MetadataMap(node)
+	metadataPredictor := predictor.NewGraphMetadataPredictor(&seldonPredictorProcess, r.predictor)
+	output, err := metadataPredictor.GraphMetadata()
 
 	if err != nil {
 		r.respondWithError(w, nil, err)
 		return
 	}
-	inp, out := predictor.GetShapeFromGraph(node, allMetadata)
-	fmt.Println(allMetadata)
-	// fmt.Println(inp, out)
-
-	output := predictor.GraphMetadata{
-		Name:         r.predictor.Name,
-		Models:       allMetadata,
-		GraphInputs:  inp,
-		GraphOutputs: out,
-	}
 
 	msg, _ := json.Marshal(output)
 	resPayload := payload.BytesPayload{Msg: msg, ContentType: ContentTypeJSON}
 
-	// fmt.Printf("%T", resPayload)
 	r.respondWithSuccess(w, http.StatusOK, &resPayload)
 }
