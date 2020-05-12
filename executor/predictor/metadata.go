@@ -1,10 +1,8 @@
-package rest
+package predictor
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/seldonio/seldon-core/executor/api/client"
 	"github.com/seldonio/seldon-core/operator/apis/machinelearning.seldon.io/v1"
 )
 
@@ -28,8 +26,8 @@ type GraphMetadata struct {
 	GraphOutputs []MetadataTensor
 }
 
-func allModelMetadata(node *v1.PredictiveUnit, c client.SeldonApiClient, ctx context.Context, reqHeaders map[string][]string) (map[string]ModelMetadata, error) {
-	resPayload, err := c.Metadata(ctx, node.Name, node.Endpoint.ServiceHost, node.Endpoint.ServicePort, nil, reqHeaders)
+func (p *PredictorProcess) MetadataMap(node *v1.PredictiveUnit) (map[string]ModelMetadata, error) {
+	resPayload, err := p.Client.Metadata(p.Ctx, node.Name, node.Endpoint.ServiceHost, node.Endpoint.ServicePort, nil, p.Meta.Meta)
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +47,7 @@ func allModelMetadata(node *v1.PredictiveUnit, c client.SeldonApiClient, ctx con
 		node.Name: nodeMeta,
 	}
 	for _, child := range node.Children {
-		childMeta, err := allModelMetadata(&child, c, ctx, reqHeaders)
+		childMeta, err := p.MetadataMap(&child)
 		if err != nil {
 			return nil, err
 		}
@@ -61,25 +59,25 @@ func allModelMetadata(node *v1.PredictiveUnit, c client.SeldonApiClient, ctx con
 }
 
 func GetShapeFromGraph(
-	graph *v1.PredictiveUnit, allMetadata map[string]ModelMetadata) (
+	node *v1.PredictiveUnit, allMetadata map[string]ModelMetadata) (
 	input []MetadataTensor, output []MetadataTensor,
 ) {
-	nodeMeta := allMetadata[graph.Name]
+	nodeMeta := allMetadata[node.Name]
 	nodeInputs := nodeMeta.Inputs
 	nodeOutputs := nodeMeta.Outputs
 
 	// Node has no children
-	if graph.Children == nil || len(graph.Children) == 0 {
+	if node.Children == nil || len(node.Children) == 0 {
 		// If Node is model then inputs and outputs are clear
-		if *graph.Type == v1.MODEL {
+		if *node.Type == v1.MODEL {
 			return nodeInputs, nodeOutputs
 		} else {
 			fmt.Println("Unkown case.")
 			return nil, nil
 		}
-	} else if *graph.Type == v1.MODEL {
+	} else if *node.Type == v1.MODEL {
 		// We ignore all childs except first one
-		childInputs, childOutputs := GetShapeFromGraph(&graph.Children[0], allMetadata)
+		childInputs, childOutputs := GetShapeFromGraph(&node.Children[0], allMetadata)
 
 		// Sanity check if child's input matches the parent output
 		if !AssertShapeCompatibility(nodeOutputs, childInputs) {
@@ -88,13 +86,13 @@ func GetShapeFromGraph(
 		}
 
 		return nodeInputs, childOutputs
-	} else if *graph.Type == v1.COMBINER {
+	} else if *node.Type == v1.COMBINER {
 		// Combiner will get as its input a `list` of childs' outputs.
 		// Currently we will treat MODEL nodes as having single input and output.
 		// This is relevant for the shape compatibility check.
 		var prevChildInputs []MetadataTensor
-		var combinedChildOutputs = make([]MetadataTensor, len(graph.Children))
-		for index, child := range graph.Children {
+		var combinedChildOutputs = make([]MetadataTensor, len(node.Children))
+		for index, child := range node.Children {
 			childInputs, childOutputs := GetShapeFromGraph(&child, allMetadata)
 			// First we check if all child has same kind of input
 			if prevChildInputs != nil {

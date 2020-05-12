@@ -358,41 +358,21 @@ func (r *SeldonRestApi) graph_metadata(w http.ResponseWriter, req *http.Request)
 		defer serverSpan.Finish()
 	}
 
-	// seldonPredictorProcess := predictor.NewPredictorProcess(ctx, r.Client, logf.Log.WithName(LoggingRestClientName), r.ServerUrl, r.Namespace, req.Header)
+	seldonPredictorProcess := predictor.NewPredictorProcess(ctx, r.Client, logf.Log.WithName(LoggingRestClientName), r.ServerUrl, r.Namespace, req.Header)
 
 	node := r.predictor.Graph
 
-	// fmt.Printf("node: %+v\n", node)
-	// fmt.Println("seldonPredictorProcess.Meta.Meta:", seldonPredictorProcess.Meta.Meta)
+	allMetadata, err := seldonPredictorProcess.MetadataMap(node)
 
-	// fmt.Println("ctx:", ctx)
-	// fmt.Println("model name:", node.Name)
-	// fmt.Println("host:", node.Endpoint.ServiceHost)
-	// fmt.Println("port:", node.Endpoint.ServicePort)
-
-	// resPayload, err := seldonPredictorProcess.Metadata(node, node.Name, nil)
-
-	// resPayload, err := seldonPredictorProcess.Client.Metadata(seldonPredictorProcess.Ctx, node.Name, node.Endpoint.ServiceHost, node.Endpoint.ServicePort, nil, seldonPredictorProcess.Meta.Meta)
-
-	// resPayload, err := r.Client.Metadata(ctx, node.Name, node.Endpoint.ServiceHost, node.Endpoint.ServicePort, nil, req.Header)
-
-	// fmt.Println("seldonPredictorProcess.Meta.Meta:", seldonPredictorProcess.Meta.Meta)
-	// fmt.Println("req.Header:", req.Header)
-	// if err != nil {
-	// 	r.respondWithError(w, resPayload, err)
-	// 	return
-	// }
-
-	allMetadata, err := allModelMetadata(node, r.Client, ctx, req.Header)
 	if err != nil {
 		r.respondWithError(w, nil, err)
 		return
 	}
-	inp, out := GetShapeFromGraph(node, allMetadata)
-	// fmt.Println(allMetadata)
+	inp, out := predictor.GetShapeFromGraph(node, allMetadata)
+	fmt.Println(allMetadata)
 	// fmt.Println(inp, out)
 
-	output := GraphMetadata{
+	output := predictor.GraphMetadata{
 		Name:         r.predictor.Name,
 		Models:       allMetadata,
 		GraphInputs:  inp,
