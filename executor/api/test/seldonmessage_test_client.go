@@ -20,22 +20,24 @@ const (
 	TestClientMetadataResponse = `{"metadata":{"name":"mymodel"}}`
 	TestContentType            = "application/json"
 	TestGraphMeta              = `{
-		"Name": "predictor-name",
-		"Models": {
+		"name": "predictor-name",
+		"models": {
 			"model-1": {
-				"Name": "model-1",
-				"Platform": "platform-name",
-				"Inputs": [{"DataType": "BYTES", "Name": "input", "Shape": [1, 5]}],
-				"Outputs": [{"DataType": "BYTES", "Name": "output", "Shape": [1, 3]}]
+				"name": "model-1",
+				"platform": "platform-name",
+				"versions": ["model-version"],
+				"inputs": [{"datatype": "BYTES", "name": "input", "shape": [1, 5]}],
+				"outputs": [{"datatype": "BYTES", "name": "output", "shape": [1, 3]}]
 			},
 			"model-2": {
-				"Name": "model-2",
-				"Platform": "platform-name",
-				"Inputs": [{"DataType": "BYTES", "Name": "input", "Shape": [1, 3]}],
-				"Outputs": [{"DataType": "BYTES", "Name": "output", "Shape": [3]}]}
+				"name": "model-2",
+				"platform": "platform-name",
+				"versions": ["model-version"],
+				"inputs": [{"datatype": "BYTES", "name": "input", "shape": [1, 3]}],
+				"outputs": [{"datatype": "BYTES", "name": "output", "shape": [3]}]}
 			},
-		"GraphInputs": [{"DataType": "BYTES", "Name": "input", "Shape": [1, 5]}],
-		"GraphOutputs": [{"DataType": "BYTES", "Name": "output", "Shape": [3]}]
+		"graphinputs": [{"datatype": "BYTES", "name": "input", "shape": [1, 5]}],
+		"graphoutputs": [{"datatype": "BYTES", "name": "output", "shape": [3]}]
 	}`
 )
 
@@ -54,6 +56,30 @@ var metadataMap = map[string]string{
 		"platform": "platform-name",
 		"inputs": [{"name": "input", "datatype": "BYTES", "shape": [1, 3]}],
 		"outputs": [{"name": "output", "datatype": "BYTES", "shape": [3]}]
+    }`,
+	"model-a1": `{
+        "name": "model-a1",
+        "versions": ["model-version"],
+        "platform": "platform-name",
+        "inputs": [{"name": "input", "datatype": "BYTES", "shape": [1, 5]}],
+        "outputs": [{"name": "output", "datatype": "BYTES", "shape": [1, 10]}]
+    }`,
+	"model-a2": `{
+        "name": "model-a2",
+        "versions": ["model-version"],
+        "platform": "platform-name",
+        "inputs": [{"name": "input", "datatype": "BYTES", "shape": [1, 5]}],
+        "outputs": [{"name": "output", "datatype": "BYTES", "shape": [1, 20]}]
+    }`,
+	"model-combiner": `{
+        "name": "model-combiner",
+        "versions": ["model-version"],
+        "platform": "platform-name",
+        "inputs": [
+            {"name": "input-1", "datatype": "BYTES", "shape": [1, 10]},
+            {"name": "input-2", "datatype": "BYTES", "shape": [1, 20]}
+        ],
+        "outputs": [{"name": "combined output", "datatype": "BYTES", "shape": [3]}]
     }`,
 }
 

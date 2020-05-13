@@ -6,23 +6,24 @@ import (
 )
 
 type MetadataTensor struct {
-	DataType string
-	Name     string
-	Shape    []int
+	DataType string `json:"datatype,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Shape    []int  `json:"shape,omitempty"`
 }
 
 type ModelMetadata struct {
-	Name     string
-	Platform string
-	Inputs   []MetadataTensor
-	Outputs  []MetadataTensor
+	Name     string           `json:"name,omitempty"`
+	Platform string           `json:"platform,omitempty"`
+	Versions []string         `json:"versions,omitempty"`
+	Inputs   []MetadataTensor `json:"inputs,omitempty"`
+	Outputs  []MetadataTensor `json:"outputs,omitempty"`
 }
 
 type GraphMetadata struct {
-	Name         string
-	Models       map[string]ModelMetadata
-	GraphInputs  []MetadataTensor
-	GraphOutputs []MetadataTensor
+	Name         string                   `json:"name,omitempty"`
+	Models       map[string]ModelMetadata `json:"models,omitempty"`
+	GraphInputs  []MetadataTensor         `json:"graphinputs,omitempty"`
+	GraphOutputs []MetadataTensor         `json:"graphoutputs,omitempty"`
 }
 
 func NewGraphMetadata(p *PredictorProcess, spec *v1.PredictorSpec) (output *GraphMetadata, err error) {
@@ -58,7 +59,7 @@ func (p *GraphMetadata) GetShapeFromGraph(node *v1.PredictiveUnit) (
 
 		// Sanity check if child's input matches the parent output
 		if !AssertShapeCompatibility(nodeOutputs, childInputs) {
-			fmt.Println("Parent-Child data shape incompatibility!")
+			fmt.Println(nodeOutputs, childInputs)
 			return nil, nil
 		}
 
