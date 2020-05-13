@@ -25,39 +25,21 @@ type GraphMetadata struct {
 	GraphOutputs []MetadataTensor
 }
 
-type GraphMetadataPredictor struct {
-	PredictorProcess *PredictorProcess
-	PredictorSpec    *v1.PredictorSpec
-	metadataMap      map[string]ModelMetadata
-}
-
-func NewGraphMetadataPredictor(p *PredictorProcess, spec *v1.PredictorSpec) GraphMetadataPredictor {
-	return GraphMetadataPredictor{
-		PredictorProcess: p,
-		PredictorSpec:    spec,
-	}
-}
-
-func (p *GraphMetadataPredictor) GraphMetadata() (output *GraphMetadata, err error) {
-	p.metadataMap, err = p.PredictorProcess.MetadataMap(p.PredictorSpec.Graph)
+func NewGraphMetadata(p *PredictorProcess, spec *v1.PredictorSpec) (output *GraphMetadata, err error) {
+	output = &GraphMetadata{}
+	output.Models, err = p.MetadataMap(spec.Graph)
 	if err != nil {
 		return nil, err
 	}
-
-	inp, out := p.GetShapeFromGraph(p.PredictorSpec.Graph)
-
-	return &GraphMetadata{
-		Name:         p.PredictorSpec.Name,
-		Models:       p.metadataMap,
-		GraphInputs:  inp,
-		GraphOutputs: out,
-	}, nil
+	output.Name = spec.Name
+	output.GraphInputs, output.GraphOutputs = output.GetShapeFromGraph(spec.Graph)
+	return
 }
 
-func (p *GraphMetadataPredictor) GetShapeFromGraph(node *v1.PredictiveUnit) (
+func (p *GraphMetadata) GetShapeFromGraph(node *v1.PredictiveUnit) (
 	input []MetadataTensor, output []MetadataTensor,
 ) {
-	nodeMeta := p.metadataMap[node.Name]
+	nodeMeta := p.Models[node.Name]
 	nodeInputs := nodeMeta.Inputs
 	nodeOutputs := nodeMeta.Outputs
 

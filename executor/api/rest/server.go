@@ -360,8 +360,7 @@ func (r *SeldonRestApi) graph_metadata(w http.ResponseWriter, req *http.Request)
 
 	seldonPredictorProcess := predictor.NewPredictorProcess(ctx, r.Client, logf.Log.WithName(LoggingRestClientName), r.ServerUrl, r.Namespace, req.Header)
 
-	metadataPredictor := predictor.NewGraphMetadataPredictor(&seldonPredictorProcess, r.predictor)
-	output, err := metadataPredictor.GraphMetadata()
+	output, err := predictor.NewGraphMetadata(&seldonPredictorProcess, r.predictor)
 
 	if err != nil {
 		r.respondWithError(w, nil, err)
