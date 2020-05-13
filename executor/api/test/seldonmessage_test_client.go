@@ -19,14 +19,50 @@ const (
 	TestClientStatusResponse   = `{"status":"ok"}`
 	TestClientMetadataResponse = `{"metadata":{"name":"mymodel"}}`
 	TestContentType            = "application/json"
+	TestGraphMeta              = `{
+		"Name": "predictor-name",
+		"Models": {
+			"model-1": {
+				"Name": "model-1",
+				"Platform": "platform-name",
+				"Inputs": [{"DataType": "BYTES", "Name": "input", "Shape": [1, 5]}],
+				"Outputs": [{"DataType": "BYTES", "Name": "output", "Shape": [1, 3]}]
+			},
+			"model-2": {
+				"Name": "model-2",
+				"Platform": "platform-name",
+				"Inputs": [{"DataType": "BYTES", "Name": "input", "Shape": [1, 3]}],
+				"Outputs": [{"DataType": "BYTES", "Name": "output", "Shape": [3]}]}
+			},
+		"GraphInputs": [{"DataType": "BYTES", "Name": "input", "Shape": [1, 5]}],
+		"GraphOutputs": [{"DataType": "BYTES", "Name": "output", "Shape": [3]}]
+	}`
 )
+
+var metadataMap = map[string]string{
+	"mymodel": TestClientMetadataResponse,
+	"model-1": `{
+		"name": "model-1",
+		"versions": ["model-version"],
+		"platform": "platform-name",
+		"inputs": [{"name": "input", "datatype": "BYTES", "shape": [1, 5]}],
+		"outputs": [{"name": "output", "datatype": "BYTES", "shape": [1, 3]}]
+    }`,
+	"model-2": `{
+		"name": "model-2",
+		"versions": ["model-version"],
+		"platform": "platform-name",
+		"inputs": [{"name": "input", "datatype": "BYTES", "shape": [1, 3]}],
+		"outputs": [{"name": "output", "datatype": "BYTES", "shape": [3]}]
+    }`,
+}
 
 func (s SeldonMessageTestClient) Status(ctx context.Context, modelName string, host string, port int32, msg payload.SeldonPayload, meta map[string][]string) (payload.SeldonPayload, error) {
 	return &payload.BytesPayload{Msg: []byte(TestClientStatusResponse)}, nil
 }
 
 func (s SeldonMessageTestClient) Metadata(ctx context.Context, modelName string, host string, port int32, msg payload.SeldonPayload, meta map[string][]string) (payload.SeldonPayload, error) {
-	return &payload.BytesPayload{Msg: []byte(TestClientMetadataResponse)}, nil
+	return &payload.BytesPayload{Msg: []byte(metadataMap[modelName])}, nil
 }
 
 func (s SeldonMessageTestClient) Chain(ctx context.Context, modelName string, msg payload.SeldonPayload) (payload.SeldonPayload, error) {
