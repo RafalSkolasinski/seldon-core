@@ -53,7 +53,7 @@ func (p *GraphMetadata) GetShapeFromGraph(node *v1.PredictiveUnit) (
 			fmt.Println("Unkown case.")
 			return nil, nil
 		}
-	} else if *node.Type == v1.MODEL {
+	} else if (*node.Type == v1.MODEL || *node.Type == v1.TRANSFORMER)  {
 		// We ignore all childs except first one
 		childInputs, childOutputs := p.GetShapeFromGraph(&node.Children[0])
 
@@ -64,6 +64,18 @@ func (p *GraphMetadata) GetShapeFromGraph(node *v1.PredictiveUnit) (
 		}
 
 		return nodeInputs, childOutputs
+	} else if *node.Type == v1.OUTPUT_TRANSFORMER {
+		// OUTPUT_TRANSFORMER passes its input to childs and then processes the output
+		// We ignore all childs except first one
+		childInputs, childOutputs := p.GetShapeFromGraph(&node.Children[0])
+
+		// Sanity check if child's output matches the parent input
+		if !AssertShapeCompatibility(nodeInputs, childOutputs) {
+			fmt.Println(nodeOutputs, childOutputs)
+			return nil, nil
+		}
+
+		return childInputs, nodeOutputs
 	} else if *node.Type == v1.COMBINER {
 		// Combiner will get as its input a `list` of childs' outputs.
 		// Currently we will treat MODEL nodes as having single input and output.
@@ -94,6 +106,32 @@ func (p *GraphMetadata) GetShapeFromGraph(node *v1.PredictiveUnit) (
 			return nil, nil
 		}
 		return prevChildInputs, nodeOutputs
+	} else if *node.Type == v1.ROUTER {
+		// ROUTER will request to one of its childs and return child's output.
+		// We only check if all children have same inputs and outputs and set
+		// single input/output as node input / output.
+		var prevChildInputs []MetadataTensor
+		var prevChildOutputs []MetadataTensor
+		for _, child := range node.Children {
+			childInputs, childOutputs := p.GetShapeFromGraph(&child)
+			// First we check if all child has same kind of input and output
+			if prevChildInputs != nil {
+				if !AssertShapeCompatibility(prevChildInputs, childInputs) {
+					fmt.Println("Child", child.Name, "has different input than its siblings.")
+					return nil, nil
+				}
+			}
+			if prevChildOutputs != nil {
+				if !AssertShapeCompatibility(prevChildOutputs, childOutputs) {
+					fmt.Println("Child", child.Name, "has different input than its siblings.")
+					return nil, nil
+				}
+			}
+			prevChildInputs = childInputs
+			prevChildOutputs = childOutputs
+		}
+
+		return prevChildInputs, prevChildOutputs
 	} else {
 		fmt.Println("Unkown case.")
 		return nil, nil

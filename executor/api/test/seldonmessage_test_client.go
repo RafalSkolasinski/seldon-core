@@ -71,6 +71,18 @@ var metadataMap = map[string]string{
         "inputs": [{"name": "input", "datatype": "BYTES", "shape": [1, 5]}],
         "outputs": [{"name": "output", "datatype": "BYTES", "shape": [1, 20]}]
     }`,
+	"model-b1": `{
+        "name": "model-b1",
+        "versions": ["model-version"],
+        "platform": "platform-name",
+        "inputs": [{"name": "input", "datatype": "BYTES", "shape": [1, 5]}],
+        "outputs": [{"name": "output", "datatype": "BYTES", "shape": [1, 10]}]
+    }`,
+	"model-router": `{
+        "name": "model-router",
+        "versions": ["model-version"],
+        "platform": "platform-name"
+    }`,
 	"model-combiner": `{
         "name": "model-combiner",
         "versions": ["model-version"],

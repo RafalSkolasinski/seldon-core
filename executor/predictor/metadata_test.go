@@ -1,13 +1,12 @@
 package predictor
 
 import (
-	"encoding/json"
 	. "github.com/onsi/gomega"
 	"github.com/seldonio/seldon-core/operator/apis/machinelearning.seldon.io/v1"
 	"testing"
 )
 
-func TestSingleModel(t *testing.T) {
+func TestGraphMetadata(t *testing.T) {
 	t.Logf("Started")
 	g := NewGomegaWithT(t)
 	model := v1.MODEL
@@ -24,10 +23,6 @@ func TestSingleModel(t *testing.T) {
 			},
 		},
 	}
-	p := createPredictorProcess(t)
-
-	graphMetadata, err := NewGraphMetadata(p, spec)
-	g.Expect(err).Should(BeNil())
 
 	expectedGrahMetadata := GraphMetadata{
 		Name: "predictor-name",
@@ -51,148 +46,389 @@ func TestSingleModel(t *testing.T) {
 			{Name: "output", DataType: "BYTES", Shape: []int{1, 3}},
 		},
 	}
+
+	graphMetadata, err := NewGraphMetadata(createPredictorProcess(t), spec)
+	g.Expect(err).Should(BeNil())
 	g.Expect(*graphMetadata).To(Equal(expectedGrahMetadata))
 }
 
-func TestChainModel(t *testing.T) {
+func TestGraphMetadataTwoLevel(t *testing.T) {
 	t.Logf("Started")
 	g := NewGomegaWithT(t)
-	p := createPredictorProcess(t)
+	model := v1.MODEL
 
-	var specJson = `{
-		"name": "predictor-name",
-		"graph": {
-		   "name": "model-1",
-		   "type": "MODEL",
-		   "endpoint": {
-		        "service_host": "localhost",
-		        "service_port": 9000
-		    },
-		    "children": [
-		        {
-		           "name": "model-2",
-		           "type": "MODEL",
-		           "endpoint": {
-		                "service_host": "localhost",
-		                "service_port": 9001
-		            }
-		        }
-		    ]
-		}
-	}`
-
-	var graphMetaJson = `{
-		"Name": "predictor-name",
-		"Models": {
+	spec := &v1.PredictorSpec{
+		Name: "predictor-name",
+		Graph: &v1.PredictiveUnit{
+			Name: "model-1",
+			Type: &model,
+			Endpoint: &v1.Endpoint{
+				ServiceHost: "foo",
+				ServicePort: 9000,
+				Type:        v1.REST,
+			},
+			Children: []v1.PredictiveUnit{
+				{
+					Name: "model-2",
+					Type: &model,
+					Endpoint: &v1.Endpoint{
+						ServiceHost: "foo",
+						ServicePort: 9001,
+						Type:        v1.REST,
+					},
+				},
+			},
+		},
+	}
+	expectedGrahMetadata := GraphMetadata{
+		Name: "predictor-name",
+		Models: map[string]ModelMetadata{
 			"model-1": {
-				"Name": "model-1",
-				"versions": ["model-version"],
-				"Platform": "platform-name",
-				"Inputs": [{"DataType": "BYTES", "Name": "input", "Shape": [1, 5]}],
-				"Outputs": [{"DataType": "BYTES", "Name": "output", "Shape": [1, 3]}]
+				Name:     "model-1",
+				Platform: "platform-name",
+				Versions: []string{"model-version"},
+				Inputs: []MetadataTensor{
+					{Name: "input", DataType: "BYTES", Shape: []int{1, 5}},
+				},
+				Outputs: []MetadataTensor{
+					{Name: "output", DataType: "BYTES", Shape: []int{1, 3}},
+				},
 			},
 			"model-2": {
-				"Name": "model-2",
-				"versions": ["model-version"],
-				"Platform": "platform-name",
-				"Inputs": [{"DataType": "BYTES", "Name": "input", "Shape": [1, 3]}],
-				"Outputs": [{"DataType": "BYTES", "Name": "output", "Shape": [3]}]
-			}
+				Name:     "model-2",
+				Platform: "platform-name",
+				Versions: []string{"model-version"},
+				Inputs: []MetadataTensor{
+					{Name: "input", DataType: "BYTES", Shape: []int{1, 3}},
+				},
+				Outputs: []MetadataTensor{
+					{Name: "output", DataType: "BYTES", Shape: []int{3}},
+				},
+			},
 		},
-		"GraphInputs": [{"DataType": "BYTES", "Name": "input", "Shape": [1, 5]}],
-		"GraphOutputs": [{"DataType": "BYTES", "Name": "output", "Shape": [3]}]
-	}`
+		GraphInputs: []MetadataTensor{
+			{Name: "input", DataType: "BYTES", Shape: []int{1, 5}},
+		},
+		GraphOutputs: []MetadataTensor{
+			{Name: "output", DataType: "BYTES", Shape: []int{3}},
+		},
+	}
 
-	var expectedGrahMetadata GraphMetadata
-	err := json.Unmarshal([]byte(graphMetaJson), &expectedGrahMetadata)
+	graphMetadata, err := NewGraphMetadata(createPredictorProcess(t), spec)
 	g.Expect(err).Should(BeNil())
+	g.Expect(*graphMetadata).To(Equal(expectedGrahMetadata))
+}
 
-	var spec v1.PredictorSpec
-	err = json.Unmarshal([]byte(specJson), &spec)
+func TestGraphMetadataInputTransformer(t *testing.T) {
+	t.Logf("Started")
+	g := NewGomegaWithT(t)
+	model := v1.MODEL
+	transformer := v1.TRANSFORMER
+
+	spec := &v1.PredictorSpec{
+		Name: "predictor-name",
+		Graph: &v1.PredictiveUnit{
+			Name: "model-1",
+			Type: &transformer,
+			Endpoint: &v1.Endpoint{
+				ServiceHost: "foo",
+				ServicePort: 9000,
+				Type:        v1.REST,
+			},
+			Children: []v1.PredictiveUnit{
+				{
+					Name: "model-2",
+					Type: &model,
+					Endpoint: &v1.Endpoint{
+						ServiceHost: "foo",
+						ServicePort: 9001,
+						Type:        v1.REST,
+					},
+				},
+			},
+		},
+	}
+	expectedGrahMetadata := GraphMetadata{
+		Name: "predictor-name",
+		Models: map[string]ModelMetadata{
+			"model-1": {
+				Name:     "model-1",
+				Platform: "platform-name",
+				Versions: []string{"model-version"},
+				Inputs: []MetadataTensor{
+					{Name: "input", DataType: "BYTES", Shape: []int{1, 5}},
+				},
+				Outputs: []MetadataTensor{
+					{Name: "output", DataType: "BYTES", Shape: []int{1, 3}},
+				},
+			},
+			"model-2": {
+				Name:     "model-2",
+				Platform: "platform-name",
+				Versions: []string{"model-version"},
+				Inputs: []MetadataTensor{
+					{Name: "input", DataType: "BYTES", Shape: []int{1, 3}},
+				},
+				Outputs: []MetadataTensor{
+					{Name: "output", DataType: "BYTES", Shape: []int{3}},
+				},
+			},
+		},
+		GraphInputs: []MetadataTensor{
+			{Name: "input", DataType: "BYTES", Shape: []int{1, 5}},
+		},
+		GraphOutputs: []MetadataTensor{
+			{Name: "output", DataType: "BYTES", Shape: []int{3}},
+		},
+	}
+
+	graphMetadata, err := NewGraphMetadata(createPredictorProcess(t), spec)
 	g.Expect(err).Should(BeNil())
+	g.Expect(*graphMetadata).To(Equal(expectedGrahMetadata))
+}
 
-	graphMetadata, err := NewGraphMetadata(p, &spec)
+func TestGraphMetadataOutputTransformer(t *testing.T) {
+	t.Logf("Started")
+	g := NewGomegaWithT(t)
+	model := v1.MODEL
+	outputTransformer := v1.OUTPUT_TRANSFORMER
+
+	spec := &v1.PredictorSpec{
+		Name: "predictor-name",
+		Graph: &v1.PredictiveUnit{
+			Name: "model-2",
+			Type: &outputTransformer,
+			Endpoint: &v1.Endpoint{
+				ServiceHost: "foo",
+				ServicePort: 9000,
+				Type:        v1.REST,
+			},
+			Children: []v1.PredictiveUnit{
+				{
+					Name: "model-1",
+					Type: &model,
+					Endpoint: &v1.Endpoint{
+						ServiceHost: "foo",
+						ServicePort: 9001,
+						Type:        v1.REST,
+					},
+				},
+			},
+		},
+	}
+	expectedGrahMetadata := GraphMetadata{
+		Name: "predictor-name",
+		Models: map[string]ModelMetadata{
+			"model-1": {
+				Name:     "model-1",
+				Platform: "platform-name",
+				Versions: []string{"model-version"},
+				Inputs: []MetadataTensor{
+					{Name: "input", DataType: "BYTES", Shape: []int{1, 5}},
+				},
+				Outputs: []MetadataTensor{
+					{Name: "output", DataType: "BYTES", Shape: []int{1, 3}},
+				},
+			},
+			"model-2": {
+				Name:     "model-2",
+				Platform: "platform-name",
+				Versions: []string{"model-version"},
+				Inputs: []MetadataTensor{
+					{Name: "input", DataType: "BYTES", Shape: []int{1, 3}},
+				},
+				Outputs: []MetadataTensor{
+					{Name: "output", DataType: "BYTES", Shape: []int{3}},
+				},
+			},
+		},
+		GraphInputs: []MetadataTensor{
+			{Name: "input", DataType: "BYTES", Shape: []int{1, 5}},
+		},
+		GraphOutputs: []MetadataTensor{
+			{Name: "output", DataType: "BYTES", Shape: []int{3}},
+		},
+	}
+
+	graphMetadata, err := NewGraphMetadata(createPredictorProcess(t), spec)
+	g.Expect(err).Should(BeNil())
+	g.Expect(*graphMetadata).To(Equal(expectedGrahMetadata))
+}
+
+func TestGraphMetadataCombinerModel(t *testing.T) {
+	t.Logf("Started")
+	g := NewGomegaWithT(t)
+
+	model := v1.MODEL
+	combiner := v1.COMBINER
+
+	spec := &v1.PredictorSpec{
+		Name: "predictor-name",
+		Graph: &v1.PredictiveUnit{
+			Name: "model-combiner",
+			Type: &combiner,
+			Endpoint: &v1.Endpoint{
+				ServiceHost: "foo",
+				ServicePort: 9000,
+				Type:        v1.REST,
+			},
+			Children: []v1.PredictiveUnit{
+				{
+					Name: "model-a1",
+					Type: &model,
+					Endpoint: &v1.Endpoint{
+						ServiceHost: "foo",
+						ServicePort: 9001,
+						Type:        v1.REST,
+					},
+				},
+				{
+					Name: "model-a2",
+					Type: &model,
+					Endpoint: &v1.Endpoint{
+						ServiceHost: "foo",
+						ServicePort: 9002,
+						Type:        v1.REST,
+					},
+				},
+			},
+		},
+	}
+
+	expectedGrahMetadata := GraphMetadata{
+		Name: "predictor-name",
+		Models: map[string]ModelMetadata{
+			"model-combiner": {
+				Name:     "model-combiner",
+				Platform: "platform-name",
+				Versions: []string{"model-version"},
+				Inputs: []MetadataTensor{
+					{Name: "input-1", DataType: "BYTES", Shape: []int{1, 10}},
+					{Name: "input-2", DataType: "BYTES", Shape: []int{1, 20}},
+				},
+				Outputs: []MetadataTensor{
+					{Name: "combined output", DataType: "BYTES", Shape: []int{3}},
+				},
+			},
+			"model-a1": {
+				Name:     "model-a1",
+				Platform: "platform-name",
+				Versions: []string{"model-version"},
+				Inputs: []MetadataTensor{
+					{Name: "input", DataType: "BYTES", Shape: []int{1, 5}},
+				},
+				Outputs: []MetadataTensor{
+					{Name: "output", DataType: "BYTES", Shape: []int{1, 10}},
+				},
+			},
+			"model-a2": {
+				Name:     "model-a2",
+				Platform: "platform-name",
+				Versions: []string{"model-version"},
+				Inputs: []MetadataTensor{
+					{Name: "input", DataType: "BYTES", Shape: []int{1, 5}},
+				},
+				Outputs: []MetadataTensor{
+					{Name: "output", DataType: "BYTES", Shape: []int{1, 20}},
+				},
+			},
+		},
+		GraphInputs: []MetadataTensor{
+			{Name: "input", DataType: "BYTES", Shape: []int{1, 5}},
+		},
+		GraphOutputs: []MetadataTensor{
+			{Name: "combined output", DataType: "BYTES", Shape: []int{3}},
+		},
+	}
+
+	graphMetadata, err := NewGraphMetadata(createPredictorProcess(t), spec)
 	g.Expect(err).Should(BeNil())
 
 	g.Expect(*graphMetadata).To(Equal(expectedGrahMetadata))
 }
 
-func TestCombinerModel(t *testing.T) {
+func TestGraphMetadataRouter(t *testing.T) {
 	t.Logf("Started")
 	g := NewGomegaWithT(t)
-	p := createPredictorProcess(t)
 
-	var specJson = `{
-		"name": "predictor-name",
-		"graph": {
-		   "name": "model-combiner",
-		   "type": "COMBINER",
-		   "endpoint": {
-		        "service_host": "localhost",
-		        "service_port": 9000
-		    },
-		    "children": [
-		        {
-		           "name": "model-a1",
-		           "type": "MODEL",
-		           "endpoint": {
-		                "service_host": "localhost",
-		                "service_port": 9001
-		            }
-		        },
-		        {
-		           "name": "model-a2",
-		           "type": "MODEL",
-		           "endpoint": {
-		                "service_host": "localhost",
-		                "service_port": 9002
-		            }
-		        }
-		    ]
-		}
-	}`
+	model := v1.MODEL
+	router := v1.ROUTER
 
-	var graphMetaJson = `{
-		"Name": "predictor-name",
-		"Models": {
-			"model-a1": {
-				"Name": "model-a1",
-				"versions": ["model-version"],
-				"Platform": "platform-name",
-				"Inputs": [{"DataType": "BYTES", "Name": "input", "Shape": [1, 5]}],
-				"Outputs": [{"DataType": "BYTES", "Name": "output", "Shape": [1, 10]}]
+	spec := &v1.PredictorSpec{
+		Name: "predictor-name",
+		Graph: &v1.PredictiveUnit{
+			Name: "model-router",
+			Type: &router,
+			Endpoint: &v1.Endpoint{
+				ServiceHost: "foo",
+				ServicePort: 9000,
+				Type:        v1.REST,
 			},
-			"model-a2": {
-				"Name": "model-a2",
-				"versions": ["model-version"],
-				"Platform": "platform-name",
-				"Inputs": [{"DataType": "BYTES", "Name": "input", "Shape": [1, 5]}],
-				"Outputs": [{"DataType": "BYTES", "Name": "output", "Shape": [1, 20]}]
+			Children: []v1.PredictiveUnit{
+				{
+					Name: "model-a1",
+					Type: &model,
+					Endpoint: &v1.Endpoint{
+						ServiceHost: "foo",
+						ServicePort: 9001,
+						Type:        v1.REST,
+					},
+				},
+				{
+					Name: "model-b1",
+					Type: &model,
+					Endpoint: &v1.Endpoint{
+						ServiceHost: "foo",
+						ServicePort: 9002,
+						Type:        v1.REST,
+					},
+				},
 			},
-		    "model-combiner": {
-		        "name": "model-combiner",
-		        "versions": ["model-version"],
-		        "platform": "platform-name",
-		        "inputs": [
-		            {"name": "input-1", "datatype": "BYTES", "shape": [1, 10]},
-		            {"name": "input-2", "datatype": "BYTES", "shape": [1, 20]}
-		        ],
-		        "outputs": [{"name": "combined output", "datatype": "BYTES", "shape": [3]}]
-		    }
 		},
-		"GraphInputs": [{"DataType": "BYTES", "Name": "input", "Shape": [1, 5]}],
-		"GraphOutputs": [{"DataType": "BYTES", "Name": "combined output", "Shape": [3]}]
-	}`
+	}
 
-	var expectedGrahMetadata GraphMetadata
-	err := json.Unmarshal([]byte(graphMetaJson), &expectedGrahMetadata)
-	g.Expect(err).Should(BeNil())
+	expectedGrahMetadata := GraphMetadata{
+		Name: "predictor-name",
+		Models: map[string]ModelMetadata{
+			"model-router": {
+				Name:     "model-router",
+				Platform: "platform-name",
+				Versions: []string{"model-version"},
+				Inputs: nil,
+				Outputs: nil,
+			},
+			"model-a1": {
+				Name:     "model-a1",
+				Platform: "platform-name",
+				Versions: []string{"model-version"},
+				Inputs: []MetadataTensor{
+					{Name: "input", DataType: "BYTES", Shape: []int{1, 5}},
+				},
+				Outputs: []MetadataTensor{
+					{Name: "output", DataType: "BYTES", Shape: []int{1, 10}},
+				},
+			},
+			"model-b1": {
+				Name:     "model-b1",
+				Platform: "platform-name",
+				Versions: []string{"model-version"},
+				Inputs: []MetadataTensor{
+					{Name: "input", DataType: "BYTES", Shape: []int{1, 5}},
+				},
+				Outputs: []MetadataTensor{
+					{Name: "output", DataType: "BYTES", Shape: []int{1, 10}},
+				},
+			},
+		},
+		GraphInputs: []MetadataTensor{
+			{Name: "input", DataType: "BYTES", Shape: []int{1, 5}},
+		},
+		GraphOutputs: []MetadataTensor{
+			{Name: "output", DataType: "BYTES", Shape: []int{1, 10}},
+		},
+	}
 
-	var spec v1.PredictorSpec
-	err = json.Unmarshal([]byte(specJson), &spec)
-	g.Expect(err).Should(BeNil())
-
-	graphMetadata, err := NewGraphMetadata(p, &spec)
+	graphMetadata, err := NewGraphMetadata(createPredictorProcess(t), spec)
 	g.Expect(err).Should(BeNil())
 
 	g.Expect(*graphMetadata).To(Equal(expectedGrahMetadata))
