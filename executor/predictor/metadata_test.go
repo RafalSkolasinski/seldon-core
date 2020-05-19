@@ -394,8 +394,8 @@ func TestGraphMetadataRouter(t *testing.T) {
 				Name:     "model-router",
 				Platform: "platform-name",
 				Versions: []string{"model-version"},
-				Inputs: nil,
-				Outputs: nil,
+				Inputs:   nil,
+				Outputs:  nil,
 			},
 			"model-a1": {
 				Name:     "model-a1",

@@ -1,8 +1,8 @@
 package predictor
 
 import (
-	"fmt"
 	"github.com/seldonio/seldon-core/operator/apis/machinelearning.seldon.io/v1"
+	"sigs.k8s.io/controller-runtime/pkg/runtime/log"
 )
 
 type MetadataTensor struct {
@@ -20,10 +20,10 @@ type ModelMetadata struct {
 }
 
 type GraphMetadata struct {
-	Name         string                   `json:"name,omitempty"`
-	Models       map[string]ModelMetadata `json:"models,omitempty"`
-	GraphInputs  []MetadataTensor         `json:"graphinputs,omitempty"`
-	GraphOutputs []MetadataTensor         `json:"graphoutputs,omitempty"`
+	Name         string                   `json:"name"`
+	Models       map[string]ModelMetadata `json:"models"`
+	GraphInputs  []MetadataTensor         `json:"graphinputs"`
+	GraphOutputs []MetadataTensor         `json:"graphoutputs"`
 }
 
 func NewGraphMetadata(p *PredictorProcess, spec *v1.PredictorSpec) (output *GraphMetadata, err error) {
@@ -44,117 +44,37 @@ func (p *GraphMetadata) GetShapeFromGraph(node *v1.PredictiveUnit) (
 	nodeInputs := nodeMeta.Inputs
 	nodeOutputs := nodeMeta.Outputs
 
-	// Node has no children
+	// Single node graphs: code path terminates here if this is the case
 	if node.Children == nil || len(node.Children) == 0 {
-		// If Node is model then inputs and outputs are clear
-		if *node.Type == v1.MODEL {
-			return nodeInputs, nodeOutputs
-		} else {
-			fmt.Println("Unkown case.")
-			return nil, nil
-		}
-	} else if (*node.Type == v1.MODEL || *node.Type == v1.TRANSFORMER)  {
-		// We ignore all childs except first one
-		childInputs, childOutputs := p.GetShapeFromGraph(&node.Children[0])
+		// We treat node's inputs/outputs as global despite its Type
+		return nodeInputs, nodeOutputs
+	}
 
-		// Sanity check if child's input matches the parent output
-		if !AssertShapeCompatibility(nodeOutputs, childInputs) {
-			fmt.Println(nodeOutputs, childInputs)
-			return nil, nil
-		}
-
+	// Multi nodes graphs
+	if *node.Type == v1.MODEL || *node.Type == v1.TRANSFORMER {
+		// Ignore all children except first one for Models and Transformers
+		_, childOutputs := p.GetShapeFromGraph(&node.Children[0])
 		return nodeInputs, childOutputs
 	} else if *node.Type == v1.OUTPUT_TRANSFORMER {
-		// OUTPUT_TRANSFORMER passes its input to childs and then processes the output
-		// We ignore all childs except first one
-		childInputs, childOutputs := p.GetShapeFromGraph(&node.Children[0])
-
-		// Sanity check if child's output matches the parent input
-		if !AssertShapeCompatibility(nodeInputs, childOutputs) {
-			fmt.Println(nodeOutputs, childOutputs)
-			return nil, nil
-		}
-
+		// Ignore all children except first one for Output Transformers
+		// OUTPUT_TRANSFORMER first passes its input to (first) child and returns the output.
+		childInputs, _ := p.GetShapeFromGraph(&node.Children[0])
 		return childInputs, nodeOutputs
 	} else if *node.Type == v1.COMBINER {
-		// Combiner will get as its input a `list` of childs' outputs.
-		// Currently we will treat MODEL nodes as having single input and output.
-		// This is relevant for the shape compatibility check.
-		var prevChildInputs []MetadataTensor
-		var combinedChildOutputs = make([]MetadataTensor, len(node.Children))
-		for index, child := range node.Children {
-			childInputs, childOutputs := p.GetShapeFromGraph(&child)
-			// First we check if all child has same kind of input
-			if prevChildInputs != nil {
-				if !AssertShapeCompatibility(prevChildInputs, childInputs) {
-					fmt.Println("Child", child.Name, "has different input than its siblings.")
-					return nil, nil
-				}
-			}
-			prevChildInputs = childInputs
+		// Combiner will pass request to all of its children and combine their output.
+		// We assume that all children take same type of inputs.
+		childInputs, _ := p.GetShapeFromGraph(&node.Children[0])
 
-			// Combine Child outputs
-			if len(childOutputs) > 1 {
-				fmt.Println("We expect MODEL nodes to have only one output.")
-				return nil, nil
-			}
-			combinedChildOutputs[index] = childOutputs[0]
-		}
-		// Now check if combined child outputs matches the combiner's input
-		if !AssertShapeCompatibility(nodeInputs, combinedChildOutputs) {
-			fmt.Println("Combiner input does not match combined output of childs.")
-			return nil, nil
-		}
-		return prevChildInputs, nodeOutputs
+		return childInputs, nodeOutputs
 	} else if *node.Type == v1.ROUTER {
-		// ROUTER will request to one of its childs and return child's output.
-		// We only check if all children have same inputs and outputs and set
-		// single input/output as node input / output.
-		var prevChildInputs []MetadataTensor
-		var prevChildOutputs []MetadataTensor
-		for _, child := range node.Children {
-			childInputs, childOutputs := p.GetShapeFromGraph(&child)
-			// First we check if all child has same kind of input and output
-			if prevChildInputs != nil {
-				if !AssertShapeCompatibility(prevChildInputs, childInputs) {
-					fmt.Println("Child", child.Name, "has different input than its siblings.")
-					return nil, nil
-				}
-			}
-			if prevChildOutputs != nil {
-				if !AssertShapeCompatibility(prevChildOutputs, childOutputs) {
-					fmt.Println("Child", child.Name, "has different input than its siblings.")
-					return nil, nil
-				}
-			}
-			prevChildInputs = childInputs
-			prevChildOutputs = childOutputs
-		}
+		// ROUTER will pass request to one of its children and return child's output.
+		// We assume that all children take same type of inputs.
+		childInputs, childOutputs := p.GetShapeFromGraph(&node.Children[0])
+		return childInputs, childOutputs
+	}
 
-		return prevChildInputs, prevChildOutputs
-	} else {
-		fmt.Println("Unkown case.")
-		return nil, nil
-	}
-}
-
-func AssertShapeCompatibility(
-	inputs []MetadataTensor, outputs []MetadataTensor,
-) bool {
-	if inputs == nil || outputs == nil {
-		return false
-	}
-	for index, lval := range inputs {
-		rval := outputs[index]
-		if (lval.DataType != rval.DataType) || (len(lval.Shape) != len(rval.Shape)) {
-			return false
-		}
-		for i, lv := range lval.Shape {
-			rv := rval.Shape[i]
-			if lv != rv {
-				return false
-			}
-		}
-	}
-	return true
+	// If we got here it means none of the cases above
+	logger := log.Log.WithName("GraphMetadata")
+	logger.Info("Unimplemented case: Couldn't derive graph-level inputs and outputs.")
+	return nil, nil
 }
