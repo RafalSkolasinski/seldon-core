@@ -26,21 +26,23 @@ type GraphMetadata struct {
 	GraphOutputs []MetadataTensor         `json:"graphoutputs"`
 }
 
-func NewGraphMetadata(p *PredictorProcess, spec *v1.PredictorSpec) (output *GraphMetadata, err error) {
-	output = &GraphMetadata{}
-	output.Models, err = p.MetadataMap(spec.Graph)
+func NewGraphMetadata(p *PredictorProcess, spec *v1.PredictorSpec) (*GraphMetadata, error) {
+	models, err := p.MetadataMap(spec.Graph)
 	if err != nil {
 		return nil, err
 	}
-	output.Name = spec.Name
+	output := &GraphMetadata{
+		Name: spec.Name,
+		Models: models,
+	}
 	output.GraphInputs, output.GraphOutputs = output.GetShapeFromGraph(spec.Graph)
-	return
+	return output, nil
 }
 
-func (p *GraphMetadata) GetShapeFromGraph(node *v1.PredictiveUnit) (
+func (gm *GraphMetadata) GetShapeFromGraph(node *v1.PredictiveUnit) (
 	input []MetadataTensor, output []MetadataTensor,
 ) {
-	nodeMeta := p.Models[node.Name]
+	nodeMeta := gm.Models[node.Name]
 	nodeInputs := nodeMeta.Inputs
 	nodeOutputs := nodeMeta.Outputs
 
@@ -53,23 +55,23 @@ func (p *GraphMetadata) GetShapeFromGraph(node *v1.PredictiveUnit) (
 	// Multi nodes graphs
 	if *node.Type == v1.MODEL || *node.Type == v1.TRANSFORMER {
 		// Ignore all children except first one for Models and Transformers
-		_, childOutputs := p.GetShapeFromGraph(&node.Children[0])
+		_, childOutputs := gm.GetShapeFromGraph(&node.Children[0])
 		return nodeInputs, childOutputs
 	} else if *node.Type == v1.OUTPUT_TRANSFORMER {
 		// Ignore all children except first one for Output Transformers
 		// OUTPUT_TRANSFORMER first passes its input to (first) child and returns the output.
-		childInputs, _ := p.GetShapeFromGraph(&node.Children[0])
+		childInputs, _ := gm.GetShapeFromGraph(&node.Children[0])
 		return childInputs, nodeOutputs
 	} else if *node.Type == v1.COMBINER {
 		// Combiner will pass request to all of its children and combine their output.
 		// We assume that all children take same type of inputs.
-		childInputs, _ := p.GetShapeFromGraph(&node.Children[0])
+		childInputs, _ := gm.GetShapeFromGraph(&node.Children[0])
 
 		return childInputs, nodeOutputs
 	} else if *node.Type == v1.ROUTER {
 		// ROUTER will pass request to one of its children and return child's output.
 		// We assume that all children take same type of inputs.
-		childInputs, childOutputs := p.GetShapeFromGraph(&node.Children[0])
+		childInputs, childOutputs := gm.GetShapeFromGraph(&node.Children[0])
 		return childInputs, childOutputs
 	}
 
