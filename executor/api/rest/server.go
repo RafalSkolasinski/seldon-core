@@ -43,6 +43,7 @@ type SeldonRestApi struct {
 	Protocol       string
 	DeploymentName string
 	metrics        *metric.ServerMetrics
+	graphMetadata  *predictor.GraphMetadata
 	prometheusPath string
 }
 
@@ -62,6 +63,7 @@ func NewServerRestApi(predictor *v1.PredictorSpec, client client.SeldonApiClient
 		protocol,
 		deploymentName,
 		serverMetrics,
+		nil,
 		prometheusPath,
 	}
 }
@@ -128,6 +130,12 @@ func (r *SeldonRestApi) wrapMetrics(service string, baseHandler http.HandlerFunc
 }
 
 func (r *SeldonRestApi) Initialise() {
+	graphMetadata, err := r.cacheGraphMetadata()
+	if err != nil {
+		fmt.Println("Couldn't cache metadata")
+	}
+	r.graphMetadata = graphMetadata
+
 	r.Router.HandleFunc("/ready", r.checkReady)
 	r.Router.HandleFunc("/live", r.alive)
 	r.Router.Handle(r.prometheusPath, promhttp.Handler())
@@ -348,22 +356,10 @@ func (r *SeldonRestApi) predictions(w http.ResponseWriter, req *http.Request) {
 
 func (r *SeldonRestApi) graph_metadata(w http.ResponseWriter, req *http.Request) {
 	r.Log.Info("Graph Metadata called.")
+	output := r.graphMetadata
 
-	ctx := req.Context()
-
-	// Apply tracing if active
-	if opentracing.IsGlobalTracerRegistered() {
-		var serverSpan opentracing.Span
-		ctx, serverSpan = setupTracing(ctx, req, TracingMetadataName)
-		defer serverSpan.Finish()
-	}
-
-	seldonPredictorProcess := predictor.NewPredictorProcess(ctx, r.Client, logf.Log.WithName(LoggingRestClientName), r.ServerUrl, r.Namespace, req.Header)
-
-	output, err := predictor.NewGraphMetadata(&seldonPredictorProcess, r.predictor)
-
-	if err != nil {
-		r.respondWithError(w, nil, err)
+	if output == nil {
+		r.respondWithError(w, nil, fmt.Errorf("No Graph Metadata"))
 		return
 	}
 
@@ -371,4 +367,23 @@ func (r *SeldonRestApi) graph_metadata(w http.ResponseWriter, req *http.Request)
 	resPayload := payload.BytesPayload{Msg: msg, ContentType: ContentTypeJSON}
 
 	r.respondWithSuccess(w, http.StatusOK, &resPayload)
+}
+
+func (r *SeldonRestApi) cacheGraphMetadata() (*predictor.GraphMetadata, error) {
+	r.Log.Info("Graph Metadata Caching called.")
+
+	req, _ := http.NewRequest("GET", "", nil)
+	ctx := req.Context()
+
+	// Apply tracing if active
+	if opentracing.IsGlobalTracerRegistered() {
+		var serverSpan opentracing.Span
+		ctx, serverSpan = setupTracing(ctx, req, TracingPredictionsName)
+		defer serverSpan.Finish()
+	}
+
+	seldonPredictorProcess := predictor.NewPredictorProcess(ctx, r.Client, logf.Log.WithName(LoggingRestClientName), r.ServerUrl, r.Namespace, nil)
+
+	graphMetadata, err := predictor.NewGraphMetadata(&seldonPredictorProcess, r.predictor)
+	return graphMetadata, err
 }
