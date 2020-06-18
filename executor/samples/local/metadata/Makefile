@@ -34,3 +34,9 @@ request:
 
 metadata:
 	curl -s http://localhost:${EXECUTOR_PORT}/api/v1.0/metadata | jq .
+
+
+request-grpc:
+	cd ${BASE}/proto && grpcurl \
+		-d '{"data": {"names": ["input"], "ndarray": ["data"]}}' \
+		-plaintext -proto ./prediction.proto  0.0.0.0:8000 seldon.protos.Seldon/Predict

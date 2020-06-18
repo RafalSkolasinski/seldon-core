@@ -90,6 +90,12 @@ message RequestResponse {
 }
 
 
+message SeldonModelMetadataRequest
+{
+  string name = 1;
+}
+
+
 message SeldonModelMetadata
 {
 
@@ -158,6 +164,7 @@ service Combiner {
 service Seldon {
   rpc Predict(SeldonMessage) returns (SeldonMessage) {};
   rpc SendFeedback(Feedback) returns (SeldonMessage) {};
+  rpc Metadata(SeldonModelMetadataRequest) returns (SeldonModelMetadata) {};
 }
 
 // [END Services]
