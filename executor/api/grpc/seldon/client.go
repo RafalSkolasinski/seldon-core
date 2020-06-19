@@ -7,12 +7,12 @@ import (
 	"github.com/pkg/errors"
 	"github.com/seldonio/seldon-core/executor/api/client"
 
+	"github.com/golang/protobuf/ptypes/empty"
 	grpc2 "github.com/seldonio/seldon-core/executor/api/grpc"
 	"github.com/seldonio/seldon-core/executor/api/grpc/seldon/proto"
 	"github.com/seldonio/seldon-core/executor/api/payload"
 	"github.com/seldonio/seldon-core/executor/api/util"
 	v1 "github.com/seldonio/seldon-core/operator/apis/machinelearning.seldon.io/v1"
-	"github.com/golang/protobuf/ptypes/empty"
 	"google.golang.org/grpc"
 	"io"
 	"math"
