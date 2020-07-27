@@ -18,6 +18,7 @@ limitations under the License.
 package v1alpha2
 
 import (
+	"context"
 	"time"
 
 	v1alpha2 "github.com/seldonio/seldon-core/operator/apis/machinelearning.seldon.io/v1alpha2"
@@ -69,7 +70,7 @@ func (c *seldonDeployments) Get(name string, options v1.GetOptions) (result *v1a
 		Resource("seldondeployments").
 		Name(name).
 		VersionedParams(&options, scheme.ParameterCodec).
-		Do().
+		Do(context.Background()).
 		Into(result)
 	return
 }
@@ -86,7 +87,7 @@ func (c *seldonDeployments) List(opts v1.ListOptions) (result *v1alpha2.SeldonDe
 		Resource("seldondeployments").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Do().
+		Do(context.Background()).
 		Into(result)
 	return
 }
@@ -103,7 +104,7 @@ func (c *seldonDeployments) Watch(opts v1.ListOptions) (watch.Interface, error) 
 		Resource("seldondeployments").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Watch()
+		Watch(context.Background())
 }
 
 // Create takes the representation of a seldonDeployment and creates it.  Returns the server's representation of the seldonDeployment, and an error, if there is any.
@@ -113,7 +114,7 @@ func (c *seldonDeployments) Create(seldonDeployment *v1alpha2.SeldonDeployment) 
 		Namespace(c.ns).
 		Resource("seldondeployments").
 		Body(seldonDeployment).
-		Do().
+		Do(context.Background()).
 		Into(result)
 	return
 }
@@ -126,7 +127,7 @@ func (c *seldonDeployments) Update(seldonDeployment *v1alpha2.SeldonDeployment) 
 		Resource("seldondeployments").
 		Name(seldonDeployment.Name).
 		Body(seldonDeployment).
-		Do().
+		Do(context.Background()).
 		Into(result)
 	return
 }
@@ -138,7 +139,7 @@ func (c *seldonDeployments) Delete(name string, options *v1.DeleteOptions) error
 		Resource("seldondeployments").
 		Name(name).
 		Body(options).
-		Do().
+		Do(context.Background()).
 		Error()
 }
 
@@ -154,7 +155,7 @@ func (c *seldonDeployments) DeleteCollection(options *v1.DeleteOptions, listOpti
 		VersionedParams(&listOptions, scheme.ParameterCodec).
 		Timeout(timeout).
 		Body(options).
-		Do().
+		Do(context.Background()).
 		Error()
 }
 
@@ -167,7 +168,7 @@ func (c *seldonDeployments) Patch(name string, pt types.PatchType, data []byte, 
 		SubResource(subresources...).
 		Name(name).
 		Body(data).
-		Do().
+		Do(context.Background()).
 		Into(result)
 	return
 }

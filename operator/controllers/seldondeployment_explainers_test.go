@@ -79,7 +79,7 @@ func TestExplainerImageRelated(t *testing.T) {
 	g := NewGomegaWithT(t)
 	scheme = createScheme()
 	client := fake.NewSimpleClientset()
-	_, err := client.CoreV1().ConfigMaps(ControllerNamespace).Create(configMap)
+	_, err := client.CoreV1().ConfigMaps(ControllerNamespace).Create(context.Background(), configMap, metav1.CreateOptions{})
 	g.Expect(err).To(BeNil())
 	ei := NewExplainerInitializer(client)
 	sdep := createTestSDepWithExplainer()
@@ -137,7 +137,7 @@ var _ = Describe("createExplainer", func() {
 		func(explainer *machinelearningv1.Explainer) {
 			scheme = createScheme()
 			client := fake.NewSimpleClientset()
-			_, err := client.CoreV1().ConfigMaps(ControllerNamespace).Create(configMap)
+			_, err := client.CoreV1().ConfigMaps(ControllerNamespace).Create(context.Background(), configMap, metav1.CreateOptions{})
 			Expect(err).To(BeNil())
 			p.Explainer = explainer
 			ei := NewExplainerInitializer(client)

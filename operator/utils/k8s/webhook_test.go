@@ -1,6 +1,7 @@
 package k8s
 
 import (
+	"context"
 	. "github.com/onsi/gomega"
 	machinelearningv1 "github.com/seldonio/seldon-core/operator/apis/machinelearning.seldon.io/v1"
 	machinelearningv1alpha2 "github.com/seldonio/seldon-core/operator/apis/machinelearning.seldon.io/v1alpha2"
@@ -62,7 +63,7 @@ func createManagerDeployment(client kubernetes.Interface, namespace string) (*ap
 			},
 		},
 	}
-	return client.AppsV1().Deployments(namespace).Create(deployment)
+	return client.AppsV1().Deployments(namespace).Create(context.Background(), deployment, metav1.CreateOptions{})
 }
 
 func createTestCRD(client apiextensionsclient.Interface) (*v1beta1.CustomResourceDefinition, error) {
@@ -80,7 +81,7 @@ func createTestCRD(client apiextensionsclient.Interface) (*v1beta1.CustomResourc
 			Version: "v1",
 		},
 	}
-	return client.ApiextensionsV1beta1().CustomResourceDefinitions().Create(crd)
+	return client.ApiextensionsV1beta1().CustomResourceDefinitions().Create(context.Background(), crd, metav1.CreateOptions{})
 }
 
 func createScheme() *runtime.Scheme {
@@ -112,7 +113,7 @@ func TestMutatingWebhookCreate(t *testing.T) {
 	g.Expect(err).To(BeNil())
 	err = wc.CreateMutatingWebhookConfigurationFromFile(bytes, TestNamespace, crd, false)
 	g.Expect(err).To(BeNil())
-	_, err = client.AdmissionregistrationV1beta1().MutatingWebhookConfigurations().Get("seldon-mutating-webhook", metav1.GetOptions{})
+	_, err = client.AdmissionregistrationV1beta1().MutatingWebhookConfigurations().Get(context.Background(), "seldon-mutating-webhook", metav1.GetOptions{})
 	g.Expect(err).To(BeNil())
 }
 
@@ -132,7 +133,7 @@ func TestMutatingWebhookCreateNamespaced(t *testing.T) {
 	g.Expect(err).To(BeNil())
 	err = wc.CreateMutatingWebhookConfigurationFromFile(bytes, TestNamespace, crd, true)
 	g.Expect(err).To(BeNil())
-	_, err = client.AdmissionregistrationV1beta1().MutatingWebhookConfigurations().Get("seldon-mutating-webhook-"+TestNamespace, metav1.GetOptions{})
+	_, err = client.AdmissionregistrationV1beta1().MutatingWebhookConfigurations().Get(context.Background(), "seldon-mutating-webhook-"+TestNamespace, metav1.GetOptions{})
 	g.Expect(err).To(BeNil())
 }
 
@@ -152,7 +153,7 @@ func TestValidatingWebhookCreate(t *testing.T) {
 	g.Expect(err).To(BeNil())
 	err = wc.CreateValidatingWebhookConfigurationFromFile(bytes, TestNamespace, crd, false)
 	g.Expect(err).To(BeNil())
-	_, err = client.AdmissionregistrationV1beta1().ValidatingWebhookConfigurations().Get("seldon-validating-webhook", metav1.GetOptions{})
+	_, err = client.AdmissionregistrationV1beta1().ValidatingWebhookConfigurations().Get(context.Background(), "seldon-validating-webhook", metav1.GetOptions{})
 	g.Expect(err).To(BeNil())
 }
 
@@ -172,7 +173,7 @@ func TestValidatingWebhookCreateNamespaced(t *testing.T) {
 	g.Expect(err).To(BeNil())
 	err = wc.CreateValidatingWebhookConfigurationFromFile(bytes, TestNamespace, crd, true)
 	g.Expect(err).To(BeNil())
-	_, err = client.AdmissionregistrationV1beta1().ValidatingWebhookConfigurations().Get("seldon-validating-webhook-"+TestNamespace, metav1.GetOptions{})
+	_, err = client.AdmissionregistrationV1beta1().ValidatingWebhookConfigurations().Get(context.Background(), "seldon-validating-webhook-"+TestNamespace, metav1.GetOptions{})
 	g.Expect(err).To(BeNil())
 }
 

@@ -17,6 +17,7 @@ limitations under the License.
 package controllers
 
 import (
+	"context"
 	"fmt"
 	"k8s.io/client-go/kubernetes"
 	"sort"
@@ -58,7 +59,7 @@ type ExplainerConfig struct {
 }
 
 func (ei *ExplainerInitialiser) getExplainerConfigs() (*ExplainerConfig, error) {
-	configMap, err := ei.clientset.CoreV1().ConfigMaps(ControllerNamespace).Get(ControllerConfigMapName, metav1.GetOptions{})
+	configMap, err := ei.clientset.CoreV1().ConfigMaps(ControllerNamespace).Get(context.Background(), ControllerConfigMapName, metav1.GetOptions{})
 	if err != nil {
 		//log.Error(err, "Failed to find config map", "name", ControllerConfigMapName)
 		return nil, err

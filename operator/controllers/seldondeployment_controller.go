@@ -1554,7 +1554,7 @@ var (
 
 func (r *SeldonDeploymentReconciler) SetupWithManager(mgr ctrl.Manager, name string) error {
 
-	if err := mgr.GetFieldIndexer().IndexField(&appsv1.Deployment{}, ownerKey, func(rawObj runtime.Object) []string {
+	if err := mgr.GetFieldIndexer().IndexField(context.Background(), &appsv1.Deployment{}, ownerKey, func(rawObj runtime.Object) []string {
 		// grab the deployment object, extract the owner...
 		dep := rawObj.(*appsv1.Deployment)
 		owner := metav1.GetControllerOf(dep)
@@ -1572,7 +1572,7 @@ func (r *SeldonDeploymentReconciler) SetupWithManager(mgr ctrl.Manager, name str
 		return err
 	}
 
-	if err := mgr.GetFieldIndexer().IndexField(&corev1.Service{}, ownerKey, func(rawObj runtime.Object) []string {
+	if err := mgr.GetFieldIndexer().IndexField(context.Background(), &corev1.Service{}, ownerKey, func(rawObj runtime.Object) []string {
 		// grab the deployment object, extract the owner...
 		svc := rawObj.(*corev1.Service)
 		owner := metav1.GetControllerOf(svc)
@@ -1591,7 +1591,7 @@ func (r *SeldonDeploymentReconciler) SetupWithManager(mgr ctrl.Manager, name str
 	}
 
 	if utils.GetEnv(ENV_ISTIO_ENABLED, "false") == "true" {
-		if err := mgr.GetFieldIndexer().IndexField(&istio.VirtualService{}, ownerKey, func(rawObj runtime.Object) []string {
+		if err := mgr.GetFieldIndexer().IndexField(context.Background(), &istio.VirtualService{}, ownerKey, func(rawObj runtime.Object) []string {
 			// grab the deployment object, extract the owner...
 			vsvc := rawObj.(*istio.VirtualService)
 			owner := metav1.GetControllerOf(vsvc)

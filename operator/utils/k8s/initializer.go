@@ -1,6 +1,7 @@
 package k8s
 
 import (
+	"context"
 	"fmt"
 	"github.com/go-logr/logr"
 	"io/ioutil"
@@ -38,7 +39,7 @@ func LoadBytesFromFile(path string, name string) ([]byte, error) {
 
 func findMyDeployment(clientset kubernetes.Interface, namespace string) (*appsv1.Deployment, error) {
 	client := clientset.AppsV1().Deployments(namespace)
-	return client.Get(ManagerDeploymentName, v1.GetOptions{})
+	return client.Get(context.Background(), ManagerDeploymentName, v1.GetOptions{})
 }
 
 func InitializeOperator(config *rest.Config, namespace string, logger logr.Logger, scheme *runtime.Scheme, watchNamespace bool) error {

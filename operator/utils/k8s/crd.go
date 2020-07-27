@@ -1,6 +1,7 @@
 package k8s
 
 import (
+	"context"
 	"github.com/ghodss/yaml"
 	"github.com/go-logr/logr"
 	"k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1"
@@ -23,7 +24,7 @@ func NewCrdCreator(clientset apiextensionsclient.Interface, logger logr.Logger) 
 
 func (cc *CrdCreator) findCRD() (*v1beta1.CustomResourceDefinition, error) {
 	client := cc.clientset.ApiextensionsV1beta1().CustomResourceDefinitions()
-	return client.Get(CRDName, v1.GetOptions{})
+	return client.Get(context.Background(), CRDName, v1.GetOptions{})
 }
 
 func (cc *CrdCreator) createCRD(rawYaml []byte) (*v1beta1.CustomResourceDefinition, error) {
@@ -33,7 +34,7 @@ func (cc *CrdCreator) createCRD(rawYaml []byte) (*v1beta1.CustomResourceDefiniti
 		return nil, err
 	}
 	client := cc.clientset.ApiextensionsV1beta1().CustomResourceDefinitions()
-	return client.Create(&crd)
+	return client.Create(context.Background(), &crd, v1.CreateOptions{})
 }
 func (cc *CrdCreator) findOrCreateCRD(rawYaml []byte) (*v1beta1.CustomResourceDefinition, error) {
 	//Find or create CRD

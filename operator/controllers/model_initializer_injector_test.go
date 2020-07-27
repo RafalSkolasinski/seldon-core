@@ -1,9 +1,11 @@
 package controllers
 
 import (
+	"context"
 	. "github.com/onsi/gomega"
 	appsv1 "k8s.io/api/apps/v1"
 	v1 "k8s.io/api/core/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes/fake"
 	"testing"
 )
@@ -12,7 +14,7 @@ func TestStorageInitalizerInjector(t *testing.T) {
 	g := NewGomegaWithT(t)
 	scheme = createScheme()
 	client := fake.NewSimpleClientset()
-	_, err := client.CoreV1().ConfigMaps(ControllerNamespace).Create(configMap)
+	_, err := client.CoreV1().ConfigMaps(ControllerNamespace).Create(context.Background(), configMap, metav1.CreateOptions{})
 	g.Expect(err).To(BeNil())
 	mi := NewModelInitializer(client)
 	containerName := "classifier"
@@ -39,7 +41,7 @@ func TestStorageInitalizerInjectorWithRelatedImage(t *testing.T) {
 	g := NewGomegaWithT(t)
 	scheme = createScheme()
 	client := fake.NewSimpleClientset()
-	_, err := client.CoreV1().ConfigMaps(ControllerNamespace).Create(configMap)
+	_, err := client.CoreV1().ConfigMaps(ControllerNamespace).Create(context.Background(), configMap, metav1.CreateOptions{})
 	g.Expect(err).To(BeNil())
 	mi := NewModelInitializer(client)
 	containerName := "classifier"

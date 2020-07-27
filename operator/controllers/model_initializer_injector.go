@@ -14,6 +14,7 @@ limitations under the License.
 package controllers
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"strings"
@@ -66,7 +67,7 @@ type StorageInitializerConfig struct {
 }
 
 func (mi *ModelInitialiser) credentialsBuilder() (credentialsBuilder *credentials.CredentialBuilder, err error) {
-	configMap, err := mi.clientset.CoreV1().ConfigMaps(ControllerNamespace).Get(ControllerConfigMapName, metav1.GetOptions{})
+	configMap, err := mi.clientset.CoreV1().ConfigMaps(ControllerNamespace).Get(context.Background(), ControllerConfigMapName, metav1.GetOptions{})
 	if err != nil {
 		//log.Error(err, "Failed to find config map", "name", ControllerConfigMapName)
 		return nil, err
@@ -77,7 +78,7 @@ func (mi *ModelInitialiser) credentialsBuilder() (credentialsBuilder *credential
 }
 
 func (mi *ModelInitialiser) getStorageInitializerConfigs() (*StorageInitializerConfig, error) {
-	configMap, err := mi.clientset.CoreV1().ConfigMaps(ControllerNamespace).Get(ControllerConfigMapName, metav1.GetOptions{})
+	configMap, err := mi.clientset.CoreV1().ConfigMaps(ControllerNamespace).Get(context.Background(), ControllerConfigMapName, metav1.GetOptions{})
 	if err != nil {
 		//log.Error(err, "Failed to find config map", "name", ControllerConfigMapName)
 		return nil, err

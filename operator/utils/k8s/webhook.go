@@ -1,6 +1,7 @@
 package k8s
 
 import (
+	"context"
 	"github.com/ghodss/yaml"
 	"github.com/go-logr/logr"
 	"k8s.io/api/admissionregistration/v1beta1"
@@ -71,11 +72,11 @@ func (wc *WebhookCreator) CreateMutatingWebhookConfigurationFromFile(rawYaml []b
 
 	if watchNamespace {
 		// Try to delete clusterwide webhook config if available
-		_, err := client.Get(mwc.Name, v1.GetOptions{})
+		_, err := client.Get(context.Background(), mwc.Name, v1.GetOptions{})
 		if err != nil && errors.IsNotFound(err) {
 			wc.logger.Info("existing clusterwide mwc not found", "name", mwc.Name)
 		} else {
-			client.Delete(mwc.Name, &v1.DeleteOptions{})
+			client.Delete(context.Background(), mwc.Name, v1.DeleteOptions{})
 			if err != nil {
 				return err
 			}
@@ -108,14 +109,14 @@ func (wc *WebhookCreator) CreateMutatingWebhookConfigurationFromFile(rawYaml []b
 		return err
 	}
 
-	found, err := client.Get(mwc.Name, v1.GetOptions{})
+	found, err := client.Get(context.Background(), mwc.Name, v1.GetOptions{})
 	if err != nil && errors.IsNotFound(err) {
 		wc.logger.Info("Creating mutating webhook")
-		_, err = client.Create(&mwc)
+		_, err = client.Create(context.Background(), &mwc, v1.CreateOptions{})
 	} else if err == nil {
 		wc.logger.Info("Updating mutating webhook")
 		found.Webhooks = mwc.Webhooks
-		_, err = client.Update(found)
+		_, err = client.Update(context.Background(), found, v1.UpdateOptions{})
 		return err
 	}
 	return err
@@ -133,11 +134,11 @@ func (wc *WebhookCreator) CreateValidatingWebhookConfigurationFromFile(rawYaml [
 
 	if watchNamespace {
 		// Try to delete clusterwide webhook config if available
-		_, err := client.Get(vwc.Name, v1.GetOptions{})
+		_, err := client.Get(context.Background(), vwc.Name, v1.GetOptions{})
 		if err != nil && errors.IsNotFound(err) {
 			wc.logger.Info("existing clusterwide vwc not found", "name", vwc.Name)
 		} else {
-			client.Delete(vwc.Name, &v1.DeleteOptions{})
+			client.Delete(context.Background(), vwc.Name, v1.DeleteOptions{})
 			if err != nil {
 				return err
 			}
@@ -165,14 +166,14 @@ func (wc *WebhookCreator) CreateValidatingWebhookConfigurationFromFile(rawYaml [
 		return err
 	}
 
-	found, err := client.Get(vwc.Name, v1.GetOptions{})
+	found, err := client.Get(context.Background(), vwc.Name, v1.GetOptions{})
 	if err != nil && errors.IsNotFound(err) {
 		wc.logger.Info("Creating validating webhook")
-		_, err = client.Create(&vwc)
+		_, err = client.Create(context.Background(), &vwc, v1.CreateOptions{})
 	} else if err == nil {
 		wc.logger.Info("Updating validating webhook")
 		found.Webhooks = vwc.Webhooks
-		_, err = client.Update(found)
+		_, err = client.Update(context.Background(), found, v1.UpdateOptions{})
 		return err
 	}
 	return err
@@ -202,10 +203,10 @@ func (wc *WebhookCreator) CreateWebhookServiceFromFile(rawYaml []byte, namespace
 	// create or update via client
 	client := wc.clientset.CoreV1().Services(namespace)
 
-	_, err = client.Get(svc.Name, v1.GetOptions{})
+	_, err = client.Get(context.Background(), svc.Name, v1.GetOptions{})
 	if err != nil && errors.IsNotFound(err) {
 		wc.logger.Info("Creating webhook svc")
-		_, err = client.Create(&svc)
+		_, err = client.Create(context.Background(), &svc, v1.CreateOptions{})
 	} else if err == nil {
 		wc.logger.Info("Webhook svc exists won't update - need a patch in future")
 		return err

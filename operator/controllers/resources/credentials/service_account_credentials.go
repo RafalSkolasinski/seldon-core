@@ -17,6 +17,7 @@ limitations under the License.
 package credentials
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 
@@ -75,13 +76,13 @@ func (c *CredentialBuilder) CreateSecretVolumeAndEnv(namespace string, serviceAc
 		gcsCredentialFileName = c.config.GCS.GCSCredentialFileName
 	}
 
-	serviceAccount, err := c.clientset.CoreV1().ServiceAccounts(namespace).Get(serviceAccountName, metav1.GetOptions{})
+	serviceAccount, err := c.clientset.CoreV1().ServiceAccounts(namespace).Get(context.Background(), serviceAccountName, metav1.GetOptions{})
 	if err != nil {
 		log.Error(err, "Failed to find service account", "ServiceAccountName", serviceAccountName)
 		return nil
 	}
 	for _, secretRef := range serviceAccount.Secrets {
-		secret, err := c.clientset.CoreV1().Secrets(namespace).Get(secretRef.Name, metav1.GetOptions{})
+		secret, err := c.clientset.CoreV1().Secrets(namespace).Get(context.Background(), secretRef.Name, metav1.GetOptions{})
 		if err != nil {
 			log.Error(err, "Failed to find secret", "SecretName", secretRef.Name)
 			continue
