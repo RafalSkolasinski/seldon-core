@@ -14,6 +14,7 @@ import numpy as np
 from typing import List, Dict, Tuple
 import logging
 import json
+import threading
 import os
 
 
@@ -92,15 +93,19 @@ HEALTH_METRIC_METHOD_TAG = "health"
 class SeldonMetrics:
     """Class to manage custom metrics stored in shared memory."""
 
-    def __init__(self, worker_id_func=os.getpid):
+    def __init__(self):
         # We keep reference to Manager so it does not get garbage collected
         self._manager = Manager()
         self._lock = self._manager.Lock()
         self.data = self._manager.dict()
-        self.worker_id_func = worker_id_func
 
     def __del__(self):
         self._manager.shutdown()
+
+    def worker_id_func(self):
+        worker_id = f"{os.getpid()}-{threading.current_thread().name}"
+        logger.debug(f"Metrics worker id: {worker_id}")
+        return worker_id
 
     def update_reward(self, reward: float):
         """"Update metrics key corresponding to feedback reward counter."""

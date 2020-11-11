@@ -340,11 +340,7 @@ def main():
     # if args.tracing:
     #    tracer = setup_tracing(args.interface_name)
 
-    seldon_metrics = SeldonMetrics(worker_id_func=os.getpid)
-    # TODO why 2 ways to create metrics server
-    # seldon_metrics = SeldonMetrics(
-    #    worker_id_func=lambda: threading.current_thread().name
-    # )
+    seldon_metrics = SeldonMetrics()
     if args.debug:
         # Start Flask debug server
         def rest_prediction_server():

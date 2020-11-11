@@ -416,14 +416,14 @@ def test_seldon_metrics_predict(cls, client_gets_metrics):
     assert rv.status_code == 200
     assert ("metrics" in json.loads(rv.data)["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], PREDICT_METRIC_METHOD_TAG)
 
     rv = client.get('/predict?json={"data": {"names": ["input"], "ndarray": ["data"]}}')
     assert rv.status_code == 200
     assert ("metrics" in json.loads(rv.data)["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], PREDICT_METRIC_METHOD_TAG)
 
 
@@ -438,7 +438,7 @@ def test_seldon_metrics_send_feedback(cls):
     rv = client.get('/send-feedback?json={"reward": 42}')
     assert rv.status_code == 200
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
 
     expected_tags = {"method": FEEDBACK_METRIC_METHOD_TAG}
     tags_key = SeldonMetrics._generate_tags_key(expected_tags)
@@ -450,7 +450,7 @@ def test_seldon_metrics_send_feedback(cls):
     rv = client.get('/send-feedback?json={"reward": 42}')
     assert rv.status_code == 200
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
 
     expected_tags = {"method": FEEDBACK_METRIC_METHOD_TAG}
     tags_key = SeldonMetrics._generate_tags_key(expected_tags)
@@ -474,7 +474,7 @@ def test_seldon_metrics_aggregate(cls, client_gets_metrics):
     assert rv.status_code == 200
     assert ("metrics" in json.loads(rv.data)["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], AGGREGATE_METRIC_METHOD_TAG)
 
     rv = client.get(
@@ -483,7 +483,7 @@ def test_seldon_metrics_aggregate(cls, client_gets_metrics):
     assert rv.status_code == 200
     assert ("metrics" in json.loads(rv.data)["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], AGGREGATE_METRIC_METHOD_TAG)
 
 
@@ -501,7 +501,7 @@ def test_seldon_metrics_transform_input(cls, client_gets_metrics):
     assert rv.status_code == 200
     assert ("metrics" in json.loads(rv.data)["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], INPUT_TRANSFORM_METRIC_METHOD_TAG)
 
     rv = client.get(
@@ -510,7 +510,7 @@ def test_seldon_metrics_transform_input(cls, client_gets_metrics):
     assert rv.status_code == 200
     assert ("metrics" in json.loads(rv.data)["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], INPUT_TRANSFORM_METRIC_METHOD_TAG)
 
 
@@ -528,7 +528,7 @@ def test_seldon_metrics_transform_output(cls, client_gets_metrics):
     assert rv.status_code == 200
     assert ("metrics" in json.loads(rv.data)["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], OUTPUT_TRANSFORM_METRIC_METHOD_TAG)
 
     rv = client.get(
@@ -537,7 +537,7 @@ def test_seldon_metrics_transform_output(cls, client_gets_metrics):
     assert rv.status_code == 200
     assert ("metrics" in json.loads(rv.data)["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], OUTPUT_TRANSFORM_METRIC_METHOD_TAG)
 
 
@@ -553,14 +553,14 @@ def test_seldon_metrics_route(cls, client_gets_metrics):
     assert rv.status_code == 200
     assert ("metrics" in json.loads(rv.data)["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], ROUTER_METRIC_METHOD_TAG)
 
     rv = client.get('/route?json={"data": {"names": ["input"], "ndarray": ["data"]}}')
     assert rv.status_code == 200
     assert ("metrics" in json.loads(rv.data)["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], ROUTER_METRIC_METHOD_TAG)
 
 
@@ -581,13 +581,13 @@ def test_proto_seldon_metrics_predict(cls, client_gets_metrics):
         "metrics" in json.loads(json_format.MessageToJson(resp))["meta"]
     ) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], PREDICT_METRIC_METHOD_TAG)
     resp = app.Predict(request, None)
     assert (
         "metrics" in json.loads(json_format.MessageToJson(resp))["meta"]
     ) == client_gets_metrics
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], PREDICT_METRIC_METHOD_TAG)
 
 
@@ -615,14 +615,14 @@ def test_proto_seldon_metrics_aggregate(cls, client_gets_metrics):
     assert (
         "metrics" in json.loads(json_format.MessageToJson(resp))["meta"]
     ) == client_gets_metrics
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], AGGREGATE_METRIC_METHOD_TAG)
 
     resp = app.Aggregate(request, None)
     assert (
         "metrics" in json.loads(json_format.MessageToJson(resp))["meta"]
     ) == client_gets_metrics
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], AGGREGATE_METRIC_METHOD_TAG)
 
 
@@ -642,14 +642,14 @@ def test_proto_seldon_metrics_transform_input(cls, client_gets_metrics):
     assert (
         "metrics" in json.loads(json_format.MessageToJson(resp))["meta"]
     ) == client_gets_metrics
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], INPUT_TRANSFORM_METRIC_METHOD_TAG)
 
     resp = app.TransformInput(request, None)
     assert (
         "metrics" in json.loads(json_format.MessageToJson(resp))["meta"]
     ) == client_gets_metrics
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], INPUT_TRANSFORM_METRIC_METHOD_TAG)
 
 
@@ -669,14 +669,14 @@ def test_proto_seldon_metrics_transform_output(cls, client_gets_metrics):
     assert (
         "metrics" in json.loads(json_format.MessageToJson(resp))["meta"]
     ) == client_gets_metrics
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], OUTPUT_TRANSFORM_METRIC_METHOD_TAG)
 
     resp = app.TransformOutput(request, None)
     assert (
         "metrics" in json.loads(json_format.MessageToJson(resp))["meta"]
     ) == client_gets_metrics
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], OUTPUT_TRANSFORM_METRIC_METHOD_TAG)
 
 
@@ -696,14 +696,14 @@ def test_proto_seldon_metrics_route(cls, client_gets_metrics):
         "metrics" in json.loads(json_format.MessageToJson(resp))["meta"]
     ) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], ROUTER_METRIC_METHOD_TAG)
     resp = app.Route(request, None)
     assert (
         "metrics" in json.loads(json_format.MessageToJson(resp))["meta"]
     ) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], ROUTER_METRIC_METHOD_TAG)
 
 
@@ -748,11 +748,11 @@ def test_seldon_metrics_endpoint(cls, client_gets_metrics):
 
         if name == "mycounter_total":
             assert value == "1.0"
-            assert labels["worker_id"] == str(os.getpid())
+            assert labels["worker_id"] == str(seldon_metrics.worker_id_func())
 
         if name == "mygauge":
             assert value == "100.0"
-            assert labels["worker_id"] == str(os.getpid())
+            assert labels["worker_id"] == str(seldon_metrics.worker_id_func())
 
         if name == "customtag":
             assert value == "200.0"
@@ -806,11 +806,11 @@ def test_proto_seldon_metrics_endpoint(cls, client_gets_metrics):
 
         if name == "mycounter_total":
             assert value == "1.0"
-            assert labels["worker_id"] == str(os.getpid())
+            assert labels["worker_id"] == str(seldon_metrics.worker_id_func())
 
         if name == "mygauge":
             assert value == "100.0"
-            assert labels["worker_id"] == str(os.getpid())
+            assert labels["worker_id"] == str(seldon_metrics.worker_id_func())
 
         if name == "customtag":
             assert value == "200.0"

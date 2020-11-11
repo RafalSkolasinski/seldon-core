@@ -114,7 +114,7 @@ def test_seldon_runtime_data_predict(cls, client_gets_metrics):
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], PREDICT_METRIC_METHOD_TAG)
 
     rv = client.get('/predict?json={"data": {"names": ["input"], "ndarray": ["data"]}}')
@@ -124,7 +124,7 @@ def test_seldon_runtime_data_predict(cls, client_gets_metrics):
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], PREDICT_METRIC_METHOD_TAG)
 
 
@@ -141,7 +141,7 @@ def test_seldon_runtime_data_send_feedback(cls):
     j = json.loads(rv.data)
     assert j["meta"]["tags"] == EXPECTED_TAGS
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], FEEDBACK_METRIC_METHOD_TAG)
 
     expected_base_tags = {"method": FEEDBACK_METRIC_METHOD_TAG}
@@ -155,7 +155,7 @@ def test_seldon_runtime_data_send_feedback(cls):
     rv = client.get('/send-feedback?json={"reward": 42}')
     assert rv.status_code == 200
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], FEEDBACK_METRIC_METHOD_TAG)
 
     assert data["COUNTER", "seldon_api_model_feedback_reward", base_tags_key] == {
@@ -181,7 +181,7 @@ def test_seldon_runtime_data_aggregate(cls, client_gets_metrics):
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], AGGREGATE_METRIC_METHOD_TAG)
 
     rv = client.get(
@@ -193,7 +193,7 @@ def test_seldon_runtime_data_aggregate(cls, client_gets_metrics):
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], AGGREGATE_METRIC_METHOD_TAG)
 
 
@@ -214,7 +214,7 @@ def test_seldon_runtime_data_transform_input(cls, client_gets_metrics):
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], INPUT_TRANSFORM_METRIC_METHOD_TAG)
 
     rv = client.get(
@@ -226,7 +226,7 @@ def test_seldon_runtime_data_transform_input(cls, client_gets_metrics):
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], INPUT_TRANSFORM_METRIC_METHOD_TAG)
 
 
@@ -247,7 +247,7 @@ def test_seldon_runtime_data_transform_output(cls, client_gets_metrics):
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], OUTPUT_TRANSFORM_METRIC_METHOD_TAG)
 
     rv = client.get(
@@ -259,7 +259,7 @@ def test_seldon_runtime_data_transform_output(cls, client_gets_metrics):
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], OUTPUT_TRANSFORM_METRIC_METHOD_TAG)
 
 
@@ -278,7 +278,7 @@ def test_seldon_runtime_data_route(cls, client_gets_metrics):
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], ROUTER_METRIC_METHOD_TAG)
 
     rv = client.get('/route?json={"data": {"names": ["input"], "ndarray": ["data"]}}')
@@ -288,7 +288,7 @@ def test_seldon_runtime_data_route(cls, client_gets_metrics):
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], ROUTER_METRIC_METHOD_TAG)
 
 
@@ -314,7 +314,7 @@ def test_proto_seldon_runtime_data_predict(cls, client_gets_metrics):
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], PREDICT_METRIC_METHOD_TAG)
     resp = app.Predict(request, None)
     j = json.loads(json_format.MessageToJson(resp))
@@ -324,7 +324,7 @@ def test_proto_seldon_runtime_data_predict(cls, client_gets_metrics):
     }
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], PREDICT_METRIC_METHOD_TAG)
 
 
@@ -356,7 +356,7 @@ def test_proto_seldon_runtime_data_aggregate(cls, client_gets_metrics):
     }
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], AGGREGATE_METRIC_METHOD_TAG)
 
     resp = app.Aggregate(request, None)
@@ -367,7 +367,7 @@ def test_proto_seldon_runtime_data_aggregate(cls, client_gets_metrics):
     }
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], AGGREGATE_METRIC_METHOD_TAG)
 
 
@@ -391,7 +391,7 @@ def test_proto_seldon_runtime_data_transform_input(cls, client_gets_metrics):
     }
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], INPUT_TRANSFORM_METRIC_METHOD_TAG)
 
     resp = app.TransformInput(request, None)
@@ -402,7 +402,7 @@ def test_proto_seldon_runtime_data_transform_input(cls, client_gets_metrics):
     }
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], INPUT_TRANSFORM_METRIC_METHOD_TAG)
 
 
@@ -426,7 +426,7 @@ def test_proto_seldon_runtime_data_transform_output(cls, client_gets_metrics):
     }
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], OUTPUT_TRANSFORM_METRIC_METHOD_TAG)
 
     resp = app.TransformOutput(request, None)
@@ -437,7 +437,7 @@ def test_proto_seldon_runtime_data_transform_output(cls, client_gets_metrics):
     }
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], OUTPUT_TRANSFORM_METRIC_METHOD_TAG)
 
 
@@ -461,7 +461,7 @@ def test_proto_seldon_runtime_data_route(cls, client_gets_metrics):
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 1, [0.0202], ROUTER_METRIC_METHOD_TAG)
     resp = app.Route(request, None)
     j = json.loads(json_format.MessageToJson(resp))
@@ -472,7 +472,7 @@ def test_proto_seldon_runtime_data_route(cls, client_gets_metrics):
     assert j["meta"]["tags"] == EXPECTED_TAGS
     assert ("metrics" in j["meta"]) == client_gets_metrics
 
-    data = seldon_metrics.data[os.getpid()]
+    data = seldon_metrics.data[seldon_metrics.worker_id_func()]
     verify_seldon_metrics(data, 2, [0.0202, 0.0202], ROUTER_METRIC_METHOD_TAG)
 
 
@@ -517,11 +517,11 @@ def test_seldon_metrics_endpoint(cls, client_gets_metrics):
 
         if name == "mycounter_total":
             assert value == "1.0"
-            assert labels["worker_id"] == str(os.getpid())
+            assert labels["worker_id"] == str(seldon_metrics.worker_id_func())
 
         if name == "mygauge":
             assert value == "100.0"
-            assert labels["worker_id"] == str(os.getpid())
+            assert labels["worker_id"] == str(seldon_metrics.worker_id_func())
 
         if name == "customtag":
             assert value == "200.0"
@@ -579,11 +579,11 @@ def test_proto_seldon_metrics_endpoint(cls, client_gets_metrics):
 
         if name == "mycounter_total":
             assert value == "1.0"
-            assert labels["worker_id"] == str(os.getpid())
+            assert labels["worker_id"] == str(seldon_metrics.worker_id_func())
 
         if name == "mygauge":
             assert value == "100.0"
-            assert labels["worker_id"] == str(os.getpid())
+            assert labels["worker_id"] == str(seldon_metrics.worker_id_func())
 
         if name == "customtag":
             assert value == "200.0"
