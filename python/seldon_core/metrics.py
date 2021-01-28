@@ -12,6 +12,7 @@ from multiprocessing import Manager
 import numpy as np
 
 from typing import List, Dict, Tuple
+from distutils.util import strtobool
 import logging
 import json
 import os
@@ -88,6 +89,12 @@ ROUTER_METRIC_METHOD_TAG = "router"
 AGGREGATE_METRIC_METHOD_TAG = "aggregate"
 HEALTH_METRIC_METHOD_TAG = "health"
 
+# Extra configuration options
+ENV_SELDON_AGGREGATE_CUSTOM_METRICS = "SELDON_AGGREGATE_CUSTOM_METRICS"
+AGGREGATE_CUSTOM_METRICS = bool(
+    strtobool(os.environ.get(ENV_SELDON_DEPLOYMENT_NAME, "false"))
+)
+
 
 class SeldonMetrics:
     """Class to manage custom metrics stored in shared memory."""
@@ -153,14 +160,7 @@ class SeldonMetrics:
             self.data[self.worker_id_func()] = worker_data
         logger.debug("Updated metrics in the shared memory.")
 
-    def collect(self):
-        # Read all workers metrics with lock to avoid other processes / threads
-        # writing to it at the same time. Casting to `dict` works like reading of data.
-        logger.debug("SeldonMetrics.collect called")
-        with self._lock:
-            data = dict(self.data)
-        logger.debug("Read current metrics data from shared memory")
-
+    def _yield_per_worker(self, data):
         for worker_id, worker_data in data.items():
             for (item_type, item_name, item_tags), item in worker_data.items():
                 labels_keys, labels_values = self._merge_labels(
@@ -179,6 +179,64 @@ class SeldonMetrics:
                         item_name, item["value"], labels_keys, labels_values
                     )
 
+    def _yield_aggregated(self, data):
+        aggregated_data = {}
+
+        for worker_id, worker_data in data.items():
+            for (item_type, item_name, item_tags), item in worker_data.items():
+                key = (item_type, item_name, item_tags)
+
+                # If we see key for the first time we add it to the aggregated data
+                if key not in aggregated_data:
+                    aggregated_data[key] = item
+                    continue
+
+                if item_type == "GAUGE":
+                    yield self._expose_gauge(
+                        item_name, item["value"], labels_keys, labels_values
+                    )
+                elif item_type == "COUNTER":
+                    yield self._expose_counter(
+                        item_name, item["value"], labels_keys, labels_values
+                    )
+                elif item_type == "TIMER":
+                    yield self._expose_histogram(
+                        item_name, item["value"], labels_keys, labels_values
+                    )
+
+
+
+
+        # Now we yield metrics like in the "per worker" case but with worker_id label removed
+        for (item_type, item_name, item_tags), item in aggregated_data.items():
+            labels_keys, labels_values = self._merge_labels(None, item["tags"])
+            if item_type == "GAUGE":
+                yield self._expose_gauge(
+                    item_name, item["value"], labels_keys, labels_values
+                )
+            elif item_type == "COUNTER":
+                yield self._expose_counter(
+                    item_name, item["value"], labels_keys, labels_values
+                )
+            elif item_type == "TIMER":
+                yield self._expose_histogram(
+                    item_name, item["value"], labels_keys, labels_values
+                )
+
+    def collect(self):
+        # Read all workers metrics with lock to avoid other processes / threads
+        # writing to it at the same time. Casting to `dict` works like reading of data.
+        logger.debug("SeldonMetrics.collect called")
+        with self._lock:
+            data = dict(self.data)
+        logger.debug("Read current metrics data from shared memory")
+
+        if AGGREGATE_CUSTOM_METRICS:
+            self._yield_aggregated(data)
+        else:
+            self._yield_per_worker(data)
+
+
     def generate_metrics(self):
         myregistry = CollectorRegistry()
         myregistry.register(self)
@@ -192,8 +250,9 @@ class SeldonMetrics:
             **tags,
             **DEFAULT_LABELS,
             **self._extra_default_labels,
-            "worker_id": str(worker),
         }
+        if worker is not None:
+            labels["worker_id"] = str(worker),
         return list(labels.keys()), list(labels.values())
 
     @staticmethod

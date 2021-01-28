@@ -5,6 +5,8 @@ import numpy as np
 from google.protobuf import json_format
 import json
 
+from unittest.mock import patch
+
 from seldon_core.flask_utils import SeldonMicroserviceException
 from seldon_core.proto import prediction_pb2
 from seldon_core.wrapper import (
@@ -708,7 +710,7 @@ def test_proto_seldon_metrics_route(cls, client_gets_metrics):
 
 
 @pytest.mark.parametrize("cls", [UserObject, UserObjectLowLevel])
-def test_seldon_metrics_endpoint(cls, client_gets_metrics):
+def test_seldon_metrics_endpoint(cls, client_gets_metrics, aggregate_custom_metrics):
     def _match_label(line):
         _data, value = line.split()
         name, labels = _data.split()[0].split("{")
@@ -721,8 +723,19 @@ def test_seldon_metrics_endpoint(cls, client_gets_metrics):
                 continue
             yield _match_label(line)
 
+    class WorkerIdSetter:
+        def __init__(self, worker_id=1):
+            self.worker_id = worker_id
+
+        def set_id(self, worker_id):
+            self.worker_id = worker_id
+
+        def __call__(self):
+            return self.worker_id
+
     user_object = cls()
-    seldon_metrics = SeldonMetrics()
+    worker_id_setter = WorkerIdSetter()
+    seldon_metrics = SeldonMetrics(worker_id_func=worker_id_setter)
 
     app = get_rest_microservice(user_object, seldon_metrics)
     client = app.test_client()
@@ -734,6 +747,12 @@ def test_seldon_metrics_endpoint(cls, client_gets_metrics):
     assert rv.status_code == 200
     assert rv.data.decode() == ""
 
+    worker_id_setter.set_id(42)
+    rv = client.get('/predict?json={"data": {"names": ["input"], "ndarray": ["data"]}}')
+    assert rv.status_code == 200
+    assert ("metrics" in json.loads(rv.data)["meta"]) == client_gets_metrics
+
+    worker_id_setter.set_id(44)
     rv = client.get('/predict?json={"data": {"names": ["input"], "ndarray": ["data"]}}')
     assert rv.status_code == 200
     assert ("metrics" in json.loads(rv.data)["meta"]) == client_gets_metrics
@@ -745,24 +764,35 @@ def test_seldon_metrics_endpoint(cls, client_gets_metrics):
     for name, value, labels in _iterate_metrics(text):
         if name == "mytimer_bucket":
             timer_present = True
+        if not aggregate_custom_metrics:
+            if name == "mycounter_total":
+                assert value == "1.0"
+                assert labels["worker_id"] in ["42", "44"]
 
-        if name == "mycounter_total":
-            assert value == "1.0"
-            assert labels["worker_id"] == str(os.getpid())
+            if name == "mygauge":
+                assert value == "100.0"
+                assert labels["worker_id"] in ["42", "44"]
 
-        if name == "mygauge":
-            assert value == "100.0"
-            assert labels["worker_id"] == str(os.getpid())
+            if name == "customtag":
+                assert value == "200.0"
+                assert labels["mytag"] == "mytagvalue"
+        else:
+            if name == "mycounter_total":
+                assert value == "2.0"
+                assert "worker_id" not in labels
 
-        if name == "customtag":
-            assert value == "200.0"
-            assert labels["mytag"] == "mytagvalue"
+            if name == "mygauge":
+                assert value == "100.0"
+                assert "worker_id" not in labels
+
+            if name == "customtag":
+                assert value == "200.0"
+                assert labels["mytag"] == "mytagvalue"
 
     assert timer_present
 
-
 @pytest.mark.parametrize("cls", [UserObject, UserObjectLowLevelGrpc])
-def test_proto_seldon_metrics_endpoint(cls, client_gets_metrics):
+def test_proto_seldon_metrics_endpoint(cls, client_gets_metrics, aggregate_custom_metrics):
     def _match_label(line):
         _data, value = line.split()
         name, labels = _data.split()[0].split("{")
@@ -817,3 +847,26 @@ def test_proto_seldon_metrics_endpoint(cls, client_gets_metrics):
             assert labels["mytag"] == "mytagvalue"
 
     assert timer_present
+
+@pytest.mark.parametrize("aggregate", [True, False])
+def test_metrics_aggregation(aggregate):
+
+
+    worker_id_setter = WorkerIdSetter()
+    seldon_metrics = SeldonMetrics(worker_id_func=worker_id_setter)
+
+    metrics = [
+        {"type": "COUNTER", "key": "mycounter", "value": 1.2},
+        {"type": "GAUGE", "key": "mygauge", "value": 1.2},
+        {"type": "TIMER", "key": "mytimer", "value": 1.2},
+    ]
+
+    worker_id_setter.set_id(1)
+    seldon_metrics.update(metrics, "test")
+
+    worker_id_setter.set_id(2)
+    seldon_metrics.update(metrics, "test")
+
+    with patch("seldon_core.metrics.aggregate_custom_metrics", aggregate):
+        collected = list(seldon_metrics.collect())
+        print(collected)

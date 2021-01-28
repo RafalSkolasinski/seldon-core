@@ -23,6 +23,13 @@ def client_gets_metrics(monkeypatch, request):
     )
     return value
 
+@pytest.fixture(params=[True, False])
+def aggregate_custom_metrics(monkeypatch, request):
+    value = request.param
+    monkeypatch.setattr(
+        seldon_core.metrics, "AGGREGATE_CUSTOM_METRICS", value
+    )
+    return value
 
 @pytest.fixture
 def microservice(request):
